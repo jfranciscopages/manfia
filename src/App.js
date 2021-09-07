@@ -2,9 +2,7 @@ import "./App.css";
 
 //COMENTARIO MAI :)
 function App() {
-  return (
-    <div className="App">lo dejo vacio </div>
-  );
+  return <div className="App"> </div>;
 }
 
 export default App;
