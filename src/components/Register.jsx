@@ -53,7 +53,7 @@ const Login = () => {
           alignItems="center"
         >
           <Avatar bg="teal.500" />
-          <Heading color="teal.400">Iniciar sesión</Heading>
+          <Heading color="teal.400">Registrarse</Heading>
           <Box minW={{ base: "90%", md: "468px" }}>
             <form>
               <Stack
@@ -86,9 +86,6 @@ const Login = () => {
                       </Button>
                     </InputRightElement>
                   </InputGroup>
-                  <FormHelperText textAlign="right">
-                    <Link>¿olvidaste tu contraseña?</Link>
-                  </FormHelperText>
                 </FormControl>
                 <Button
                   borderRadius={0}
@@ -97,7 +94,7 @@ const Login = () => {
                   colorScheme="teal"
                   width="full"
                 >
-                  Ingresar
+                  Crear cuenta
                 </Button>
                 <Flex align="center" color="gray.300">
                   <Box flex="1">
