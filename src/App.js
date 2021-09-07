@@ -1,17 +1,7 @@
 import "./App.css";
 
+//COMENTARIO MAI :)
 function App() {
-
-  return (<div className="App"> FUCK YOU GITHUB
- <h1> AGUANTE BOCA</h1>   
-  </div>
-
-  
-  )
-
-
-
-  return <div className="App"> WEPP!!</div>;
   return (
     <div className="App">
       WEPP!!
