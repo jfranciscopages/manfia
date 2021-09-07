@@ -1,8 +1,10 @@
 import "./App.css";
+import Login from "./components/Login";
 
 //COMENTARIO MAI :)
 function App() {
-  return <div className="App"> WEPP!!</div>;
+  return <Login/>;
 }
+
 
 export default App;
