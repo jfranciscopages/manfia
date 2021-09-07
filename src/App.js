@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="App">
       WEPP!!
-      <h1> Holanda!!!</h1>
+      <h1> Holand!!!</h1>
     </div>
   );
 }
