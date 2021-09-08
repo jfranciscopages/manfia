@@ -1,6 +1,5 @@
 import React from "react";
-import Login from "./Login";
-import Register from "./Register";
+// import logo from "../../public/manifest.json"
 import {
   Box,
   Flex,
@@ -33,7 +32,7 @@ const Navbar = () => {
   return (
     <Box>
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
+        bg={useColorModeValue("gray.50", "gray.900")}
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
@@ -58,18 +57,15 @@ const Navbar = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
-          >
-            Logo
-          </Text>
-
+          {/* <image src={logo}/> */}
+          <Link color="teal.500" href="/">
+            Logo{" "}
+          </Link>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
         </Flex>
+
         <Center h="100px" w="100%">
           <Search />
         </Center>
@@ -81,26 +77,25 @@ const Navbar = () => {
         >
           <Button
             as={"a"}
-            fontSize={"sm"}
+            fontSize={"lg"}
             fontWeight={400}
             variant={"link"}
-            href={"#"}
+            href={"/login"}
           >
             Login
           </Button>
           <Button
+            as={"a"}
             display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
+            fontSize={"lg"}
             fontWeight={600}
             color={"white"}
             bg={"pink.400"}
-            href={"#"}
-            _hover={{
-              bg: "pink.300",
-            }}
+            href={"/register"}
           >
             Register
           </Button>
+         
         </Stack>
       </Flex>
 
@@ -125,7 +120,7 @@ const DesktopNav = () => {
               <Link
                 p={2}
                 href={navItem.href ?? "#"}
-                fontSize={"sm"}
+                fontSize={"md"}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
@@ -160,7 +155,7 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+const DesktopSubNav = ({ label, href, subLabel }= NavItem) => {
   return (
     <Link
       href={href}
@@ -211,7 +206,7 @@ const MobileNav = () => {
   );
 };
 
-const MobileNavItem = ({ label, children, href }: NavItem) => {
+const MobileNavItem = ({ label, children, href }= NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
