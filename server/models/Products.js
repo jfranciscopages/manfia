@@ -14,7 +14,7 @@ Products.init(
       allowNull: false,
     },
     description: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: false,
     },
     sex: {
@@ -22,7 +22,7 @@ Products.init(
       allowNull: false,
     },
     image: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: false,
     },
     category: {
@@ -31,6 +31,10 @@ Products.init(
     },
     stock: {
       type: Sequelize.STRING,
+      allowNull: false,
+    },
+    raiting: {
+      type: Sequelize.JSON,
       allowNull: false,
     },
   },

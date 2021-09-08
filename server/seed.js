@@ -1,8 +1,8 @@
 const db = require("./index");
-const User = require("../models/User");
-const Category = require("../models/Category");
-const Product = require("../models/Product");
-const ProductCategory = require("../models/ProductCategory");
+const Users = require("../models/users");
+const Categories = require("../models/categories");
+const Products = require("../models/Product");
+const ProductCategories = require("../models/ProductCategory");
 
 const userParaSeedear = [
   {
@@ -68,9 +68,6 @@ const categoriasParaSeedear = [
   },
   {
     name: "Shorts",
-  },
-  {
-    name: "",
   },
 ];
 
