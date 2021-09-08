@@ -4,7 +4,10 @@ import Register from "./components/Register";
 
 //COMENTARIO MAI :)
 function App() {
-  return <Login />;
+  return <div className="App"> </div>;
 }
 
 export default App;
+
+//hago un comentario malaso
+//hago otro comentario malaso
