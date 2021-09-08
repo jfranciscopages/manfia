@@ -12,7 +12,7 @@ const users_controller = {
   login: (req, res, next) => {
     const user = req.user;
     try {
-      return res.status(200).json({ message: "Sucessfully logged!" });
+      return res.status(200).json(user.email);
     } catch (err) {
       console.log(err);
     }

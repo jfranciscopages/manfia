@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import useLogin from "../hooks/useLogin";
+
 //DESIGN
 import {
   Avatar,
@@ -36,6 +38,18 @@ const CFaLock = chakra(FaLock);
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowClick = () => setShowPassword(!showPassword);
+
+  const params = useLogin();
+  const {
+    handleSubmit,
+    loginEmail,
+    loginPassword,
+    setLoginEmail,
+    setLoginPassword,
+    handleLogout,
+    isLoading,
+  } = params;
+
   return (
     <>
       <Flex
@@ -55,7 +69,7 @@ const Login = () => {
           <Avatar bg="teal.500" />
           <Heading color="teal.400">Iniciar sesión</Heading>
           <Box minW={{ base: "90%", md: "468px" }}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <Stack
                 spacing={4}
                 p="1rem"
@@ -68,7 +82,12 @@ const Login = () => {
                       pointerEvents="none"
                       children={<CFaUserAlt color="gray.300" />}
                     />
-                    <Input type="email" placeholder="Correo electrónico" />
+                    <Input
+                      type="email"
+                      placeholder="Correo electrónico"
+                      value={loginEmail}
+                      onChange={(e) => setLoginEmail(e.target.value)}
+                    />
                   </InputGroup>
                   <InputGroup>
                     <InputLeftElement
@@ -79,6 +98,8 @@ const Login = () => {
                     <Input
                       type={showPassword ? "text" : "password"}
                       placeholder="Contraseña"
+                      value={loginPassword}
+                      onChange={(e) => setLoginPassword(e.target.value)}
                     />
                     <InputRightElement width="5.5rem">
                       <Button h="1.75rem" size="sm" onClick={handleShowClick}>

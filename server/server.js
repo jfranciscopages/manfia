@@ -82,7 +82,7 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-db.sync({ force: false })
+db.sync({ force: true })
   .then(() => {
     app.listen(3001, () =>
       console.log("Servidor escuchando en el puerto 3001")

@@ -23,11 +23,7 @@ Users.init(
       type: Sequelize.STRING,
       allowNull: false,
     },
-    billingAddress: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    defaultShippingAddress: {
+    address: {
       type: Sequelize.STRING,
       allowNull: false,
     },
