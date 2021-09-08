@@ -9,6 +9,14 @@ Categories.init(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    description: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    thumbnail: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
   },
   { sequelize: db, modelName: "categories" }
 );

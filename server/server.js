@@ -8,7 +8,7 @@ var app = express();
 var routes = require("./routes/index");
 
 // Express Route File Requires
-const { Users, Favourites } = require("./models");
+const { Product, Categories } = require("./models");
 
 app.use(logger("dev"));
 app.use(express.json());
