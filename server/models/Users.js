@@ -5,6 +5,10 @@ const db = require("../db/db");
 class Users extends Sequelize.Model {}
 Users.init(
   {
+    access: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     email: {
       type: Sequelize.STRING,
       allowNull: false,
