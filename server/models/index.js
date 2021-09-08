@@ -1,7 +1,7 @@
 const Categories = require(`./Categories`);
 const Products = require(`./Products`);
 const Orders = require(`./Orders`);
-const Users = require(`./users`);
+const Users = require(`./Users`);
 const Options = require(`./Options`);
 const Order_Details = require(`./Order_details`);
 
