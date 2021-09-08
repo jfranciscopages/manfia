@@ -7,6 +7,7 @@ import Grid from "../components/Grid";
 /* import Category from "../components/Category"; */
 import Login from "../components/Login";
 import Register from "../components/Register";
+import { Product } from "../components/Product";
 /* import Cart from "../components";
 import Contact from "../components/Contact";  */
 
@@ -21,6 +22,7 @@ function App() {
         {/*   <Route exact path="/contacto" render={() => <Contact />} /> */}
         <Route exact path="/login" render={() => <Login />} />
         <Route exact path="/register" render={() => <Register />} />
+        <Route exact path="/product" render={() => <Product />} />
       </BrowserRouter>
       <Footer />
     </div>

@@ -1,16 +1,5 @@
 import * as React from "react";
-import {
-  Grid,
-  GridItem,
-  Container,
-  Box,
-  SimpleGrid,
-  Flex,
-  Center,
-  Image,
-  Stack,
-  Heading,
-} from "@chakra-ui/react";
+import { Box, Button, SimpleGrid, Image, Center } from "@chakra-ui/react";
 
 const List = () => {
   const products = [
@@ -97,64 +86,59 @@ const List = () => {
   ];
 
   return (
-    <Box>
-      <SimpleGrid minChildWidth="305px" spacing={0} ml={10} mr={10}>
-        {products &&
-          products.map((product) => {
-            return (
-              // <Link to={`/${product.imdbID}`} key={movie.imdbID}>
-              <Flex p={2}>
-                <Center py={6}>
-                  <Box
-                    maxW={"300px"}
-                    w={"full"}
-                    bg={("white", "gray.900")}
-                    rounded={6}
-                    p={6}
-                    overflow={"hidden"}
-                  >
-                    <Image src={`${product.image}`} layout={"fill"} />{" "}
-                    <Stack pt={5}>
-                      <Heading
-                        color={("gray.700", "white")}
-                        fontSize={"md"}
-                        fontFamily={"body"}
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        {`${product.title}`}
-                      </Heading>
-                      {/* <Text color={"gray.500"}>{`${textTruncate(
-                                movie.Plot
-                              )}`}</Text> */}
-                    </Stack>
+    <SimpleGrid
+      minChildWidth="305px"
+      spacing={50}
+      ml={100}
+      mr={100}
+      mt={100}
+      mb={100}
+    >
+      {products &&
+        products.map((product) => {
+          return (
+            <Box
+              maxW="sm"
+              borderWidth="1px"
+              borderRadius="lg"
+              overflow="hidden"
+            >
+              <Image
+                src={`${product.image}`}
+                // layout={"fill"}
+                boxSize="350px"
+              />{" "}
+              <Center>
+                <Box
+                  mt="10"
+                  ml="5"
+                  mr="5"
+                  fontWeight="semibold"
+                  as="h4"
+                  lineHeight="tight"
+                  isTruncated
+                >{`${product.title}`}</Box>
+              </Center>
+              <Center>
+                <Box>{`$ ${product.price}`}</Box>
+              </Center>
+              <Center>
+                <Box d="flex" mt="2" alignItems="center">
+                  <Box as="span" mb="5" color="gray.600" fontSize="sm">
+                    {product.rating.count} {product.rating.rate} star reviews
                   </Box>
+                </Box>
+              </Center>
+              <Box mb={5}>
+                <Center>
+                  <Button colorScheme="teal">Ver más</Button>
                 </Center>
-              </Flex>
-            );
-          })}
-      </SimpleGrid>
-    </Box>
+              </Box>
+            </Box>
+          );
+        })}
+    </SimpleGrid>
   );
 };
 
 export default List;
-
-{
-  /* <div className="row">
-
-{products.map((product) => {
-  return (
-    <div key={product.id} className="col">
-      <h5 className="text-dark card-title">
-        {product.title} 
-      </h5>
-      <img src={product.image} alt="Poster"/>
-      {/* <Link className="btn btn-primary" to={`/movie/${movie.imdbID}`}>
-        Movie Details
-        <i className="fas fa-chevron-right" />
-      </Link> */
-}
-// </div>
-// // })}
-// </div> */}
