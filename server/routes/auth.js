@@ -1,22 +1,17 @@
 const express = require(`express`);
 const router = express.Router();
+const passport = require("passport");
+//import controllers
+const users_controllers = require("../controllers/users.controllers");
+//Controlers llamados por destructuracion
+const { register, login, logout, me } = users_controllers;
 
-const { Users } = require(`../models`);
+router.post(`/register`, register);
 
-router.post(`/register`, function (req, res, next) {
-  console.log(`wep!`);
-});
+router.post(`/login`, passport.authenticate(`local`), login);
 
-router.post(`/login`, function (req, res) {
-  console.log(`wep!`);
-});
+router.post(`/logout`, logout);
 
-router.post(`/logout`, function (req, res, next) {
-  console.log(`wep!`);
-});
-
-router.get("/me", (req, res, next) => {
-  console.log(`wep!`);
-});
+router.get("/me", me);
 
 module.exports = router;
