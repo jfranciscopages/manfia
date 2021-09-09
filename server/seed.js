@@ -8,10 +8,10 @@ const userParaSeedear = [
   {
     access: "admin",
     email: "admin@gmail.com",
-    password: "admin",
-    fullName: "admin",
+    password: "administrador",
+    fullName: "adminName",
     address: "Cespedes 1567",
-    country: "hola",
+    country: "Argentina",
     phone: "1130922002",
   },
   {
@@ -41,7 +41,6 @@ const userParaSeedear = [
     country: "brasil",
     phone: "15702367033",
   },
-
   {
     access: "user",
     email: "juan@gmail.com",
@@ -73,79 +72,68 @@ const categoriasParaSeedear = [
 
 const productosPorCategoriaParaSeedear = [
   {
-    id: 1,
-    categoryId: 1,
-    productId: 1,
-  },
-  { id: 2, categoryId: 2, productId: 2 },
-  {
-    id: 3,
-    categoryId: 4,
-    productId: 3,
+    productId: "1",
+    categoryId: "1",
   },
   {
-    id: 4,
-    categoryId: 5,
-    productId: 4,
+    productId: "2",
+    categoryId: "2",
   },
   {
-    id: 5,
-    categoryId: 1,
-    productId: 5,
+    productId: "3",
+    categoryId: "4",
   },
   {
-    id: 6,
-    categoryId: 5,
-    productId: 6,
+    productId: "4",
+    categoryId: "5",
   },
   {
-    id: 7,
-    categoryId: 2,
-    productId: 7,
+    productId: "5",
+    categoryId: "1",
   },
   {
-    id: 8,
-    categoryId: 3,
-    productId: 8,
+    productId: "6",
+    categoryId: "5",
   },
   {
-    id: 9,
-    categoryId: 4,
-    productId: 9,
+    productId: "7",
+    categoryId: "2",
+  },
+  {
+    productId: "8",
+    categoryId: "3",
+  },
+  {
+    productId: "9",
+    categoryId: "4",
   },
 
   {
-    id: 10,
-    categoryId: 3,
-    productId: 10,
+    productId: "10",
+    categoryId: "3",
   },
   {
-    id: 11,
-    categoryId: 1,
-    productId: 11,
+    productId: "11",
+    categoryId: "1",
   },
   {
-    id: 12,
-    categoryId: 4,
-    productId: 12,
+    productId: "12",
+    categoryId: "4",
   },
   {
-    id: 13,
-    categoryId: 2,
-    productId: 13,
+    productId: "13",
+    categoryId: "2",
   },
   {
-    id: 14,
-    categoryId: 2,
-    productId: 14,
+    productId: "14",
+    categoryId: "2",
   },
 ];
 
 const productosParaSeedear = [
   {
-    id: 1,
     title: "Remera Camiseta Deportiva Basica",
-    price: 830,
+    price: "830",
     description:
       "Remera de Poliéster dedicada a entrenamiento, running, gimnasio, futbol, rugby, ciclismo, calistenia, crossfit, funcional, atletismo",
     sex: "men",
@@ -159,9 +147,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 2,
     title: "Pantalon Gabardina Cargo ",
-    price: 4589,
+    price: "4589",
     description:
       "Pantalon cargo jogger de gabardina con cintura y puños con elásticos",
     sex: "men",
@@ -171,13 +158,12 @@ const productosParaSeedear = [
     stock: "3",
     rating: {
       rate: 4,
-      count: "259",
+      count: 259,
     },
   },
   {
-    id: 3,
     title: "Chaqueta de algodón para hombre",
-    price: 8590,
+    price: "8590",
     description: "Hombre chaqueta cotton otoño/invierno",
     sex: "men",
     image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
@@ -189,9 +175,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 4,
     title: "Short Pollera Lycra",
-    price: 1590,
+    price: "1590",
     description:
       "Short pollera deportivo de lycra. Talles del 1 al 5. Colores surtidos",
     sex: "women",
@@ -205,9 +190,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 5,
     title: "Remera lisa manga corta algodón Premium",
-    price: 749,
+    price: "749",
     description: "Remeras de algodón peinado de excelente calidad",
     sex: "men",
     image:
@@ -220,9 +204,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 6,
     title: "Short Hombre Algodon",
-    price: 1468,
+    price: "1468",
     description: "Short Hombre Algodon Gym Entrenador Bermudas Tennis.",
     sex: "men",
     image:
@@ -235,9 +218,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 7,
     title: "Pantalon De Mujer Bengalina Oficina Lazo Elastizado",
-    price: 1499,
+    price: "1499",
     description:
       "Satisfacción garantizada. Devuelva o cambie cualquier pedido dentro de los 30 días. Diseñado y vendido por Hafeez Center en los Estados Unidos. ",
     sex: "women",
@@ -251,9 +233,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 8,
     title: "Fase Lunar Aesthetic Buzo Black/withe",
-    price: 4000,
+    price: "4000",
     description: "Fase Lunar Aesthetic Buzo Black/withe - Japan Goth Moon.",
     sex: "women",
     image:
@@ -266,9 +247,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 9,
     title: "Campera de mujer Nova",
-    price: 25472,
+    price: "25472",
     description:
       "Esta prenda posee un tratamiento de repelencia al agua, que dificulta que el tejido la absorba favoreciendo las propiedades de impermeabilidad y antimanchas",
     sex: "women",
@@ -282,9 +262,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 10,
     title: "Buzo de hombre Grayson",
-    price: 7162,
+    price: "7162",
     description:
       "Es de secado rápido. Gracias a los canales generados entre sus puntos de contacto absorbe y elimina el exceso de calor corporal, manteniendo el cuerpo seco durante la actividad",
     sex: "men",
@@ -298,9 +277,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 11,
     title: "Remera de mujer Verena",
-    price: 3376,
+    price: "3376",
     description:
       "La moldería de esta prenda contempla un margen de encogimiento en el largo, ya que por la composición de su tejido, puede encoger después del primer lavado.",
     sex: "women",
@@ -314,9 +292,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 12,
     title: "Campera de hombre Blake Neo",
-    price: 20777,
+    price: "20777",
     description:
       "Posee un tratamiento de repelencia al agua, que dificulta que el tejido la absorba favoreciendo las propiedades de impermeabilidad y antimanchas",
     sex: "men",
@@ -330,9 +307,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 13,
     title: "Pantalones deportivos ligeros, tipo jogger, con bolsillos",
-    price: 68,
+    price: "68",
     description:
       " Los pantalones felpa son suaves, transpirables y elásticos y no se deforman, no se descoloran ni desgastan fácilmente, proporcionando la máxima durabilidad.",
     sex: "women",
@@ -345,9 +321,8 @@ const productosParaSeedear = [
     },
   },
   {
-    id: 14,
     title: "Pantalones cortos de algodón de calidad para hombre",
-    price: 168,
+    price: "168",
     description: "Bermudas formales cómodas, talla grande, talla asiática.",
     sex: "men",
     image:
@@ -367,7 +342,8 @@ const seed = () => {
     .then(() => Products.bulkCreate(productosParaSeedear))
     .then(() =>
       Products_Categories.bulkCreate(productosPorCategoriaParaSeedear)
-    );
+    )
+    .catch((err) => console.log(err));
 };
 
 seed().then(() => {
