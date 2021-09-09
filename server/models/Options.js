@@ -5,7 +5,7 @@ const db = require("../db/db");
 class Options extends Sequelize.Model {}
 Options.init(
   {
-    optionName: {
+    name: {
       type: Sequelize.STRING,
       allowNull: false,
     },
