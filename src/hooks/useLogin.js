@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { success } from "../utils/logs";
+import { success, log } from "../utils/logs";
 import { userLogged } from "../store/userLogged";
 import { useHistory } from "react-router-dom";
 
@@ -35,12 +35,15 @@ const useLogin = () => {
   };
 
   const handleLogout = async () => {
+    log("logout attempt...");
     await axios
       .post("/api/auth/logout")
       .then((data) => {
         console.log(`done`);
+        console.log(data);
         dispatch(userLogged({}));
-        history.push(`/`);
+        success("logged out");
+        history.push("/");
       })
       .catch((err) => console.error(err));
   };

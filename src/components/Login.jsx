@@ -46,8 +46,6 @@ const Login = () => {
     loginPassword,
     setLoginEmail,
     setLoginPassword,
-    handleLogout,
-    isLoading,
   } = params;
 
   return (

@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import useLogin from "../hooks/useLogin";
 // import logo from "../../public/manifest.json"
 import {
   Box,
@@ -25,9 +27,18 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import Search from "./Search";
+import e from "express";
 
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
+  const loggedUser = useSelector((state) => state.user);
+  const params = useLogin();
+  const { handleLogout } = params;
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    handleLogout();
+  };
 
   return (
     <Box>
@@ -75,27 +86,34 @@ const Navbar = () => {
           direction={"row"}
           spacing={6}
         >
-          <Button
-            as={"a"}
-            fontSize={"lg"}
-            fontWeight={400}
-            variant={"link"}
-            href={"/login"}
-          >
-            Login
-          </Button>
-          <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"lg"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            href={"/register"}
-          >
-            Register
-          </Button>
-         
+          {loggedUser !== {} ? (
+            <Button as={"a"} href={"/logout"} onClick={() => handleClick()}>
+              Logout
+            </Button>
+          ) : (
+            <>
+              <Button
+                as={"a"}
+                fontSize={"lg"}
+                fontWeight={400}
+                variant={"link"}
+                href={"/login"}
+              >
+                Login
+              </Button>
+              <Button
+                as={"a"}
+                display={{ base: "none", md: "inline-flex" }}
+                fontSize={"lg"}
+                fontWeight={600}
+                color={"white"}
+                colorScheme="teal"
+                href={"/register"}
+              >
+                Register
+              </Button>
+            </>
+          )}
         </Stack>
       </Flex>
 
@@ -155,7 +173,7 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }= NavItem) => {
+const DesktopSubNav = ({ label, href, subLabel } = NavItem) => {
   return (
     <Link
       href={href}
@@ -206,7 +224,7 @@ const MobileNav = () => {
   );
 };
 
-const MobileNavItem = ({ label, children, href }= NavItem) => {
+const MobileNavItem = ({ label, children, href } = NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
