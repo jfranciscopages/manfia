@@ -24,8 +24,8 @@ const products_controller = {
     const cat = req.body.category;
     try {
       const product = await Products.create(body);
-      const categorie = await Categories.findOne({ where: { name: cat } });
-      await product.addCategories(categorie);
+      const category = await Categories.findOne({ where: { name: cat } });
+      await product.addCategories(category);
       return res.status(200).json(product);
     } catch (err) {
       console.log(err);
