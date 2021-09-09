@@ -3,7 +3,7 @@ const router = express.Router();
 const product_controllers = require("../controllers/products.controllers");
 const categories_controllers = require("../controllers/categories.controllers");
 
-const { getAll, addOneProduct } = product_controllers;
+const { getAll, addOneProduct, addMapProducts } = product_controllers;
 const { addOneCategorie } = categories_controllers;
 
 router.get(`/`, getAll);
