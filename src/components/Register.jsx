@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import useRegister from "../hooks/useRegister";
 //DESIGN
 import {
   Avatar,
@@ -26,16 +26,41 @@ import {
   FaUserAlt,
   FaLock,
   FaFacebook,
+  FaEnvelope,
+  FaAddressCard,
+  FaGlobeAmericas,
   FaGoogle,
+  FaPhone,
   FaGithub,
 } from "react-icons/fa";
 
 const CFaUserAlt = chakra(FaUserAlt);
+const CFaEnvelope = chakra(FaEnvelope);
 const CFaLock = chakra(FaLock);
+const CFaAddressCard = chakra(FaAddressCard);
+const CFaGlobeAmericas = chakra(FaGlobeAmericas);
+const CFaPhone = chakra(FaPhone);
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowClick = () => setShowPassword(!showPassword);
+  const params = useRegister();
+  const {
+    onSignUp,
+    name,
+    setName,
+    setEmail,
+    country,
+    setCountry,
+    phone,
+    setPhone,
+    address,
+    setAddress,
+    email,
+    setPassword,
+    password,
+  } = params;
+
   return (
     <>
       <Flex
@@ -55,7 +80,7 @@ const Login = () => {
           <Avatar bg="teal.500" />
           <Heading color="teal.400">Registrarse</Heading>
           <Box minW={{ base: "90%", md: "468px" }}>
-            <form>
+            <form onSubmit={(e) => onSignUp(e)}>
               <Stack
                 spacing={4}
                 p="1rem"
@@ -68,7 +93,60 @@ const Login = () => {
                       pointerEvents="none"
                       children={<CFaUserAlt color="gray.300" />}
                     />
-                    <Input type="email" placeholder="Correo electrónico" />
+                    <Input
+                      type="fullName"
+                      placeholder="Nombre completo"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </InputGroup>
+                  <InputGroup>
+                    <InputLeftElement
+                      pointerEvents="none"
+                      children={<CFaAddressCard color="gray.300" />}
+                    />
+                    <Input
+                      type="address"
+                      placeholder="Dirección"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                    />
+                  </InputGroup>
+                  <InputGroup>
+                    <InputLeftElement
+                      pointerEvents="none"
+                      children={<CFaGlobeAmericas color="gray.300" />}
+                    />
+                    <Input
+                      type="country"
+                      placeholder="País"
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                    />
+                  </InputGroup>
+                  <InputGroup>
+                    <InputLeftElement
+                      pointerEvents="none"
+                      children={<CFaPhone color="gray.300" />}
+                    />
+                    <Input
+                      type="phone"
+                      placeholder="Número de teléfono"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                  </InputGroup>
+                  <InputGroup>
+                    <InputLeftElement
+                      pointerEvents="none"
+                      children={<CFaEnvelope color="gray.300" />}
+                    />
+                    <Input
+                      type="email"
+                      placeholder="Correo electrónico"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </InputGroup>
                   <InputGroup>
                     <InputLeftElement
@@ -79,6 +157,8 @@ const Login = () => {
                     <Input
                       type={showPassword ? "text" : "password"}
                       placeholder="Contraseña"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                     <InputRightElement width="5.5rem">
                       <Button h="1.75rem" size="sm" onClick={handleShowClick}>
