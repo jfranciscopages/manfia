@@ -8,13 +8,14 @@ Products_Categories.init(
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
-      allowNull: false,
-    },
-    categoryId: {
-      type: Sequelize.STRING,
+      autoIncrement: true,
       allowNull: false,
     },
     productId: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    categoryId: {
       type: Sequelize.STRING,
       allowNull: false,
     },

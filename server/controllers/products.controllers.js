@@ -6,7 +6,7 @@ const products_controller = {
       const products = await Products.findAll();
       return res.status(200).json(products);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
 
@@ -16,9 +16,10 @@ const products_controller = {
       const product = await Products.findByPk(id);
       return res.status(200).json(product);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
+
   addOneProduct: async (req, res, next) => {
     const body = req.body;
     const cat = req.body.category;
@@ -28,7 +29,7 @@ const products_controller = {
       await product.addCategories(category);
       return res.status(200).json(product);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
 };

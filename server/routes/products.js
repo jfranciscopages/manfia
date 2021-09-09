@@ -3,15 +3,12 @@ const router = express.Router();
 const product_controllers = require("../controllers/products.controllers");
 const categories_controllers = require("../controllers/categories.controllers");
 
-const { getAll, addOneProduct, addMapProducts } = product_controllers;
+const { getAll, addOneProduct, getOne } = product_controllers;
 const { addOneCategorie } = categories_controllers;
 
 router.get(`/`, getAll);
 
-router.get(`/:id`, function (req, res) {
-  console.log(`wep!`);
-  res.sendStatus(200);
-});
+router.get(`/:id`, getOne);
 
 router.post(`/addProduct`, addOneProduct);
 router.post(`/addCat`, addOneCategorie);

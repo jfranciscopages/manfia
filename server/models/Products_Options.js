@@ -8,13 +8,14 @@ Products_Options.init(
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
-      allowNull: false,
-    },
-    optionId: {
-      type: Sequelize.STRING,
+      autoIncrement: true,
       allowNull: false,
     },
     productId: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    optionId: {
       type: Sequelize.STRING,
       allowNull: false,
     },
