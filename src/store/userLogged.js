@@ -9,4 +9,3 @@ export const userLoggedReducer = createReducer(initialState, (builder) => {
     return (state = action.payload);
   });
 });
-

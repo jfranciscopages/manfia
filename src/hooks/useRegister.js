@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { log, success, error } from "../utils/logs";
+import { registeredAlert, errorAlert } from "../utils/alerts";
 
 const useRegister = () => {
   const [name, setName] = useState("");
@@ -10,15 +11,10 @@ const useRegister = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const [error, setError] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [emailError, setEmailError] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
   const onSignUp = async (e) => {
-    setIsLoading(true);
     e.preventDefault();
     const data = {
       fullName: name,
@@ -34,13 +30,13 @@ const useRegister = () => {
       .post(`/api/auth/register`, data)
       .then((data) => {
         history.push("/login");
-        setIsLoading(false);
         success("new user registered successfully");
+        registeredAlert();
       })
       .catch((err) => {
-        setEmailError("Este usuario ya existe.");
-        setIsLoading(false);
+        console.log(err);
         error(err);
+        errorAlert();
       });
   };
 
@@ -60,9 +56,6 @@ const useRegister = () => {
     onSignUp,
     error,
     disabled,
-    nameError,
-    emailError,
-    isLoading,
   };
 };
 

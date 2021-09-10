@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useRegister from "../hooks/useRegister";
+
 //DESIGN
 import {
   Avatar,
@@ -41,7 +42,7 @@ const CFaAddressCard = chakra(FaAddressCard);
 const CFaGlobeAmericas = chakra(FaGlobeAmericas);
 const CFaPhone = chakra(FaPhone);
 
-const Login = () => {
+const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowClick = () => setShowPassword(!showPassword);
   const params = useRegister();
@@ -212,4 +213,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

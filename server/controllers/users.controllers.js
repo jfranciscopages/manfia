@@ -6,13 +6,13 @@ const users_controller = {
       const user = await Users.create(req.body);
       return res.status(201).json(user);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
   login: (req, res, next) => {
     const user = req.user;
     try {
-      return res.status(200).json(user.email);
+      return res.status(200).json(user);
     } catch (err) {
       console.log(err);
     }

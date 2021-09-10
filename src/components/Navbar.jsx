@@ -1,5 +1,8 @@
 import React from "react";
 import logo from "../utils/Manfia.png";
+import { useSelector } from "react-redux";
+import useLogin from "../hooks/useLogin";
+// import logo from "../../public/manifest.json"
 import {
   Box,
   Flex,
@@ -29,6 +32,14 @@ import Search from "./Search";
 
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
+  const loggedUser = useSelector((state) => state.user);
+  const params = useLogin();
+  const { handleLogout } = params;
+  console.log(`lalalala`, loggedUser);
+  const handleClick = (e) => {
+    e.preventDefault();
+    handleLogout();
+  };
 
   return (
     <Box>
@@ -43,13 +54,9 @@ const Navbar = () => {
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
       >
-        <Image
-          src={logo}
-          boxSize="100px"
-          alt="logo Manfia"
-          borderRadius="full"
-          href={<Link href={"/"} />}
-        />
+        <Link to="/" boxSize="100px">
+          <Image src={logo} alt="logo Manfia" borderRadius="full" />
+        </Link>
         <Flex
           flex={{ base: 1, md: "auto" }}
           ml={{ base: -2 }}
@@ -79,26 +86,34 @@ const Navbar = () => {
           direction={"row"}
           spacing={6}
         >
-          <Button
-            as={"a"}
-            fontSize={"lg"}
-            fontWeight={400}
-            variant={"link"}
-            href={"/login"}
-          >
-            Login
-          </Button>
-          <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"lg"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            href={"/register"}
-          >
-            Register
-          </Button>
+          {loggedUser.id ? (
+            <Button as={"a"} onClick={(e) => handleClick(e)}>
+              Logout
+            </Button>
+          ) : (
+            <>
+              <Button
+                as={"a"}
+                fontSize={"lg"}
+                fontWeight={400}
+                variant={"link"}
+                href={"/login"}
+              >
+                Login
+              </Button>
+              <Button
+                as={"a"}
+                display={{ base: "none", md: "inline-flex" }}
+                fontSize={"lg"}
+                fontWeight={600}
+                color={"white"}
+                colorScheme="teal"
+                href={"/register"}
+              >
+                Register
+              </Button>
+            </>
+          )}
         </Stack>
       </Flex>
 
@@ -272,11 +287,11 @@ interface NavItem {
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Hombre",
-    href: "/hombre"
+    href: "/hombre",
   },
   {
     label: "Mujer",
-    href: "/mujer"
+    href: "/mujer",
   },
   {
     label: "Categorías",

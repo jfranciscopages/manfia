@@ -16,9 +16,7 @@ export const setProducts = createAction("SET_PRODUCTS");
 
 const initialValue = [];
 
-const productsReducer = createReducer(initialValue, {
+export const productsReducer = createReducer(initialValue, {
   [getProducts.fulfilled]: (state, action) => action.payload,
   [setProducts]: (state, action) => action.payload,
 });
-
-export default productsReducer;
