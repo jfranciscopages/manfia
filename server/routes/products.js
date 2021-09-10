@@ -1,26 +1,21 @@
 const express = require(`express`);
 const router = express.Router();
+
+//Import Controller
 const product_controllers = require("../controllers/products.controllers");
-const categories_controllers = require("../controllers/categories.controllers");
+//Destructuring Controllers
+const { getAll, addOneProduct, getOne, editProduct, deleteProduct } =
+  product_controllers;
 
-const { getAll, addOneProduct, getOne } = product_controllers;
-const { addOneCategorie } = categories_controllers;
-
+//Routes With Controllers
 router.get(`/`, getAll);
 
-router.get(`/:id`, getOne);
+router.get(`/:name`, getOne);
 
 router.post(`/addProduct`, addOneProduct);
-router.post(`/addCat`, addOneCategorie);
 
-router.put("/edit", (req, res, next) => {
-  console.log(`wep!`);
-  res.sendStatus(200);
-});
+router.put("/edit", editProduct);
 
-router.delete("/delete", (req, res, next) => {
-  console.log(`wep!`);
-  res.sendStatus(200);
-});
+router.delete("/delete", deleteProduct);
 
 module.exports = router;
