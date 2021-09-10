@@ -1,17 +1,17 @@
-const db = require("./index");
-const Users = require("../models/users");
-const Categories = require("../models/categories");
-const Products = require("../models/Product");
-const ProductCategories = require("../models/ProductCategory");
+const db = require("./db/db");
+const Users = require("./models/Users");
+const Categories = require("./models/Categories");
+const Products = require("./models/Products");
+const Products_Categories = require("./models/Products_Categories");
 
 const userParaSeedear = [
   {
     access: "admin",
     email: "admin@gmail.com",
-    password: "admin",
-    fullName: "admin",
+    password: "administrador",
+    fullName: "adminName",
     address: "Cespedes 1567",
-    country: "hola",
+    country: "Argentina",
     phone: "1130922002",
   },
   {
@@ -41,7 +41,6 @@ const userParaSeedear = [
     country: "brasil",
     phone: "15702367033",
   },
-
   {
     access: "user",
     email: "juan@gmail.com",
@@ -73,302 +72,278 @@ const categoriasParaSeedear = [
 
 const productosPorCategoriaParaSeedear = [
   {
-    categoryId: "1",
     productId: "1",
+    categoryId: "1",
   },
   {
-    categoryId: 2,
-    productId: 1,
+    productId: "2",
+    categoryId: "2",
   },
   {
-    categoryId: 8,
-    productId: 2,
+    productId: "3",
+    categoryId: "4",
   },
   {
-    categoryId: 4,
-    productId: 2,
+    productId: "4",
+    categoryId: "5",
   },
   {
-    categoryId: 8,
-    productId: 3,
+    productId: "5",
+    categoryId: "1",
   },
   {
-    categoryId: 4,
-    productId: 3,
+    productId: "6",
+    categoryId: "5",
   },
   {
-    categoryId: 5,
-    productId: 4,
+    productId: "7",
+    categoryId: "2",
   },
   {
-    categoryId: 6,
-    productId: 4,
+    productId: "8",
+    categoryId: "3",
   },
   {
-    categoryId: 5,
-    productId: 5,
+    productId: "9",
+    categoryId: "4",
   },
 
   {
-    categoryId: 6,
-    productId: 5,
+    productId: "10",
+    categoryId: "3",
   },
   {
-    categoryId: 1,
-    productId: 6,
+    productId: "11",
+    categoryId: "1",
   },
   {
-    categoryId: 3,
-    productId: 6,
+    productId: "12",
+    categoryId: "4",
   },
   {
-    categoryId: 9,
-    productId: 6,
+    productId: "13",
+    categoryId: "2",
   },
   {
-    categoryId: 1,
-    productId: 7,
-  },
-  {
-    categoryId: 3,
-    productId: 7,
-  },
-  {
-    categoryId: 2,
-    productId: 8,
-  },
-  {
-    categoryId: 5,
-    productId: 8,
-  },
-  {
-    categoryId: 4,
-    productId: 8,
-  },
-  {
-    categoryId: 8,
-    productId: 9,
-  },
-  {
-    categoryId: 4,
-    productId: 9,
-  },
-  {
-    categoryId: 2,
-    productId: 9,
+    productId: "14",
+    categoryId: "2",
   },
 ];
 
 const productosParaSeedear = [
   {
-    id: 1,
-    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    price: 109.95,
+    title: "Remera Camiseta Deportiva Basica",
+    price: "830",
     description:
-      "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      "Remera de Poliéster dedicada a entrenamiento, running, gimnasio, futbol, rugby, ciclismo, calistenia, crossfit, funcional, atletismo",
     sex: "men",
-    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    category: "Remera",
-    stock: "13",
-    rating: {
-      rate: 3.9,
-      count: 120,
-    },
-  },
-  {
-    id: 2,
-    title: "Mens Casual Premium Slim Fit T-Shirts ",
-    price: 22.3,
-    description:
-      "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
-    sex: "women",
     image:
-      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-    category: "Pantalon",
-    stock: "13",
+      "https://http2.mlstatic.com/D_NQ_NP_894364-MLA46482980985_062021-O.webp",
+    category: "Remeras",
+    stock: "10",
     rating: {
-      rate: 4.1,
-      count: "259",
+      rate: 3,
+      count: 114,
     },
   },
   {
-    id: 3,
-    title: "Mens Cotton Jacket",
-    price: 55.99,
+    title: "Pantalon Gabardina Cargo ",
+    price: "4589",
     description:
-      "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+      "Pantalon cargo jogger de gabardina con cintura y puños con elásticos",
+    sex: "men",
+    image:
+      "https://http2.mlstatic.com/D_NQ_NP_725602-MLA31478442555_072019-O.webp",
+    category: "Pantalones",
+    stock: "3",
+    rating: {
+      rate: 4,
+      count: 259,
+    },
+  },
+  {
+    title: "Chaqueta de algodón para hombre",
+    price: "8590",
+    description: "Hombre chaqueta cotton otoño/invierno",
     sex: "men",
     image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-    category: "Buzos",
-    stock: "13",
+    category: "Camperas",
+    stock: "24",
     rating: {
-      rate: 4.7,
+      rate: 2,
       count: 500,
     },
   },
   {
-    id: 4,
-    title: "Mens Casual Slim Fit",
-    price: 15.99,
+    title: "Short Pollera Lycra",
+    price: "1590",
     description:
-      "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+      "Short pollera deportivo de lycra. Talles del 1 al 5. Colores surtidos",
     sex: "women",
-    image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+    image:
+      "https://http2.mlstatic.com/D_NQ_NP_747741-MLA43825846368_102020-O.webp",
     category: "Shorts",
-    stock: "13",
+    stock: "1",
     rating: {
-      rate: 2.1,
+      rate: 5,
       count: 430,
     },
   },
   {
-    id: 5,
-    title: "John Hardy Women's Legends Naga",
-    price: 695,
-    description:
-      "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+    title: "Remera lisa manga corta algodón Premium",
+    price: "749",
+    description: "Remeras de algodón peinado de excelente calidad",
     sex: "men",
-    image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
-    category: "Remera",
+    image:
+      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+    category: "Remeras",
     stock: "13",
     rating: {
-      rate: 4.6,
+      rate: 4,
       count: 400,
     },
   },
   {
-    id: 6,
-    title: "Solid Gold Petite Micropave ",
-    price: 168,
-    description:
-      "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    category: "women",
+    title: "Short Hombre Algodon",
+    price: "1468",
+    description: "Short Hombre Algodon Gym Entrenador Bermudas Tennis.",
+    sex: "men",
+    image:
+      "https://http2.mlstatic.com/D_NQ_NP_940931-MLA43815314977_102020-O.webp",
+    category: "Shorts",
     stock: "13",
     rating: {
-      rate: 3.9,
+      rate: 3,
       count: 70,
     },
   },
   {
-    id: 7,
-    title: "Solid Gold Petite Micropave ",
-    price: 168,
+    title: "Pantalon De Mujer Bengalina Oficina Lazo Elastizado",
+    price: "1499",
     description:
-      "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    category: "women",
+      "Satisfacción garantizada. Devuelva o cambie cualquier pedido dentro de los 30 días. Diseñado y vendido por Hafeez Center en los Estados Unidos. ",
+    sex: "women",
+    image:
+      "https://http2.mlstatic.com/D_NQ_NP_901821-MLA41805538113_052020-O.webp",
+    category: "Pantalones",
     stock: "13",
     rating: {
-      rate: 3.9,
+      rate: 3,
       count: 70,
     },
   },
   {
-    id: 8,
-    title: "Solid Gold Petite Micropave ",
-    price: 168,
-    description:
-      "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    category: "women",
+    title: "Fase Lunar Aesthetic Buzo Black/withe",
+    price: "4000",
+    description: "Fase Lunar Aesthetic Buzo Black/withe - Japan Goth Moon.",
+    sex: "women",
+    image:
+      "https://http2.mlstatic.com/D_NQ_NP_653437-MLA40662684122_022020-O.webp",
+    category: "Buzos",
     stock: "13",
     rating: {
-      rate: 3.9,
+      rate: 3,
       count: 70,
     },
   },
   {
-    id: 9,
-    title: "Solid Gold Petite Micropave ",
-    price: 168,
+    title: "Campera de mujer Nova",
+    price: "25472",
     description:
-      "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    category: "women",
+      "Esta prenda posee un tratamiento de repelencia al agua, que dificulta que el tejido la absorba favoreciendo las propiedades de impermeabilidad y antimanchas",
+    sex: "women",
+    image:
+      "https://d368r8jqz0fwvm.cloudfront.net/16293-product_lg/campera-de-mujer-nova.jpg",
+    category: "Camperas",
     stock: "13",
     rating: {
-      rate: 3.9,
+      rate: 3,
       count: 70,
     },
   },
   {
-    id: 10,
-    title: "Solid Gold Petite Micropave ",
-    price: 168,
+    title: "Buzo de hombre Grayson",
+    price: "7162",
     description:
-      "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    category: "women",
-    stock: "13",
+      "Es de secado rápido. Gracias a los canales generados entre sus puntos de contacto absorbe y elimina el exceso de calor corporal, manteniendo el cuerpo seco durante la actividad",
+    sex: "men",
+    image:
+      "https://d368r8jqz0fwvm.cloudfront.net/27529-product_lg/buzo-de-hombre-grayson.jpg",
+    category: "Buzos",
+    stock: "12",
     rating: {
-      rate: 3.9,
+      rate: 3,
       count: 70,
     },
   },
   {
-    id: 11,
-    title: "Solid Gold Petite Micropave ",
-    price: 168,
+    title: "Remera de mujer Verena",
+    price: "3376",
     description:
-      "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    category: "women",
+      "La moldería de esta prenda contempla un margen de encogimiento en el largo, ya que por la composición de su tejido, puede encoger después del primer lavado.",
+    sex: "women",
+    image:
+      "https://d368r8jqz0fwvm.cloudfront.net/26257-product_lg/remera-de-mujer-verena.jpg",
+    category: "Remeras",
     stock: "13",
     rating: {
-      rate: 3.9,
+      rate: 2,
       count: 70,
     },
   },
   {
-    id: 12,
-    title: "Solid Gold Petite Micropave ",
-    price: 168,
+    title: "Campera de hombre Blake Neo",
+    price: "20777",
     description:
-      "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    category: "women",
+      "Posee un tratamiento de repelencia al agua, que dificulta que el tejido la absorba favoreciendo las propiedades de impermeabilidad y antimanchas",
+    sex: "men",
+    image:
+      "https://d368r8jqz0fwvm.cloudfront.net/24805-product_lg/campera-de-hombre-blake-neo.jpg",
+    category: "Camperas",
     stock: "13",
     rating: {
-      rate: 3.9,
+      rate: 4,
       count: 70,
     },
   },
   {
-    id: 13,
-    title: "Solid Gold Petite Micropave ",
-    price: 168,
+    title: "Pantalones deportivos ligeros, tipo jogger, con bolsillos",
+    price: "68",
     description:
-      "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    category: "women",
-    stock: "13",
+      " Los pantalones felpa son suaves, transpirables y elásticos y no se deforman, no se descoloran ni desgastan fácilmente, proporcionando la máxima durabilidad.",
+    sex: "women",
+    image: "https://m.media-amazon.com/images/I/71-2LpyzPRL._AC_UX522_.jpg",
+    category: "Pantalones",
+    stock: "19",
     rating: {
-      rate: 3.9,
+      rate: 2,
       count: 70,
     },
   },
   {
-    id: 14,
-    title: "Solid Gold Petite Micropave ",
-    price: 168,
-    description:
-      "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    category: "women",
+    title: "Pantalones cortos de algodón de calidad para hombre",
+    price: "168",
+    description: "Bermudas formales cómodas, talla grande, talla asiática.",
+    sex: "men",
+    image:
+      "https://images-eu.ssl-images-amazon.com/images/I/61KBFD2NyaL._AC._SR360,460.jpg",
+    category: "Pantalones",
     stock: "13",
     rating: {
-      rate: 3.9,
+      rate: 1,
       count: 70,
     },
   },
 ];
 
 const seed = () => {
-  return User.bulkCreate(userParaSeedear)
-    .then(() => Category.bulkCreate(categoriasParaSeedear))
-    .then(() => Product.bulkCreate(productosParaSeedear))
-    .then(() => ProductCategory.bulkCreate(productosPorCategoriaParaSeedear));
+  return Users.bulkCreate(userParaSeedear)
+    .then(() => Categories.bulkCreate(categoriasParaSeedear))
+    .then(() => Products.bulkCreate(productosParaSeedear))
+    .then(() =>
+      Products_Categories.bulkCreate(productosPorCategoriaParaSeedear)
+    )
+    .catch((err) => console.log(err));
 };
 
 seed().then(() => {

@@ -33,7 +33,7 @@ Products.init(
       type: Sequelize.STRING,
       allowNull: false,
     },
-    raiting: {
+    rating: {
       type: Sequelize.JSON,
       allowNull: false,
     },

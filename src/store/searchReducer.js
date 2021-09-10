@@ -5,20 +5,20 @@ import {
   createAction,
 } from "@reduxjs/toolkit";
 
-export const getProducts = createAsyncThunk("GETPRODUCTS", (title) =>
+export const searchProducts = createAsyncThunk("SEARCH_PRODUCTS", (title) =>
   axios
     .get(`https://fakestoreapi.com/products/${title}`)
     .then((res) => res.data)
     .catch((e) => console.log(e))
 );
 
-export const setProducts = createAction("SET_PRODUCTS");
+export const showProducts = createAction("SHOW_PRODUCTS");
 
 const initialValue = [];
 
 const searchReducer = createReducer(initialValue, {
-  [getProducts.fulfilled]: (state, action) => action.payload,
-  [setProducts]: (state, action) => action.payload,
+  [searchProducts.fulfilled]: (state, action) => action.payload,
+  [showProducts]: (state, action) => action.payload,
 });
 
 export default searchReducer;
