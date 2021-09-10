@@ -1,5 +1,5 @@
 import React from "react";
-// import logo from "../../public/manifest.json"
+import logo from "../utils/Manfia.png";
 import {
   Box,
   Flex,
@@ -9,6 +9,7 @@ import {
   Stack,
   Collapse,
   Icon,
+  Image,
   Link,
   Popover,
   PopoverTrigger,
@@ -42,6 +43,13 @@ const Navbar = () => {
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
       >
+        <Image
+          src={logo}
+          boxSize="100px"
+          alt="logo Manfia"
+          borderRadius="full"
+          href={<Link href={"/"} />}
+        />
         <Flex
           flex={{ base: 1, md: "auto" }}
           ml={{ base: -2 }}
@@ -57,10 +65,6 @@ const Navbar = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          {/* <image src={logo}/> */}
-          <Link color="teal.500" href="/">
-            Logo{" "}
-          </Link>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -95,7 +99,6 @@ const Navbar = () => {
           >
             Register
           </Button>
-         
         </Stack>
       </Flex>
 
@@ -155,7 +158,7 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }= NavItem) => {
+const DesktopSubNav = ({ label, href, subLabel } = NavItem) => {
   return (
     <Link
       href={href}
@@ -206,7 +209,7 @@ const MobileNav = () => {
   );
 };
 
-const MobileNavItem = ({ label, children, href }= NavItem) => {
+const MobileNavItem = ({ label, children, href } = NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -269,20 +272,34 @@ interface NavItem {
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Hombre",
+    href: "/hombre"
   },
   {
     label: "Mujer",
+    href: "/mujer"
   },
   {
     label: "Categorías",
     children: [
       {
         label: "Pantalones",
-        href: "#",
+        href: "/pantalones",
       },
       {
         label: "Remeras",
-        href: "#",
+        href: "/remeras",
+      },
+      {
+        label: "Buzos",
+        href: "/buzos",
+      },
+      {
+        label: "Camperas",
+        href: "/camperas",
+      },
+      {
+        label: "Shorts",
+        href: "/shorts",
       },
     ],
   },

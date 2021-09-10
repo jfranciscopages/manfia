@@ -82,12 +82,9 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-db.sync({ force: true })
-  .then(() => {
-    app.listen(3001, () =>
-      console.log("Servidor escuchando en el puerto 3001")
-    );
-  })
+db.sync({ force: false }).then(() => {
+  app.listen(3001, () => console.log("Servidor escuchando en el puerto 3001"));
+})
   .catch((err) => console.log(err));
 
 module.exports = app;

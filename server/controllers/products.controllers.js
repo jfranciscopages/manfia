@@ -6,29 +6,30 @@ const products_controller = {
       const products = await Products.findAll();
       return res.status(200).json(products);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
 
   getOne: async (req, res, next) => {
-    const id = req.params.id;
+    const name = req.params.name;
     try {
-      const product = await Products.findByPk(id);
+      const product = await Products.findOne({ where: { name: name } });
       return res.status(200).json(product);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
+
   addOneProduct: async (req, res, next) => {
     const body = req.body;
     const cat = req.body.category;
     try {
       const product = await Products.create(body);
-      const categorie = await Categories.findOne({ where: { name: cat } });
-      await product.addCategories(categorie);
+      const category = await Categories.findOne({ where: { name: cat } });
+      await product.addCategories(category);
       return res.status(200).json(product);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
 };
