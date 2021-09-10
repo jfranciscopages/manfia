@@ -1,25 +1,27 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {singleProduct} from "../store/productReducer"
+import { singleProduct } from "../store/productReducer";
+import axios from "axios";
 
-import {
-  Box,
-  Flex,
-  Center,
-  Image,
-  Button,
-} from "@chakra-ui/react";
+import { Box, Flex, Center, Image, Button } from "@chakra-ui/react";
 
 export function Product() {
+  const nameProduct = localStorage.getItem("product");
+  const dispatch = useDispatch();
+  const [product, setProduct] = React.useState({});
 
-  const product = useSelector((state) => {
-    console.log ("STATE PRODUCT", state.product)
-    return state.product});
-  
+  React.useEffect(async () => {
+    console.log(nameProduct);
+    axios
+      .get(`/api/products/${nameProduct}`)
+      .then((res) => {
+        console.log("RES DATA", res.data);
+        setProduct(res.data);
+      })
+      .catch((e) => console.log(e));
+  }, []);
 
-  console.log("PRODUCT", product)
-
-  return (
+  return product ? (
     <Flex>
       <Box
         maxW="sm"
@@ -50,7 +52,8 @@ export function Product() {
         lineHeight="tight"
         isTruncated
       >
-{product.title}        <Box
+        {product.title}{" "}
+        <Box
           mt="20px"
           ml=""
           mr="5"
@@ -59,7 +62,8 @@ export function Product() {
           lineHeight="tight"
           isTruncated
         >
-{product.description}        </Box>
+          {product.description}{" "}
+        </Box>
         <br />
         <Box>Price: $ {product.price}</Box>
         <br />
@@ -72,5 +76,7 @@ export function Product() {
         </Box>
       </Box>
     </Flex>
+  ) : (
+    <Flex>'CARGANDOO PAAA!!!'</Flex>
   );
 }
