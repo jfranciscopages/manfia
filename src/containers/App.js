@@ -8,8 +8,9 @@ import Grid from "../components/Grid";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import { Product } from "../components/Product";
-/* import Cart from "../components";
-import Contact from "../components/Contact";  */
+import Cart from "../components/Cart";
+import Checkout from "../components/Checkout";
+/*import Contact from "../components/Contact";  */
 
 function App() {
   return (
@@ -18,11 +19,12 @@ function App() {
         <Navbar />
         <Route exact path="/" render={() => <Grid />} />
         {/*      <Route path="/{:categoryID}" render={() => <Category />} /> */}
-        {/*     <Route path="/carrito" component={Cart} /> */}
+            <Route path="/carrito" component={Cart} />
         {/*   <Route exact path="/contacto" render={() => <Contact />} /> */}
         <Route exact path="/login" render={() => <Login />} />
         <Route exact path="/register" render={() => <Register />} />
         <Route exact path="/product" render={() => <Product />} />
+        <Route path="/checkout" render={() => <Checkout />} />
       </BrowserRouter>
       <Footer />
     </div>

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
-import cartReducer from "./cart";
+import {cartReducer} from "./cart";
 import { userLoggedReducer } from "./userLogged";
 
 const store = configureStore({
