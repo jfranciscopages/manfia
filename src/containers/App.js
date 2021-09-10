@@ -4,6 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Grid from "../components/Grid";
+import NewFooter from "../components/newFooter";
 /* import Category from "../components/Category"; */
 import Login from "../components/Login";
 import Register from "../components/Register";
@@ -40,7 +41,8 @@ function App() {
         <Route exact path="/register" render={() => <Register />} />
         <Route exact path="/products/:title" render={() => <Product />} />
       </BrowserRouter>
-      <Footer />
+{/*       <Footer /> */}
+      <NewFooter />
     </div>
   );
 }
