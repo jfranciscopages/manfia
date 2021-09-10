@@ -41,7 +41,6 @@ function App() {
         <Route exact path="/register" render={() => <Register />} />
         <Route exact path="/products/:title" render={() => <Product />} />
       </BrowserRouter>
-{/*       <Footer /> */}
       <NewFooter />
     </div>
   );
