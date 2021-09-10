@@ -38,7 +38,7 @@ function App() {
         {/*   <Route exact path="/contacto" render={() => <Contact />} /> */}
         <Route exact path="/login" render={() => <Login />} />
         <Route exact path="/register" render={() => <Register />} />
-        <Route exact path="/product/:id" render={() => <Product />} />
+        <Route exact path="/products/:title" render={() => <Product />} />
       </BrowserRouter>
       <Footer />
     </div>

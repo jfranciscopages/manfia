@@ -1,7 +1,9 @@
 import * as React from "react";
+import {Link} from "react-router-dom"
 import { Box, Button, SimpleGrid, Image, Center } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../store/productsReducer";
+import {singleProduct} from "../store/productReducer"
 
 
 const List = () => {
@@ -15,6 +17,7 @@ const List = () => {
   React.useEffect(() => {
     dispatch(getProducts());
   }, []);
+
 
   return (
     <SimpleGrid
@@ -33,11 +36,9 @@ const List = () => {
               borderWidth="1px"
               borderRadius="lg"
               overflow="hidden"
-            >\
-              {console.log(product.id)}
+            >
               <Image
                 src={`${product.image}`}
-                // layout={"fill"}
                 boxSize="350px"
               />{" "}
               <Center>
@@ -63,7 +64,9 @@ const List = () => {
               </Center>
               <Box mb={5}>
                 <Center>
-                  <Button colorScheme="teal" href={`/product/${product.id}`}>Ver más</Button>
+                 <Link to={`/products/${product.title}`}>
+                  <Button colorScheme="teal"  onClick= {() => dispatch(singleProduct(product.title))}  >Ver más</Button>
+                </Link>
                 </Center>
               </Box>
             </Box>

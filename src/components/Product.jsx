@@ -1,20 +1,24 @@
 import * as React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {singleProduct} from "../store/productReducer"
 
 import {
-  Grid,
-  GridItem,
-  Container,
   Box,
-  SimpleGrid,
   Flex,
   Center,
   Image,
-  Stack,
-  Heading,
   Button,
 } from "@chakra-ui/react";
 
 export function Product() {
+
+  const product = useSelector((state) => {
+    console.log ("STATE PRODUCT", state.product)
+    return state.product});
+  
+
+  console.log("PRODUCT", product)
+
   return (
     <Flex>
       <Box
@@ -26,7 +30,7 @@ export function Product() {
         mt="75px"
       >
         <Image
-          src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+          src={`${product.image}`}
           // layout={"fill"}
           boxSize="350px"
         />{" "}
@@ -46,8 +50,7 @@ export function Product() {
         lineHeight="tight"
         isTruncated
       >
-        Mens Casual Premium Slim Fit T-Shirts
-        <Box
+{product.title}        <Box
           mt="20px"
           ml=""
           mr="5"
@@ -56,10 +59,9 @@ export function Product() {
           lineHeight="tight"
           isTruncated
         >
-          Description : Remera manga corta, dos colores, cero onda
-        </Box>
+{product.description}        </Box>
         <br />
-        <Box>Price : US$ 3.000</Box>
+        <Box>Price: $ {product.price}</Box>
         <br />
         <Box>Talle : S-M-L-XL</Box>
         <br />

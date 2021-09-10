@@ -147,7 +147,7 @@ const productosParaSeedear = [
     },
   },
   {
-    title: "Pantalon Gabardina Cargo ",
+    title: "Pantalon Gabardina Cargo",
     price: "4589",
     description:
       "Pantalon cargo jogger de gabardina con cintura y puños con elásticos",
