@@ -11,9 +11,12 @@ const products_controller = {
   },
 
   getOne: async (req, res, next) => {
-    const id = req.params.id;
+    const name = req.params.name;
+    console.log(name);
     try {
-      const product = await Products.findByPk(id);
+      const product = await Products.findAll({
+        where: { title: name },
+      });
       return res.status(200).json(product);
     } catch (err) {
       next(err);
@@ -30,6 +33,20 @@ const products_controller = {
       return res.status(200).json(product);
     } catch (err) {
       next(err);
+    }
+  },
+
+  editProduct: async (req, res, next) => {
+    try {
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  deleteProduct: async (req, res, next) => {
+    try {
+    } catch (err) {
+      console.log(err);
     }
   },
 };
