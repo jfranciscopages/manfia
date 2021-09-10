@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useState } from "react";
-import { getProducts } from "../store/searchReducer";
+import { searchProducts } from "../store/searchReducer";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -24,7 +24,7 @@ const Search = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("INPUT", input);
-    dispatch(getProducts(input));
+    dispatch(searchProducts(input));
   };
 
   return (

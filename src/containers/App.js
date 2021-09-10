@@ -22,7 +22,7 @@ function App() {
         {/*   <Route exact path="/contacto" render={() => <Contact />} /> */}
         <Route exact path="/login" render={() => <Login />} />
         <Route exact path="/register" render={() => <Register />} />
-        <Route exact path="/product" render={() => <Product />} />
+        <Route exact path="/product/:id" render={() => <Product />} />
       </BrowserRouter>
       <Footer />
     </div>

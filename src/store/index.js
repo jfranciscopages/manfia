@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
 import cartReducer from "./cart";
+import productsReducer from "./productsReducer";
 import { userLoggedReducer } from "./userLogged";
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
   reducer: {
     user: userLoggedReducer,
     cart: cartReducer,
+    products: productsReducer
   },
 });
 
