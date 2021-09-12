@@ -34,11 +34,12 @@ function App() {
         <Navbar />
         <Route exact path="/" render={() => <Grid />} />
         {/*      <Route path="/{:categoryID}" render={() => <Category />} /> */}
-        <Route path="/carrito" component={Cart} />
+        <Route path="/cart" component={Cart} />
         {/*   <Route exact path="/contacto" render={() => <Contact />} /> */}
         <Route exact path="/login" render={() => <Login />} />
         <Route exact path="/register" render={() => <Register />} />
         <Route exact path="/product/:id" render={() => <Product />} />
+        <Route  path="/checkout" render={() => <Checkout />} />
       </BrowserRouter>
       <Footer />
     </div>

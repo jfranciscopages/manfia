@@ -23,6 +23,8 @@ const products_controller = {
     }
   },
 
+
+
   addOneProduct: async (req, res, next) => {
     const body = req.body;
     const cat = req.body.category;
