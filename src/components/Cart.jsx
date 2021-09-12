@@ -1,79 +1,151 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { GetAllProduct, DeleteCart, IncreaseQuantity,DecreaseQuantity, onCheckoutClicked } from "../store/cart";
-import {Product} from "./Product"
-import{
-    Button,
-    IconButton,
-    ButtonGroup,
-    AddIcon
+
+import {
+  getCart,
+  addQuantityToCartProduct,
+  substractQuantityToCartProduct,
+  deleteCartProduct,
+} from "../store/cartReducer";
+
+import {
+  Table,
+  Tr,
+  Td,
+  Th,
+  Box,
+  Thead,
+  Tbody,
+  Tfoot,
+  Button,
+  Image,
+  Stack,
+  Heading,
+  Spacer,
 } from "@chakra-ui/react";
+import { AddIcon, MinusIcon, DeleteIcon } from "@chakra-ui/icons";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const [products, setproducts] = useState([  
-      {
-    id: 14,
-    title: "Solid Gold Petite Micropave ",
-    price: 168,
-    description:
-      "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    category: "women",
-    stock: "13",
-    rating: {
-      rate: 3.9,
-      count: 70,
-    },
-  },
-]);
-  const [quantity, setquantity] = useState(0);
+  const [quantity, setquantity] = useState();
+
+  // traer orderId
+  const orderId = 1;
 
   useEffect(() => {
-    dispatch(GetAllProduct());
-  },[]);
+    dispatch(getCart(orderId));
+  }, []);
 
+  const handleAddQuantity = (productId) => {
+    dispatch(addQuantityToCartProduct(orderId, productId));
+  };
 
+  const handleSubstractQuantity = (productId) => {
+    dispatch(substractQuantityToCartProduct(orderId, productId));
+  };
+  const handleDelete = (productId) => {
+    dispatch(deleteCartProduct(orderId, productId));
+  };
+
+  const handleSubmit = () => {
+    // redirigir a pagina checkout detalle
+  };
   return (
-    <div>
-      <h3>Tu Carrito</h3>
-     {  products.length > 0 ? products.map(product =>
-      <>
-      <Product
-        title={product.title}
-        price={product.price}
-        quantity={product.quantity}
-        total={product.price*product.quantity}
-      />
-      <ButtonGroup size="sm" isAttached variant="outline">
-      <Button mr="-px" onClick={()=>dispatch(IncreaseQuantity)}>Agregar +</Button> 
-      <IconButton aria-label="Add one"  />
-      </ButtonGroup>
+    <>
+      <Heading fontSize="2xl" textAlign="center" marginTop="20px">
+        MI CARRITO
+      </Heading>
+      <Box display="flex" alignItems="center">
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>Producto</Th>
+              <Th></Th>
+              <Th>Descripción</Th>
+              <Th>Cantidad</Th>
+              <Th>Precio</Th>
+              <Th></Th>
+            </Tr>
+          </Thead>
 
-      <ButtonGroup size="sm" isAttached variant="outline">
-      <Button mr="-px" onClick={()=>dispatch(DeleteCart)}>Restar -</Button> 
-      <IconButton aria-label="Rest one"  />
-      </ButtonGroup>
+          <Tbody>
+            {cart.length > 0 ? (
+              cart.map((product) => (
+                <Tr>
+                  <Td>
+                    {" "}
+                    <Image
+                      src={product.image}
+                      // layout={"fill"}
+                      boxSize="50px"
+                    />
+                  </Td>
+                  <Td fontSize="md">{product.title}</Td>
+                  <Td fontSize="xs">{product.description}</Td>
+                  <Td>
+                    <Stack spacing={4} direction="row" align="center">
+                      <Button
+                        colorScheme="teal"
+                        size="xs"
+                        onClick={() =>
+                          handleSubstractQuantity(product.productId)
+                        }
+                      >
+                        <MinusIcon />
+                      </Button>
+                      <Box>
+                        {
+                          product.stock //poner quantity en lugar de stock!!
+                        }
+                      </Box>
+                      <Button
+                        colorScheme="teal"
+                        size="xs"
+                        onClick={() => handleAddQuantity(product.productId)}
+                      >
+                        <AddIcon />
+                      </Button>
+                    </Stack>
+                  </Td>
+                  <Td>{Number(product.price) * Number(product.stock)}</Td>
+                  <Td>
+                    <Button
+                      colorScheme="teal"
+                      size="xs"
+                      onClick={() => handleDelete(product.productId)}
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  </Td>
+                </Tr>
+              ))
+            ) : (
+              <em>No hay productos en el carrito.</em>
+            )}
+          </Tbody>
 
-      <ButtonGroup size="sm" isAttached variant="outline">
-      <Button mr="-px" onClick={()=>dispatch(DecreaseQuantity)}>Remover producto</Button>
-      <IconButton aria-label="Remove from cart"  />
-      </ButtonGroup>
-      </>
-      ) : <em>No hay productos en el carrito.</em>}
-
-
-      {/* <p>Total:{total}</p> */}
-      {products.length > 0 ?
-      <Link to="/checkout">
-    
-      Checkout
-        </Link>: ''}
-    </div>
+          <Tfoot>
+            <Th mr="4" fontSize="2xl">
+              TOTAL
+            </Th>
+            <Th>
+              {cart.length > 0
+                ? cart.reduce(function (eAnterior, eActual, indice) {
+                    return eAnterior + Number(eActual.price);
+                  }, 0)
+                : ""}
+            </Th>
+          </Tfoot>
+        </Table>
+      </Box>
+      <Box>
+        <Link to="/checkout">Checkout</Link>
+      </Box>
+    </>
   );
-}
+};
 
-export default Cart
+export default Cart;
