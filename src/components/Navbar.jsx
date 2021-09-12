@@ -2,7 +2,9 @@ import React from "react";
 import logo from "../utils/Manfia.png";
 import { useSelector } from "react-redux";
 import useLogin from "../hooks/useLogin";
-// import logo from "../../public/manifest.json"
+import { BiShoppingBag } from "react-icons/bi";
+import {Link} from "react-router-dom"
+
 import {
   Box,
   Flex,
@@ -13,12 +15,11 @@ import {
   Collapse,
   Icon,
   Image,
-  Link,
+  // Link,
   Popover,
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
   Center,
 } from "@chakra-ui/react";
@@ -54,8 +55,8 @@ const Navbar = () => {
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
       >
-        <Link to="/" boxSize="100px">
-          <Image src={logo} alt="logo Manfia" borderRadius="full" />
+        <Link to="/" >
+          <Image src={logo} alt="logo Manfia" borderRadius="full" maxWidth="40%"/>
         </Link>
         <Flex
           flex={{ base: 1, md: "auto" }}
@@ -86,6 +87,12 @@ const Navbar = () => {
           direction={"row"}
           spacing={6}
         >
+          <Box>
+            <Link to="/carrito">
+              <IconButton icon={<BiShoppingBag size="sm" />} />
+            </Link>
+          </Box>
+
           {loggedUser.id ? (
             <Button as={"a"} onClick={(e) => handleClick(e)}>
               Logout

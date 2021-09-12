@@ -5,6 +5,10 @@ const db = require("../db/db");
 class Order_Details extends Sequelize.Model {}
 Order_Details.init(
   {
+    image: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     price: {
       type: Sequelize.STRING,
       allowNull: false,

@@ -1,21 +1,27 @@
 import * as React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { singleProduct } from "../store/productReducer";
+import axios from "axios";
 
-import {
-  Grid,
-  GridItem,
-  Container,
-  Box,
-  SimpleGrid,
-  Flex,
-  Center,
-  Image,
-  Stack,
-  Heading,
-  Button,
-} from "@chakra-ui/react";
+import { Box, Flex, Center, Image, Button } from "@chakra-ui/react";
 
 export function Product() {
-  return (
+  const nameProduct = localStorage.getItem("product");
+  const dispatch = useDispatch();
+  const [product, setProduct] = React.useState({});
+
+  React.useEffect(async () => {
+    console.log(nameProduct);
+    axios
+      .get(`/api/products/${nameProduct}`)
+      .then((res) => {
+        console.log("RES DATA", res.data);
+        setProduct(res.data);
+      })
+      .catch((e) => console.log(e));
+  }, []);
+
+  return product ? (
     <Flex>
       <Box
         maxW="sm"
@@ -26,7 +32,7 @@ export function Product() {
         mt="75px"
       >
         <Image
-          src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+          src={`${product.image}`}
           // layout={"fill"}
           boxSize="350px"
         />{" "}
@@ -46,7 +52,7 @@ export function Product() {
         lineHeight="tight"
         isTruncated
       >
-        Mens Casual Premium Slim Fit T-Shirts
+        {product.title}{" "}
         <Box
           mt="20px"
           ml=""
@@ -56,10 +62,10 @@ export function Product() {
           lineHeight="tight"
           isTruncated
         >
-          Description : Remera manga corta, dos colores, cero onda
+          {product.description}{" "}
         </Box>
         <br />
-        <Box>Price : US$ 3.000</Box>
+        <Box>Price: $ {product.price}</Box>
         <br />
         <Box>Talle : S-M-L-XL</Box>
         <br />
@@ -70,5 +76,7 @@ export function Product() {
         </Box>
       </Box>
     </Flex>
+  ) : (
+    <Flex>'CARGANDOO PAAA!!!'</Flex>
   );
 }

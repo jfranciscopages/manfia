@@ -11,23 +11,23 @@ Orders.init(
     },
     shippingAddress: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     orderAddress: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     orderEmail: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     orderDate: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     orderStatus: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   { sequelize: db, modelName: "orders" }

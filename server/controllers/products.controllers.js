@@ -12,14 +12,13 @@ const products_controller = {
 
   getOne: async (req, res, next) => {
     const name = req.params.name;
-    console.log(name);
     try {
-      const product = await Products.findAll({
+      const product = await Products.findOne({
         where: { title: name },
       });
-      return res.status(200).json(product);
+      return res.status(200).send(product);
     } catch (err) {
-      next(err);
+      console.log(err);
     }
   },
 
