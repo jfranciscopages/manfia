@@ -23,7 +23,9 @@ export function Product() {
   }, []);
 
   const addQuantity = () => {
-    let suma = quantity + 1;
+    let suma = 1;
+    if (Number(product.stock) > quantity) suma = quantity + 1;
+    else console.log(`sin stock pa!`);
     setQuantity(suma);
   };
 
@@ -35,13 +37,18 @@ export function Product() {
       title: product.title,
       price: product.price,
       quantity: quantity,
+      stock: Number(product.stock),
     };
     const orderform = JSON.parse(window.localStorage.getItem("orderform"));
     //buscamos si hay un producto igual, si hay le sumamos lo que hayamos cargado
     //(queda configurar que solo se pueda cargar lo que queda de stock)
     if (orderform.items.length > 0) {
       orderform.items.map((prod) => {
-        if (prod.id == aux.id) prod.quantity += aux.quantity;
+        if (prod.id == aux.id) {
+          if (prod.quantity + aux.quantity <= aux.stock)
+            prod.quantity += aux.quantity;
+          else console.log(`sin stock padre!`);
+        }
       });
     }
     //sino lo cargamos a orderform
