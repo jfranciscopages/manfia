@@ -31,6 +31,7 @@ const auth_controller = {
         return res.sendStatus(401);
       } else {
         const userLogged = {
+          access: req.user.access,
           id: req.user.id,
           email: req.user.email,
           fullName: req.user.fullName,
