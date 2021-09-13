@@ -323,8 +323,8 @@ const productosParaSeedear = [
   },
 ];
 
-const seed = () => {
-  User_Profile.create(userAdmin);
+const seed = async () => {
+  await User_Profile.create(userAdmin);
   return Categories.bulkCreate(categoriasParaSeedear)
     .then(() => Products.bulkCreate(productosParaSeedear))
     .then(() =>
