@@ -1,8 +1,8 @@
 const db = require("./db/db");
-const Users = require("./models/Users");
 const Categories = require("./models/Categories");
 const Products = require("./models/Products");
 const Products_Categories = require("./models/Products_Categories");
+const User_Profile = require("./models/User_Profile");
 
 const userParaSeedear = [
   {
@@ -337,7 +337,7 @@ const productosParaSeedear = [
 ];
 
 const seed = () => {
-  return Users.bulkCreate(userParaSeedear)
+  return User_Profile.bulkCreate(userParaSeedear)
     .then(() => Categories.bulkCreate(categoriasParaSeedear))
     .then(() => Products.bulkCreate(productosParaSeedear))
     .then(() =>

@@ -12,7 +12,7 @@ const passport = require(`passport`);
 const LocalStrategy = require(`passport-local`).Strategy;
 
 // Express Route File Requires
-const { Users } = require("./models");
+const { User_Profile } = require("./models");
 
 const app = express();
 app.use(logger("dev"));
@@ -47,7 +47,7 @@ passport.use(
     password,
     done
   ) {
-    Users.findOne({ where: { email } })
+    User_Profile.findOne({ where: { email } })
       .then((user) => {
         if (!user) return done(`Incorrect Credentials`, false); //Otra forma es done(null,false, {message: `Incorrect Credentials`}) PD: recibe un campo de mensaje
         user.validPassword(password, user.salt).then((valid) => {
@@ -64,7 +64,7 @@ passport.serializeUser(function (user, done) {
 });
 // How we look for the user
 passport.deserializeUser(function (id, done) {
-  Users.findByPk(id).then((user) => done(null, user));
+  User_Profile.findByPk(id).then((user) => done(null, user));
 });
 
 // catch 404 and forward to error handler
@@ -72,11 +72,15 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error middleware -> https://expressjs.com/es/guide/error-handling.html
-app.use((err, req, res, next) => {
-  console.log("ERROR");
-  console.log(err);
-  res.status(500).send(err.message);
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  /* res.render("error"); */
 });
 
 db.sync({ force: false })

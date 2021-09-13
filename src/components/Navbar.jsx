@@ -3,7 +3,7 @@ import logo from "../utils/Manfia.png";
 import { useSelector } from "react-redux";
 import useLogin from "../hooks/useLogin";
 import { BiShoppingBag } from "react-icons/bi";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import {
   Box,
@@ -55,8 +55,13 @@ const Navbar = () => {
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
       >
-        <Link to="/" >
-          <Image src={logo} alt="logo Manfia" borderRadius="full" maxWidth="40%"/>
+        <Link to="/">
+          <Image
+            src={logo}
+            alt="logo Manfia"
+            borderRadius="full"
+            maxWidth="40%"
+          />
         </Link>
         <Flex
           flex={{ base: 1, md: "auto" }}
@@ -144,7 +149,7 @@ const DesktopNav = () => {
             <PopoverTrigger>
               <Link
                 p={2}
-                href={navItem.href ?? "#"}
+                to={navItem.href ?? "#"}
                 fontSize={"md"}
                 fontWeight={500}
                 color={linkColor}
@@ -183,7 +188,7 @@ const DesktopNav = () => {
 const DesktopSubNav = ({ label, href, subLabel } = NavItem) => {
   return (
     <Link
-      href={href}
+      to={href}
       role={"group"}
       display={"block"}
       p={2}
@@ -239,7 +244,7 @@ const MobileNavItem = ({ label, children, href } = NavItem) => {
       <Flex
         py={2}
         as={Link}
-        href={href ?? "#"}
+        to={href ?? "#"}
         justify={"space-between"}
         align={"center"}
         _hover={{
@@ -274,7 +279,7 @@ const MobileNavItem = ({ label, children, href } = NavItem) => {
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <Link key={child.label} py={2} to={child.href}>
                 {child.label}
               </Link>
             ))}

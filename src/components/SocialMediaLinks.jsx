@@ -6,19 +6,19 @@ export const SocialMediaLinks = () => (
   <ButtonGroup variant="ghost" color="gray.600">
     <IconButton
       as="a"
-      href="#"
+      href="/#"
       aria-label="LinkedIn"
       icon={<FaLinkedin fontSize="20px" />}
     />
     <IconButton
       as="a"
-      href="#"
+      href="/#"
       aria-label="GitHub"
       icon={<FaGithub fontSize="20px" />}
     />
     <IconButton
       as="a"
-      href="#"
+      href="/#"
       aria-label="Twitter"
       icon={<FaTwitter fontSize="20px" />}
     />
