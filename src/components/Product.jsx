@@ -24,6 +24,7 @@ export function Product() {
 
   const addQuantity = () => {
     let suma = 1;
+    //combierte el stock a numero y compara con la cantidad
     if (Number(product.stock) > quantity) suma = quantity + 1;
     else console.log(`sin stock pa!`);
     setQuantity(suma);
