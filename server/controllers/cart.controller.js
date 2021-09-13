@@ -1,7 +1,7 @@
 const { Orders, Order_Details, User_Profile } = require(`../models`);
 
 const cart_controller = {
-  getAllforUser: async (req, res, next) => {
+  getAllforOneUserAdmin: async (req, res, next) => {
     try {
       const user = await User_Profile.findByPk(id);
       const { id } = user;
@@ -17,8 +17,6 @@ const cart_controller = {
       next(err);
     }
   },
-
-  addOrderToUser: {},
 
   addToCart: async (req, res, next) => {
     //recibe un json con image,title,price,cuantity,y productId y orderId con eso crea la order
