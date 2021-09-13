@@ -9,6 +9,10 @@ Categories.init(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    sex: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
   },
   { sequelize: db, modelName: "categories" }
 );

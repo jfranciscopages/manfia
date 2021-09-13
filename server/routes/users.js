@@ -1,10 +1,10 @@
 const express = require(`express`);
 const router = express.Router();
 
-const { Users } = require(`../models`);
+const user_controller = require("../controllers/user.controller");
 
-router.post(`/`, function (req, res, next) {
-  console.log(`holitas!`);
-});
+const { edit } = user_controller;
+
+router.put(`/edit`, edit);
 
 module.exports = router;

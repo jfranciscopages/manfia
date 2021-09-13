@@ -1,4 +1,4 @@
-const { User_Profile } = require(`../models/`);
+const { User_Profile } = require(`../models`);
 
 const auth_controller = {
   register: async (req, res, next) => {
@@ -14,9 +14,10 @@ const auth_controller = {
     try {
       return res.status(200).json(user);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
+
   logout: (req, res, next) => {
     try {
       req.logout();
