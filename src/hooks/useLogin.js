@@ -42,6 +42,7 @@ const useLogin = () => {
         console.log(`done`);
         console.log(data);
         dispatch(userLogged({}));
+        window.localStorage.clear();
         success("logged out");
         history.push("/");
       })

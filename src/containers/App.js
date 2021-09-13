@@ -30,6 +30,7 @@ function App() {
       .then((user) => {
         dispatch(userLogged(user));
         lStorage.clientProfile = user;
+        console.log(lStorage);
         window.localStorage.setItem("orderform", JSON.stringify(lStorage));
         console.log("userLogged: ", user);
       })

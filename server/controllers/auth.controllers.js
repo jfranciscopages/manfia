@@ -20,9 +20,6 @@ const auth_controller = {
   logout: (req, res, next) => {
     try {
       req.logout();
-      lStorage = JSON.parse(window.localStorage.getItem("orderform"));
-      lStorage.clientProfile = null;
-      window.localStorage.setItem("orderform", JSON.stringify(lStorage));
       return res.redirect("/");
     } catch (err) {
       console.log(err);
