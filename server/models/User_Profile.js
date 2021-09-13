@@ -48,7 +48,6 @@ User_Profile.init(
 
 //hookardos!
 User_Profile.addHook(`beforeCreate`, function (user) {
-  console.log(`hook`, user);
   return crypto
     .genSalt(16)
     .then((salt) => {

@@ -20,6 +20,9 @@ const auth_controller = {
   logout: (req, res, next) => {
     try {
       req.logout();
+      lStorage = JSON.parse(window.localStorage.getItem("orderform"));
+      lStorage.clientProfile = null;
+      window.localStorage.setItem("orderform", JSON.stringify(lStorage));
       return res.redirect("/");
     } catch (err) {
       console.log(err);
@@ -30,7 +33,15 @@ const auth_controller = {
       if (!req.user) {
         return res.sendStatus(401);
       } else {
-        return res.send(req.user);
+        const userLogged = {
+          id: req.user.id,
+          email: req.user.email,
+          fullName: req.user.fullName,
+          address: req.user.address,
+          country: req.user.country,
+          phone: req.user.phone,
+        };
+        return res.send(userLogged);
       }
     } catch (err) {
       console.log(err);

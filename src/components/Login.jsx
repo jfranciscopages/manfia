@@ -106,7 +106,7 @@ const Login = () => {
                     </InputRightElement>
                   </InputGroup>
                   <FormHelperText textAlign="right">
-                    <Link>¿olvidaste tu contraseña?</Link>
+                    <Link to="/#">¿olvidaste tu contraseña?</Link>
                   </FormHelperText>
                 </FormControl>
                 <Button

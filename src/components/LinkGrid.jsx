@@ -24,9 +24,9 @@ export const LinkGrid = () => (
         Producto
       </Heading>
       <Stack>
-        <Link>¿Cómo funciona?</Link>
-        <Link>¿Quiénes somos?</Link>
-        <Link>Trabajá con nosotros</Link>
+        <Link to="/#">¿Cómo funciona?</Link>
+        <Link to="/#">¿Quiénes somos?</Link>
+        <Link to="/#">Trabajá con nosotros</Link>
       </Stack>
     </Box>
     <Box minW="130px">
@@ -42,9 +42,9 @@ export const LinkGrid = () => (
         Legal
       </Heading>
       <Stack>
-        <Link>Privacidad</Link>
-        <Link>Términos y condiciones</Link>
-        <Link>Licencias</Link>
+        <Link to="/#">Privacidad</Link>
+        <Link to="/#">Términos y condiciones</Link>
+        <Link to="/#">Licencias</Link>
       </Stack>
     </Box>
   </SimpleGrid>

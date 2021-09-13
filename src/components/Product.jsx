@@ -7,9 +7,10 @@ import { Box, Flex, Center, Image, Button } from "@chakra-ui/react";
 
 export function Product() {
   const nameProduct = localStorage.getItem("product");
+  console.log(nameProduct);
   const dispatch = useDispatch();
   const [product, setProduct] = React.useState({});
-
+  const [quantity, setQuantity] = React.useState(1);
   React.useEffect(async () => {
     console.log(nameProduct);
     axios
@@ -20,6 +21,35 @@ export function Product() {
       })
       .catch((e) => console.log(e));
   }, []);
+
+  const addQuantity = () => {
+    let suma = quantity + 1;
+    setQuantity(suma);
+  };
+
+  const addProductToCart = (product, quantity) => {
+    //trae el objeto del local storage
+    let aux = {
+      id: product.id,
+      image: product.image,
+      title: product.title,
+      price: product.price,
+      quantity: quantity,
+    };
+    const orderform = JSON.parse(window.localStorage.getItem("orderform"));
+    //buscamos si hay un producto igual, si hay le sumamos lo que hayamos cargado
+    //(queda configurar que solo se pueda cargar lo que queda de stock)
+    if (orderform.items.length > 0) {
+      orderform.items.map((prod) => {
+        if (prod.id == aux.id) prod.quantity += aux.quantity;
+      });
+    }
+    //sino lo cargamos a orderform
+    else orderform.items.push(aux);
+    //luego lo volvemos a setear en localstorage
+    console.log(`suma de productos iguales`, orderform);
+    window.localStorage.setItem("orderform", JSON.stringify(orderform));
+  };
 
   return product ? (
     <Flex>
@@ -71,7 +101,16 @@ export function Product() {
         <br />
         <Box mb={5}>
           <Center>
-            <Button colorScheme="teal">Comprar</Button>
+            {/* aca hay que configurar que se vea la cantidad que estamos agregando y que no te deje agregar mas de lo que hay en stock */}
+            <Button onClick={() => addQuantity()} colorScheme="teal">
+              +1
+            </Button>
+            <Button
+              onClick={() => addProductToCart(product, quantity)}
+              colorScheme="teal"
+            >
+              Comprar
+            </Button>
           </Center>
         </Box>
       </Box>
