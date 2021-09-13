@@ -3,8 +3,8 @@ const db = require("../db/db");
 const crypto = require(`bcrypt`);
 
 //-- User Model
-class Users extends Sequelize.Model {}
-Users.init(
+class User_Profile extends Sequelize.Model {}
+User_Profile.init(
   {
     access: {
       type: Sequelize.STRING,
@@ -43,11 +43,11 @@ Users.init(
       type: Sequelize.STRING,
     },
   },
-  { sequelize: db, modelName: "users" }
+  { sequelize: db, modelName: "user_profile" }
 );
 
 //hookardos!
-Users.addHook(`beforeCreate`, function (user) {
+User_Profile.addHook(`beforeCreate`, function (user) {
   console.log(`hook`, user);
   return crypto
     .genSalt(16)
@@ -59,14 +59,14 @@ Users.addHook(`beforeCreate`, function (user) {
 });
 
 //instance method
-Users.prototype.hashPass = function (password, salt) {
+User_Profile.prototype.hashPass = function (password, salt) {
   return crypto.hash(password, salt);
 };
 
-Users.prototype.validPassword = function (password, salt) {
+User_Profile.prototype.validPassword = function (password, salt) {
   return this.hashPass(password, salt).then((pass) => {
     return this.password === pass;
   });
 };
 
-module.exports = Users;
+module.exports = User_Profile;

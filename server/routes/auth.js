@@ -2,9 +2,9 @@ const express = require(`express`);
 const router = express.Router();
 const passport = require("passport");
 //import controllers
-const users_controllers = require("../controllers/users.controllers");
+const auth_controller = require("../controllers/auth.controllers");
 //Controlers llamados por destructuracion
-const { register, login, logout, me } = users_controllers;
+const { register, login, logout, me } = auth_controller;
 
 router.post(`/register`, register);
 

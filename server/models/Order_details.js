@@ -9,11 +9,15 @@ Order_Details.init(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    title: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     price: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    cuantity: {
+    quantity: {
       type: Sequelize.STRING,
       allowNull: false,
     },

@@ -1,9 +1,9 @@
-const { Users } = require(`../models`);
+const { User_Profile } = require(`../models/`);
 
-const users_controller = {
+const auth_controller = {
   register: async (req, res, next) => {
     try {
-      const user = await Users.create(req.body);
+      const user = await User_Profile.create(req.body);
       return res.status(201).json(user);
     } catch (err) {
       next(err);
@@ -38,4 +38,4 @@ const users_controller = {
   },
 };
 
-module.exports = users_controller;
+module.exports = auth_controller;

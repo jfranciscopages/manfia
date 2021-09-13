@@ -1,7 +1,7 @@
 const Categories = require(`./Categories`);
 const Products = require(`./Products`);
 const Orders = require(`./Orders`);
-const Users = require(`./Users`);
+const User_Profile = require(`./User_Profile`);
 const Options = require(`./Options`);
 const Order_Details = require(`./Order_details`);
 const Products_Categories = require(`./Products_Categories`);
@@ -19,15 +19,15 @@ Order_Details.belongsTo(Products);
 Orders.hasMany(Order_Details);
 Order_Details.belongsTo(Orders);
 
-Users.hasMany(Orders);
-Orders.belongsTo(Users);
+User_Profile.hasMany(Orders);
+Orders.belongsTo(User_Profile);
 
 module.exports = {
   Categories: Categories,
   Products_Categories: Products_Categories,
   Products: Products,
   Orders: Orders,
-  Users: Users,
+  User_Profile: User_Profile,
   Order_Details: Order_Details,
   Options: Options,
   Products_Options: Products_Options,
