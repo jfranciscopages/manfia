@@ -39,6 +39,7 @@ export function Product() {
       price: product.price,
       quantity: quantity,
       stock: Number(product.stock),
+      orderId: "",
     };
     const orderform = JSON.parse(window.localStorage.getItem("orderform"));
     //buscamos si hay un producto igual, si hay le sumamos lo que hayamos cargado
@@ -47,13 +48,13 @@ export function Product() {
       orderform.items.map((prod) => {
         if (prod.id == aux.id) {
           if (prod.quantity + aux.quantity <= aux.stock)
-            prod.quantity += aux.quantity;
+            prod.quantity ++;
           else console.log(`sin stock padre!`);
-        }
+          //sino lo cargamos a orderform
+        }else orderform.items.push(aux)
       });
     }
-    //sino lo cargamos a orderform
-    else orderform.items.push(aux);
+    else orderform.items.push(aux)
     //luego lo volvemos a setear en localstorage
     console.log(`suma de productos iguales`, orderform);
     window.localStorage.setItem("orderform", JSON.stringify(orderform));

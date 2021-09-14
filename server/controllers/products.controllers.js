@@ -35,17 +35,28 @@ const products_controller = {
     }
   },
 
-  editProduct: async (req, res, next) => {
+  edit: async (req, res, next) => {
+    const { id } = req.body;
     try {
+      const [numberAfected, product] = await Products.update(req.body, {
+        where: { id: id },
+        returning: true,
+      });
+      //update nos retorna las filas que fueron afectadas y un arreglo de las mismas
+      res.status(201).json(product[0]);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
 
   deleteProduct: async (req, res, next) => {
+    const id = req.params.id;
     try {
+      const product = await Products.findByPk(id);
+      product.destroy();
+      res.sendStatus(202);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
 };

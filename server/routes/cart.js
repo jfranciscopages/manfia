@@ -4,8 +4,8 @@ const router = express.Router();
 //Import Controller
 const cart_controller = require("../controllers/cart.controller");
 //Destructuring Controllers
-const { addToCart } = cart_controller;
+const { createOrder } = cart_controller;
 
-router.post("/addToCart", addToCart);
+router.post("/createOrder", createOrder);
 
 module.exports = router;
