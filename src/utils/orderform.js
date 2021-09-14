@@ -1,13 +1,13 @@
 const orderform = {
-  items: [],
   clientProfile: null,
-  shiping: {
-    address: [],
-    deliveryOptions: [],
-  },
-  totalOrder: {
-    name: "Total",
-    value: 0,
+  items: [],
+  order: {
+    userProfileId: "",
+    orderAdress: "",
+    orderDate: "",
+    orderPaymentType: "",
+    totalAmmount: "",
+    orderStatus: "",
   },
 };
 export default orderform;
