@@ -19,7 +19,7 @@ export default function Productos() {
   useEffect(() => {
     axios
       .get("/api/categories/getCategories")
-      .then((res) => console.log(res.data))
+      .then((res) => res.data)
       .then((data) => setCategories(data));
   }, []);
 
@@ -77,9 +77,11 @@ export default function Productos() {
             size="md"
             id="sex"
           >
-            {categories.map((cat) => (
-              <option value={`${cat.id}`}>{cat.name}</option>
-            ))}
+            {categories
+              ? categories.map((cat) => (
+                  <option value={`${cat.id}`}>{cat.name}</option>
+                ))
+              : null}
           </Select>
         </FormControl>
         <FormControl id="stock">
