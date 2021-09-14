@@ -27,18 +27,21 @@ function App() {
     let lStorage = JSON.parse(window.localStorage.getItem("orderform"));
     if (!lStorage) {
       window.localStorage.setItem("orderform", JSON.stringify(orderform));
+      lStorage = JSON.parse(window.localStorage.getItem("orderform"));
     }
-    axios
-      .get("/api/auth/me")
-      .then((res) => res.data)
-      .then((user) => {
-        dispatch(userLogged(user));
-        lStorage.clientProfile = user;
-        console.log(lStorage);
-        window.localStorage.setItem("orderform", JSON.stringify(lStorage));
-        console.log("userLogged: ", user);
-      })
-      .catch((err) => console.log(err));
+    lStorage.clientProfile
+      ? dispatch(userLogged(lStorage.clientProfile))
+      : axios
+          .get("/api/auth/me")
+          .then((res) => res.data)
+          .then((user) => {
+            dispatch(userLogged(user));
+            lStorage.clientProfile = user;
+            console.log(lStorage);
+            window.localStorage.setItem("orderform", JSON.stringify(lStorage));
+            console.log("userLogged: ", user);
+          })
+          .catch((err) => console.log(err));
   }, []);
   const camino = location.pathname.slice(0, 6);
 

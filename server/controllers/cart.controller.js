@@ -18,13 +18,8 @@ const cart_controller = {
     }
   },
 
-  addToCart: async (req, res, next) => {
-    //recibe un json con image,title,price,cuantity,y productId y orderId con eso crea la order
-    //si el usuario no esta logeado puede crearla igual sin el orderId
-    const order = req.body;
+  createOrder: async (req, res, next) => {
     try {
-      const oDetails = await Order_Details.create(req.body);
-      return res.status(200).json(oDetails);
     } catch (err) {
       next(err);
     }

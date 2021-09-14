@@ -39,6 +39,7 @@ export function Product() {
       price: product.price,
       quantity: quantity,
       stock: Number(product.stock),
+      orderId: "",
     };
     const orderform = JSON.parse(window.localStorage.getItem("orderform"));
     //buscamos si hay un producto igual, si hay le sumamos lo que hayamos cargado

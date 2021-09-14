@@ -2,7 +2,7 @@ const express = require(`express`);
 const router = express.Router();
 
 //Import Controller
-const product_controller = require("../controllers/products.controller");
+const product_controller = require("../controllers/products.controllers");
 //Destructuring Controllers
 const { getAll, addOneProduct, getOne, edit, deleteProduct } =
   product_controller;
