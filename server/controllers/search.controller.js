@@ -7,8 +7,16 @@ const search_controller = {
     try {
       const products = await Products.findAll({
         where: {
-          title: {
-            [Op.iLike]: `${title}%`,
+          [Op.or]: {
+            title: {
+              [Op.iLike]: `${title}%`,
+            },
+            category: {
+              [Op.iLike]: `${title}%`,
+            },
+            description: {
+              [Op.iLike]: `${title}%`,
+            },
           },
         },
       });

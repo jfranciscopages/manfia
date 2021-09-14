@@ -3,10 +3,17 @@ const router = express.Router();
 //Import Controller
 const categories_controller = require("../controllers/categories.controller");
 //Destructuring Controllers
-const { addOneCategory, findBySex, findBySexAndCategory, getAllCats } =
-  categories_controller;
+const {
+  addOneCategory,
+  findBySex,
+  findBySexAndCategory,
+  getAllCats,
+  editCategory,
+} = categories_controller;
 
 router.post(`/addCategory`, addOneCategory);
+
+router.put(`/editCategory`, editCategory);
 
 router.get(`/getCategories`, getAllCats);
 
