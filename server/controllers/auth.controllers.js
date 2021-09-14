@@ -30,7 +30,16 @@ const auth_controller = {
       if (!req.user) {
         return res.sendStatus(401);
       } else {
-        return res.send(req.user);
+        const userLogged = {
+          access: req.user.access,
+          id: req.user.id,
+          email: req.user.email,
+          fullName: req.user.fullName,
+          address: req.user.address,
+          country: req.user.country,
+          phone: req.user.phone,
+        };
+        return res.send(userLogged);
       }
     } catch (err) {
       console.log(err);
