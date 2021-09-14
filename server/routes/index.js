@@ -10,6 +10,6 @@ router.use("/auth", authRouter);
 router.use("/users", usersRouter);
 router.use("/products", productsRouter);
 router.use("/cart", cartRouter);
-router.use("/categories", catRouter)
+router.use("/categories", catRouter);
 
 module.exports = router;
