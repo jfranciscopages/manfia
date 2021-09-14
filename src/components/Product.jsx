@@ -47,13 +47,13 @@ export function Product() {
       orderform.items.map((prod) => {
         if (prod.id == aux.id) {
           if (prod.quantity + aux.quantity <= aux.stock)
-            prod.quantity += aux.quantity;
+            prod.quantity ++;
           else console.log(`sin stock padre!`);
-        }
+          //sino lo cargamos a orderform
+        }else orderform.items.push(aux)
       });
     }
-    //sino lo cargamos a orderform
-    else orderform.items.push(aux);
+    else orderform.items.push(aux)
     //luego lo volvemos a setear en localstorage
     console.log(`suma de productos iguales`, orderform);
     window.localStorage.setItem("orderform", JSON.stringify(orderform));

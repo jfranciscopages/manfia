@@ -8,7 +8,7 @@ import { userLoggedReducer } from "./userLogged";
 import { orderReducer } from "./orderReducer";
 
 const store = configureStore({
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   reducer: {
     user: userLoggedReducer,
     cart: cartReducer,

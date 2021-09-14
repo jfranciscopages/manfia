@@ -17,3 +17,12 @@ export const errorAlert = () => {
     icon: "error",
   });
 };
+
+export const nostockAlert = () => {
+  MySwal.fire({
+    title: 'Oops...',
+    text: "No hay suficiente stock!",
+    icon: "error",
+    width: '20%',
+  });
+};

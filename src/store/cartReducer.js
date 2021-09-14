@@ -1,24 +1,21 @@
+import * as React from "react";
 import axios from "axios";
-import carritoDeMentira from "../carritoDeMentira";
+import {Product} from "../hooks/useCart"
+
 import {
   createReducer,
   createAsyncThunk,
 } from "@reduxjs/toolkit";
 
+
 const initialState = [];
+
 
 //GET todos los productos del carrito
 export const getCart = createAsyncThunk("GET_CART", (orderId) => {
-  return axios
-    .get(`/api/cart/:${orderId}`) 
-    .then((response) => {
  
-      return carritoDeMentira;
     })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+
 
 export const addQuantityToCartProduct = createAsyncThunk(
   "ADD_QUANTITY_TO_CART_PRODUCT",
@@ -51,7 +48,7 @@ export const deleteCartProduct = createAsyncThunk(
       });
   }
 );
-// CART REDUCER
+// POR EL MOMENTO NO SE USA
 export const cartReducer = createReducer(initialState, {
   [getCart.fulfilled]: (state, action) => action.payload,
 

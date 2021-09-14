@@ -36,7 +36,7 @@ const Navbar = () => {
   const loggedUser = useSelector((state) => state.user);
   const params = useLogin();
   const { handleLogout } = params;
-  console.log(`lalalala`, loggedUser);
+  // console.log(`lalalala`, loggedUser);
   const handleClick = (e) => {
     e.preventDefault();
     handleLogout();
@@ -93,7 +93,7 @@ const Navbar = () => {
           spacing={6}
         >
           <Box>
-            <Link to="/carrito">
+            <Link to="/cart">
               <IconButton icon={<BiShoppingBag size="sm" />} />
             </Link>
           </Box>
