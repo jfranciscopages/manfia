@@ -1,23 +1,19 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
-import { Box, Button, SimpleGrid, Image, Center } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts } from "../store/productsReducer";
+import { getSex } from "../store/sexReducer";
 
-const List = () => {
-  const products = useSelector((state) => {
-    return state.products;
-  });
+import { Box, Flex, Center, Image, Button, SimpleGrid } from "@chakra-ui/react";
 
+const BySex = ({sex}) => {
+
+  const categories = useSelector((state) => {
+      return state.sex
+  })
   const dispatch = useDispatch();
-
+  
   React.useEffect(() => {
-    dispatch(getProducts());
-  }, []);
-
-  const setOneProduct = (e) => {
-    localStorage.setItem("product", e);
-  };
+    dispatch(getSex(sex));
+  }, [sex]);
 
   return (
     <SimpleGrid
@@ -28,8 +24,9 @@ const List = () => {
       mt={100}
       mb={100}
     >
-      {products &&
-        products.map((product) => {
+      {categories &&
+        categories.map((category) => {
+
           return (
             <Box
               maxW="sm"
@@ -37,7 +34,7 @@ const List = () => {
               borderRadius="lg"
               overflow="hidden"
             >
-              <Image src={`${product.image}`} boxSize="350px" />{" "}
+              <Image src={`${category.image}`} boxSize="350px" />{" "}
               <Center>
                 <Box
                   mt="10"
@@ -47,28 +44,28 @@ const List = () => {
                   as="h4"
                   lineHeight="tight"
                   isTruncated
-                >{`${product.title}`}</Box>
+                >{`${category.title}`}</Box>
               </Center>
               <Center>
-                <Box>{`$ ${product.price}`}</Box>
+                <Box>{`$ ${category.price}`}</Box>
               </Center>
               <Center>
                 <Box d="flex" mt="2" alignItems="center">
                   <Box as="span" mb="5" color="gray.600" fontSize="sm">
-                    {product.rating.count} {product.rating.rate} star reviews
+                    {category.rating.count} {category.rating.rate} star reviews
                   </Box>
                 </Box>
               </Center>
               <Box mb={5}>
                 <Center>
-                  <Link to={`/products/${product.title}`}>
+                  {/* <Link to={`/categorys/${category.title}`}> */}
                     <Button
                       colorScheme="teal"
-                      onClick={() => setOneProduct(product.title)}
+                    //   onClick={() => setOneProduct(product.title)}
                     >
                       Ver más
                     </Button>
-                  </Link>
+                  {/* </Link> */}
                 </Center>
               </Box>
             </Box>
@@ -78,4 +75,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default BySex
