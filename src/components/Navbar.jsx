@@ -36,7 +36,7 @@ const Navbar = () => {
   const loggedUser = useSelector((state) => state.user);
   const params = useLogin();
   const { handleLogout } = params;
-  // console.log(`lalalala`, loggedUser);
+
   const handleClick = (e) => {
     e.preventDefault();
     handleLogout();
@@ -142,7 +142,7 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Stack direction={"row"} spacing={4}>
+    <Stack direction={"row"} spacing={6}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
@@ -150,7 +150,7 @@ const DesktopNav = () => {
               <Link
                 p={2}
                 to={navItem.href ?? "#"}
-                fontSize={"md"}
+                fontSize={"mg"}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
@@ -158,7 +158,7 @@ const DesktopNav = () => {
                   color: linkHoverColor,
                 }}
               >
-                {navItem.label}
+               <strong>  {navItem.label} </strong> 
               </Link>
             </PopoverTrigger>
 
@@ -240,7 +240,7 @@ const MobileNavItem = ({ label, children, href } = NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Stack spacing={4} onClick={children && onToggle}>
+    <Stack spacing={2} onClick={children && onToggle}>
       <Flex
         py={2}
         as={Link}
@@ -297,37 +297,62 @@ interface NavItem {
 }
 
 const NAV_ITEMS: Array<NavItem> = [
+ 
   {
     label: "Hombre",
-    href: "/hombre",
-  },
-  {
-    label: "Mujer",
-    href: "/mujer",
-  },
-  {
-    label: "Categorías",
     children: [
       {
+        label: "Todo",
+        href: "/categories/men",
+      },
+      {
         label: "Pantalones",
-        href: "/pantalones",
+        href: "/categories/men/pantalones",
       },
       {
         label: "Remeras",
-        href: "/remeras",
+        href: "/categories/men/remeras",
       },
       {
         label: "Buzos",
-        href: "/buzos",
+        href: "/categories/men/buzos",
       },
       {
         label: "Camperas",
-        href: "/camperas",
+        href: "/categories/men/camperas",
       },
       {
         label: "Shorts",
-        href: "/shorts",
+        href: "/categories/men/shorts",
       },
+    ],},
+      {
+        label: "Mujer",
+        children: [
+          {
+            label: "Todo",
+            href: "/categories/women",
+          },
+          {
+            label: "Pantalones",
+            href: "/categories/women/pantalones",
+          },
+          {
+            label: "Remeras",
+            href: "/categories/women/remeras",
+          },
+          {
+            label: "Buzos",
+            href: "/categories/women/buzos",
+          },
+          {
+            label: "Camperas",
+            href: "/categories/women/camperas",
+          },
+          {
+            label: "Shorts",
+            href: "/categories/women/shorts",
+          },
     ],
   },
 ];

@@ -7,16 +7,16 @@ import { Box, Flex, Center, Image, Button } from "@chakra-ui/react";
 
 export function Product() {
   const nameProduct = localStorage.getItem("product");
-  console.log(nameProduct);
+  console.log("Name Product",nameProduct);
   const dispatch = useDispatch();
   const [product, setProduct] = React.useState({});
   const [quantity, setQuantity] = React.useState(1);
   React.useEffect(async () => {
-    console.log(nameProduct);
+    console.log("Name Product 2",nameProduct);
     axios
       .get(`/api/products/${nameProduct}`)
       .then((res) => {
-        console.log("RES DATA", res.data);
+        console.log("RES DATA prod", res.data);
         setProduct(res.data);
       })
       .catch((e) => console.log(e));

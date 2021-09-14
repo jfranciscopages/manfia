@@ -17,6 +17,8 @@ import Checkout from "../components/Checkout";
 import { useDispatch } from "react-redux";
 import { userLogged } from "../store/userLogged";
 import axios from "axios";
+import Categories from "../components/Categories";
+import BySex from "../components/BySex";
 /*import Contact from "../components/Contact";  */
 
 function App() {
@@ -50,7 +52,18 @@ function App() {
       <BrowserRouter>
         {camino === "/admin" ? null : <Navbar />}
         <Route exact path="/" render={() => <Grid />} />
-        {/*      <Route path="/{:categoryID}" render={() => <Category />} /> */}
+        <Route
+          exact path="/categories/:sex"
+          render={({ match }) => (
+            <BySex sex={match.params.sex}/>
+          )}
+        />
+        <Route
+          path="/categories/:sex/:category"
+          render={({ match }) => (
+            <Categories sex={match.params.sex} cat={match.params.category} />
+          )}
+        />
         <Route path="/cart" component={Cart} />
         {/*   <Route exact path="/contacto" render={() => <Contact />} /> */}
         <Route exact path="/login" render={() => <Login />} />

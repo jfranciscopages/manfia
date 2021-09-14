@@ -10,7 +10,7 @@ export const singleProduct = createAsyncThunk("SINGLEPRODUCT", (title) => {
   console.log("TITLE", title)
     return axios
     .get(`/api/products/${title}`)
-    .then((res) => { console.log("RES DATA", res.data)
+    .then((res) => { console.log("RES DATA reducer", res.data)
         return res.data})
     .catch((e) => console.log(e));
 });
