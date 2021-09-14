@@ -21,7 +21,8 @@ import {
   FiStar,
   FiSettings,
   FiUser,
-  FiTag,
+  FiPlusCircle,
+  FiEdit,
   FiMenu,
 } from "react-icons/fi";
 import { IconType } from "react-icons";
@@ -34,10 +35,11 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
   { name: "Inicio", icon: FiHome, link: "#" },
+  { name: "Añadir productos", icon: FiPlusCircle, link: "products" },
+  { name: "Editar productos", icon: FiEdit, link: "edit/products" },
   { name: "Registro", icon: FiTrendingUp, link: "table" },
   { name: "Favoritos", icon: FiStar, link: "#" },
   { name: "Usuarios", icon: FiUser, link: "users" },
-  { name: "Productos", icon: FiTag, link: "products" },
   { name: "Configuración", icon: FiSettings, link: "settings" },
 ];
 
