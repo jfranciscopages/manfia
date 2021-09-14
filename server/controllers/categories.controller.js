@@ -11,6 +11,15 @@ const categories_controller = {
       console.log(err);
     }
   },
+  getAllCats: async (req, res, next) => {
+    try {
+      const categories = await Categories.findAll();
+      console.log(categories);
+      return res.status(200).json(categories);
+    } catch (err) {
+      next(err);
+    }
+  },
   findBySex: async (req, res, next) => {
     const sex = req.params.sex;
     try {
