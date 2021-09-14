@@ -1,9 +1,11 @@
 import React from "react";
+import { useLocation } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Redirect } from "react-router-dom";
 import orderform from "../utils/orderform";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Admin from "../containers/Admin";
 import Grid from "../components/Grid";
 import NewFooter from "../components/newFooter";
 /* import Category from "../components/Category"; */
@@ -19,6 +21,8 @@ import axios from "axios";
 
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
+
   React.useEffect(() => {
     let lStorage = JSON.parse(window.localStorage.getItem("orderform"));
     if (!lStorage) {
@@ -36,11 +40,12 @@ function App() {
       })
       .catch((err) => console.log(err));
   }, []);
+  const camino = location.pathname.slice(0, 6);
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
+        {camino === "/admin" ? null : <Navbar />}
         <Route exact path="/" render={() => <Grid />} />
         {/*      <Route path="/{:categoryID}" render={() => <Category />} /> */}
         <Route path="/cart" component={Cart} />
@@ -49,8 +54,9 @@ function App() {
         <Route exact path="/register" render={() => <Register />} />
         <Route exact path="/products/:id" render={() => <Product />} />
         <Route path="/checkout" render={() => <Checkout />} />
+        <Route path="/admin" render={() => <Admin />} />
       </BrowserRouter>
-      <NewFooter />
+      {camino === "/admin" ? null : <NewFooter />}
     </div>
   );
 }
