@@ -6,10 +6,10 @@ import { getProducts } from "../store/productsReducer";
 
 const List = () => {
   const products = useSelector((state) => {
-    console.log("STATE", state.products);
+    // console.log("STATE", state.products);
     return state.products;
   });
-  console.log("PRODUCTS", products);
+  // console.log("PRODUCTS", products);
 
   const dispatch = useDispatch();
 
