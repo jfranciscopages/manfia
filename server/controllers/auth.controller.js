@@ -9,6 +9,7 @@ const auth_controller = {
       next(err);
     }
   },
+
   login: (req, res, next) => {
     const user = req.user;
     try {
@@ -26,6 +27,7 @@ const auth_controller = {
       console.log(err);
     }
   },
+
   me: (req, res, next) => {
     try {
       if (!req.user) {

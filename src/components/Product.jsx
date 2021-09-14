@@ -11,6 +11,8 @@ export function Product() {
   const dispatch = useDispatch();
   const [product, setProduct] = React.useState({});
   const [quantity, setQuantity] = React.useState(1);
+  const [pushProduct, setPushProduct] = React.useState(true);
+
   React.useEffect(async () => {
     console.log("Name Product 2",nameProduct);
     axios
@@ -25,13 +27,13 @@ export function Product() {
   const addQuantity = () => {
     let suma = 1;
     //combierte el stock a numero y compara con la cantidad
-    if (Number(product.stock) > quantity) suma = quantity + 1;
-    else console.log(`sin stock pa!`);
-    setQuantity(suma);
+    if (Number(product.stock) > quantity) {
+      suma = quantity + 1;
+      setQuantity(suma);
+    } else console.log(`sin stock pa!`);
   };
 
   const addProductToCart = (product, quantity) => {
-    //trae el objeto del local storage
     let aux = {
       id: product.id,
       image: product.image,
@@ -41,23 +43,27 @@ export function Product() {
       stock: Number(product.stock),
       orderId: "",
     };
+    //trae el objeto del local storage
     const orderform = JSON.parse(window.localStorage.getItem("orderform"));
     //buscamos si hay un producto igual, si hay le sumamos lo que hayamos cargado
     //(queda configurar que solo se pueda cargar lo que queda de stock)
-    if (orderform.items.length > 0) {
+    if (orderform.items[0]) {
       orderform.items.map((prod) => {
-        if (prod.id == aux.id) {
-          if (prod.quantity + aux.quantity <= aux.stock)
-            prod.quantity ++;
-          else console.log(`sin stock padre!`);
+        if (prod.id === aux.id) {
+          if (Number(prod.quantity) + aux.quantity <= aux.stock) {
+            setPushProduct(false);
+            prod.quantity++;
+          } else console.log(`sin stock padre!`);
           //sino lo cargamos a orderform
-        }else orderform.items.push(aux)
+        }
       });
-    }
-    else orderform.items.push(aux)
+      if (pushProduct) orderform.items.push(aux);
+    } else orderform.items.push(aux);
     //luego lo volvemos a setear en localstorage
     console.log(`suma de productos iguales`, orderform);
     window.localStorage.setItem("orderform", JSON.stringify(orderform));
+    setPushProduct(true);
+    setQuantity(1);
   };
 
   return product ? (

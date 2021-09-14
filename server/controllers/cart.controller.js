@@ -19,7 +19,30 @@ const cart_controller = {
   },
 
   createOrder: async (req, res, next) => {
+    const { order, items, clientProfile } = req.body;
     try {
+      const user = await User_Profile.findByPk(clientProfile.id);
+      order.userProfileId = user.id;
+      const newOrder = await Orders.create(order);
+      items.map((item) => (item.orderId = newOrder.id));
+      console.log(items);
+      const orderDetails = await Order_Details.bulkCreate(items);
+      return res.status(200).json([newOrder, orderDetails]);
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  getHistoryOrders: async (req, res, next) => {
+    const id = req.params.id;
+    try {
+      const orderHistory = await Orders.findAll({
+        where: { userProfileId: id },
+        include: {
+          model: Order_Details,
+        },
+      });
+      return res.status(200).json(orderHistory);
     } catch (err) {
       next(err);
     }

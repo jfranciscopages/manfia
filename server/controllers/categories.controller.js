@@ -11,6 +11,21 @@ const categories_controller = {
       console.log(err);
     }
   },
+
+  editCategory: async (req, res, next) => {
+    const { id } = req.body;
+    try {
+      const [numberAfected, category] = await Categories.update(req.body, {
+        where: { id: id },
+        returning: true,
+      });
+      //update nos retorna las filas que fueron afectadas y un arreglo de las mismas
+      res.status(201).json(category[0]);
+    } catch (err) {
+      next(err);
+    }
+  },
+
   getAllCats: async (req, res, next) => {
     try {
       const categories = await Categories.findAll();
@@ -19,6 +34,7 @@ const categories_controller = {
       next(err);
     }
   },
+
   findBySex: async (req, res, next) => {
     const sex = req.params.sex;
     try {
@@ -35,6 +51,7 @@ const categories_controller = {
       next(err);
     }
   },
+
   findBySexAndCategory: async (req, res, next) => {
     const { sex, category } = req.params;
     try {
