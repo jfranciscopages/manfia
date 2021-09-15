@@ -1,61 +1,59 @@
 import { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 import { log, success, error } from "../utils/logs";
-import { registeredAlert, errorAlert } from "../utils/alerts";
 
 const useCreateProduct = () => {
   const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [country, setCountry] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [disabled, setDisabled] = useState(true);
-  const history = useHistory();
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [sex, setSex] = useState("");
+  const [category, setCategory] = useState("");
+  const [stock, setStock] = useState("");
+  const [imageLink, setImageLink] = useState("");
 
-  const onSignUp = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      fullName: name,
-      address: address,
-      country: country,
-      phone: phone,
-      email: email,
-      password: password,
+      title: title,
+      price: price,
+      description: description,
+      sex: sex,
+      category: category,
+      stock: stock,
+      image: imageLink,
     };
-    log("register attempt...");
     console.log(data);
+    log("agregando producto...");
     await axios
-      .post(`/api/auth/register`, data)
+      .post(`/api/products/addProduct`, data)
       .then((data) => {
-        history.push("/login");
-        success("new user registered successfully");
-        registeredAlert();
+        success("el producto se añadió correctamente");
       })
       .catch((err) => {
         console.log(err);
         error(err);
-        errorAlert();
       });
   };
 
   return {
+    onSubmit,
     name,
     setName,
-    email,
-    setEmail,
-    phone,
-    setPhone,
-    address,
-    setAddress,
-    country,
-    setCountry,
-    password,
-    setPassword,
-    onSignUp,
-    error,
-    disabled,
+    title,
+    setTitle,
+    price,
+    setPrice,
+    description,
+    setDescription,
+    sex,
+    setSex,
+    category,
+    setCategory,
+    stock,
+    setStock,
+    imageLink,
+    setImageLink,
   };
 };
 

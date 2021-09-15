@@ -23,7 +23,7 @@ Products.init(
     },
     image: {
       type: Sequelize.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     category: {
       type: Sequelize.STRING,
@@ -35,7 +35,7 @@ Products.init(
     },
     rating: {
       type: Sequelize.JSON,
-      allowNull: false,
+      allowNull: true,
     },
   },
   { sequelize: db, modelName: "products" }
