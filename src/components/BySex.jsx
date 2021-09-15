@@ -4,13 +4,12 @@ import { getSex } from "../store/sexReducer";
 
 import { Box, Flex, Center, Image, Button, SimpleGrid } from "@chakra-ui/react";
 
-const BySex = ({sex}) => {
-
+const BySex = ({ sex }) => {
   const categories = useSelector((state) => {
-      return state.sex
-  })
+    return state.sex;
+  });
   const dispatch = useDispatch();
-  
+
   React.useEffect(() => {
     dispatch(getSex(sex));
   }, [sex]);
@@ -26,7 +25,6 @@ const BySex = ({sex}) => {
     >
       {categories &&
         categories.map((category) => {
-
           return (
             <Box
               maxW="sm"
@@ -52,19 +50,21 @@ const BySex = ({sex}) => {
               <Center>
                 <Box d="flex" mt="2" alignItems="center">
                   <Box as="span" mb="5" color="gray.600" fontSize="sm">
-                    {category.rating.count} {category.rating.rate} star reviews
+                    {category.rating
+                      ? `${category.rating.count} ${category.rating.rate} star reviews`
+                      : ""}
                   </Box>
                 </Box>
               </Center>
               <Box mb={5}>
                 <Center>
                   {/* <Link to={`/categorys/${category.title}`}> */}
-                    <Button
-                      colorScheme="teal"
+                  <Button
+                    colorScheme="teal"
                     //   onClick={() => setOneProduct(product.title)}
-                    >
-                      Ver más
-                    </Button>
+                  >
+                    Ver más
+                  </Button>
                   {/* </Link> */}
                 </Center>
               </Box>
@@ -75,4 +75,4 @@ const BySex = ({sex}) => {
   );
 };
 
-export default BySex
+export default BySex;

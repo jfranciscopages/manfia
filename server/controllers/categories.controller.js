@@ -35,6 +35,17 @@ const categories_controller = {
     }
   },
 
+  deleteCat: async (req, res, next) => {
+    const id = req.params.id;
+    try {
+      const product = await Categories.findByPk(id);
+      product.destroy();
+      res.sendStatus(202);
+    } catch (err) {
+      next(err);
+    }
+  },
+
   findBySex: async (req, res, next) => {
     const sex = req.params.sex;
     try {

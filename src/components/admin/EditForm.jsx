@@ -1,3 +1,7 @@
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import useEditProduct from "../../hooks/useEditProduct";
+
 import {
   Button,
   Flex,
@@ -6,20 +10,26 @@ import {
   Heading,
   Textarea,
   Input,
+  HStack,
   Stack,
   Select,
   useColorModeValue,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 
-import useCreateProduct from "../../hooks/useCreateProduct";
-
-export default function Productos() {
+export default function EditForm() {
   const [categories, setCategories] = useState([]);
-  const params = useCreateProduct();
+  /*   const product = useSelector((state) => {
+    return state.product;
+  }); */
+
+  const product = localStorage.getItem("product");
+
+  const params = useEditProduct();
   const {
     onSubmit,
+    id,
+    setId,
     title,
     setTitle,
     price,
@@ -35,13 +45,30 @@ export default function Productos() {
     imageLink,
     setImageLink,
   } = params;
-  useEffect(() => {
-    axios
+
+  React.useEffect(async () => {
+    await axios
       .get("/api/categories/getCategories")
       .then((res) => res.data)
       .then((data) => setCategories(data));
+    await axios
+      .get(`/api/products/${product}`)
+      .then((res) => {
+        console.log("RES DATA prod", res.data);
+        return res.data;
+      })
+      .then((product) => {
+        setTitle(product.title);
+        setId(product.id);
+        setPrice(product.price);
+        setDescription(product.description);
+        setSex(product.sex);
+        setCategory(product.category);
+        setStock(product.stock);
+        setImageLink(product.image);
+      })
+      .catch((e) => console.log(e));
   }, []);
-
   return (
     <>
       <br />
@@ -63,7 +90,7 @@ export default function Productos() {
             my={12}
           >
             <Heading lineHeight={1.1} fontSize={{ base: "2xl", md: "3xl" }}>
-              Añadir producto
+              Editar producto
             </Heading>
             <FormControl id="title">
               <FormLabel>Nombre del producto</FormLabel>
@@ -133,7 +160,6 @@ export default function Productos() {
               <FormLabel>Imagen</FormLabel>
               <Input
                 type="imageLink"
-                placeholder="Inserte el link a la imagen"
                 value={imageLink}
                 onChange={(e) => setImageLink(e.target.value)}
               />
@@ -147,27 +173,11 @@ export default function Productos() {
                 }}
                 type="submit"
               >
-                Añadir
+                Aceptar
               </Button>
             </Stack>
           </Stack>
         </form>
-        {/*       <Stack
-        spacing={4}
-        w={"full"}
-        maxW={"md"}
-        bg={useColorModeValue("white", "gray.700")}
-        rounded={"xl"}
-        boxShadow={"lg"}
-        p={6}
-        my={12}
-        minH={"57vh"}
-        maxH={"92vh"}
-      >
-        <Heading lineHeight={1.1} fontSize={{ base: "2xl", md: "3xl" }}>
-          Editar o eliminar productos
-        </Heading>
-      </Stack> */}
       </Flex>
     </>
   );

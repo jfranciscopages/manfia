@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import logo from "../../utils/Manfia.png";
 
 import {
@@ -13,6 +14,10 @@ import {
 } from "@chakra-ui/react";
 
 const NavbarAdmin = () => {
+  const history = useHistory();
+  const redireccionamientoAshe = () => {
+    history.push("/");
+  };
   return (
     <Box>
       <Flex
@@ -55,7 +60,9 @@ const NavbarAdmin = () => {
           >
             Sign In
           </Button> */}
+
           <Button
+            onClick={() => redireccionamientoAshe()}
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
@@ -66,7 +73,7 @@ const NavbarAdmin = () => {
               bg: "black",
             }}
           >
-            Volver a Inicio
+            Volver a la Web
           </Button>
         </Stack>
       </Flex>

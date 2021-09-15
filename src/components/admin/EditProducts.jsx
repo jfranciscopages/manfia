@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../store/productsReducer";
+import { singleProduct } from "../../store/productReducer";
 
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiEditAlt } from "react-icons/bi";
@@ -26,6 +27,10 @@ export default function EditProducts() {
       console.log(data);
       history.go(0); //NASHEEEE
     });
+  };
+
+  const onProduct = (prod) => {
+    window.localStorage.setItem("product", prod);
   };
 
   useEffect(() => {
@@ -58,9 +63,15 @@ export default function EditProducts() {
                   <Box d="flex" mt="2" alignItems="center"></Box>
                 </Center>
                 <Box md="flex" mt="2">
-                  <Button colorScheme="teal" size="sm">
-                    <BiEditAlt />
-                  </Button>
+                  <Link to={`/admin/edit/products/${product.title}`}>
+                    <Button
+                      colorScheme="teal"
+                      size="sm"
+                      onClick={() => onProduct(product.title)}
+                    >
+                      <BiEditAlt />
+                    </Button>
+                  </Link>
                   <Button
                     colorScheme="red"
                     size="sm"
