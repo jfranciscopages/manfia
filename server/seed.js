@@ -16,43 +16,43 @@ const userAdmin = {
 
 const categoriasParaSeedear = [
   {
-    name: "Remeras Femeninas",
+    name: "Remeras femeninas",
     sex: "Women",
   },
   {
-    name: "Pantalones Femeninos",
+    name: "Pantalones femeninos",
     sex: "Women",
   },
   {
-    name: "Buzos Femeninos",
+    name: "Buzos femeninos",
     sex: "Women",
   },
   {
-    name: "Camperas Femeninas",
+    name: "Camperas femeninas",
     sex: "Women",
   },
   {
-    name: "Shorts Femeninos",
+    name: "Shorts femeninos",
     sex: "Women",
   },
   {
-    name: "Remeras Masculinas",
+    name: "Remeras masculinas",
     sex: "Men",
   },
   {
-    name: "Pantalones Masculinas",
+    name: "Pantalones masculinas",
     sex: "Men",
   },
   {
-    name: "Buzos Masculinas",
+    name: "Buzos masculinas",
     sex: "Men",
   },
   {
-    name: "Camperas Masculinas",
+    name: "Camperas masculinas",
     sex: "Men",
   },
   {
-    name: "Shorts Masculinas",
+    name: "Shorts masculinos",
     sex: "Men",
   },
 ];

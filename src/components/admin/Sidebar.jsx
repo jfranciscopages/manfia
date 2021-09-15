@@ -38,9 +38,9 @@ const LinkItems: Array<LinkItemProps> = [
   { name: "Añadir productos", icon: FiPlusCircle, link: "products" },
   { name: "Editar productos", icon: FiEdit, link: "edit/products" },
   { name: "Registro", icon: FiTrendingUp, link: "table" },
+  { name: "Categorías", icon: FiSettings, link: "edit/categories" },
   { name: "Favoritos", icon: FiStar, link: "#" },
   { name: "Usuarios", icon: FiUser, link: "users" },
-  { name: "Configuración", icon: FiSettings, link: "settings" },
 ];
 
 export default function SimpleSidebar({ children }: { children: ReactNode }) {

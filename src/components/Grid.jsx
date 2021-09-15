@@ -55,7 +55,9 @@ const List = () => {
               <Center>
                 <Box d="flex" mt="2" alignItems="center">
                   <Box as="span" mb="5" color="gray.600" fontSize="sm">
-                    {product.rating.count} {product.rating.rate} star reviews
+                    {product.rating
+                      ? `${product.rating.count} ${product.rating.rate} star reviews`
+                      : ""}
                   </Box>
                 </Box>
               </Center>

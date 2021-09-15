@@ -9,6 +9,7 @@ const {
   findBySexAndCategory,
   getAllCats,
   editCategory,
+  deleteCat,
 } = categories_controller;
 
 router.post(`/addCategory`, addOneCategory);
@@ -20,5 +21,7 @@ router.get(`/getCategories`, getAllCats);
 router.get(`/:sex`, findBySex);
 
 router.get("/:sex/:category", findBySexAndCategory);
+
+router.delete(`/:id`, deleteCat);
 
 module.exports = router;
