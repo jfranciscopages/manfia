@@ -19,15 +19,16 @@ const useCreateProduct = () => {
       price: price,
       description: description,
       sex: sex,
+      image: imageLink,
       category: category,
       stock: stock,
-      image: imageLink,
     };
     console.log(data);
     log("agregando producto...");
     await axios
       .post(`/api/products/addProduct`, data)
       .then((data) => {
+        console.log(data);
         success("el producto se añadió correctamente");
       })
       .catch((err) => {

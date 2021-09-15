@@ -24,10 +24,13 @@ const products_controller = {
 
   addOneProduct: async (req, res, next) => {
     const body = req.body;
-    const id = req.body.category;
+    const nombre = req.body.category;
+    console.log(body);
     try {
       const product = await Products.create(body);
-      const category = await Categories.findOne({ where: { id: id } });
+      console.log(product);
+      const category = await Categories.findOne({ where: { name: nombre } });
+      console.log(category);
       await product.addCategories(category);
       return res.status(200).json(product);
     } catch (err) {

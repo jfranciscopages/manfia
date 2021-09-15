@@ -115,7 +115,7 @@ export default function Productos() {
               >
                 {categories
                   ? categories.map((cat) => (
-                      <option value={`${cat.id}`}>{cat.name}</option>
+                      <option value={`${cat.name}`}>{cat.name}</option>
                     ))
                   : null}
               </Select>
