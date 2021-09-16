@@ -29,7 +29,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import Search from "./Search";
+import SearchForm from "./SearchForm";
 
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
@@ -84,7 +84,7 @@ const Navbar = () => {
         </Flex>
 
         <Center h="100px" w="100%">
-          <Search />
+          <SearchForm />
         </Center>
         <Stack
           flex={{ base: 1, md: 0 }}
@@ -158,7 +158,7 @@ const DesktopNav = () => {
                   color: linkHoverColor,
                 }}
               >
-               <strong>  {navItem.label} </strong> 
+                <strong> {navItem.label} </strong>
               </Link>
             </PopoverTrigger>
 
@@ -297,7 +297,6 @@ interface NavItem {
 }
 
 const NAV_ITEMS: Array<NavItem> = [
- 
   {
     label: "Hombre",
     children: [
@@ -325,34 +324,35 @@ const NAV_ITEMS: Array<NavItem> = [
         label: "Shorts",
         href: "/categories/men/shorts",
       },
-    ],},
+    ],
+  },
+  {
+    label: "Mujer",
+    children: [
       {
-        label: "Mujer",
-        children: [
-          {
-            label: "Todo",
-            href: "/categories/women",
-          },
-          {
-            label: "Pantalones",
-            href: "/categories/women/pantalones",
-          },
-          {
-            label: "Remeras",
-            href: "/categories/women/remeras",
-          },
-          {
-            label: "Buzos",
-            href: "/categories/women/buzos",
-          },
-          {
-            label: "Camperas",
-            href: "/categories/women/camperas",
-          },
-          {
-            label: "Shorts",
-            href: "/categories/women/shorts",
-          },
+        label: "Todo",
+        href: "/categories/women",
+      },
+      {
+        label: "Pantalones",
+        href: "/categories/women/pantalones",
+      },
+      {
+        label: "Remeras",
+        href: "/categories/women/remeras",
+      },
+      {
+        label: "Buzos",
+        href: "/categories/women/buzos",
+      },
+      {
+        label: "Camperas",
+        href: "/categories/women/camperas",
+      },
+      {
+        label: "Shorts",
+        href: "/categories/women/shorts",
+      },
     ],
   },
 ];
