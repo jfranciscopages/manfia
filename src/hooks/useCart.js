@@ -41,6 +41,7 @@ function useCart() {
 
   const addProductToCart = (product) => {
     let orderform = JSON.parse(window.localStorage.getItem("orderform"));
+    let item;
     let aux = {
       id: product.id,
       image: product.image,
@@ -53,14 +54,18 @@ function useCart() {
     //buscamos si hay un producto igual, si hay le sumamos lo que hayamos cargado
     //(queda configurar que solo se pueda cargar lo que queda de stock)
     if (orderform.items.length > 0) {
-      let itemIndex = orderform.items.findIndex((prod) => prod.id == aux.id);
-      let item = orderform.items.splice(itemIndex, 1).pop();
-      if (item.quantity + 1 <= item.stock) {
+      let itemIndex = orderform.items.findIndex(
+        (prod) => prod.id === product.id
+      );
+      if (itemIndex != -1) item = orderform.items.splice(itemIndex, 1).pop();
+      if (item && item.quantity + 1 <= item.stock) {
         item.quantity++;
         orderform.items.push(item);
-      } else {
-        console.log(`sin stock padre!`);
+      } else if (item) {
+        console.log(`Sin STOCK!!`);
         orderform.items.push(item);
+      } else {
+        orderform.items.push(aux);
       }
     } else {
       orderform.items.push(aux);
