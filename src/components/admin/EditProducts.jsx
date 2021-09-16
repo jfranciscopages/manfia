@@ -44,7 +44,11 @@ export default function EditProducts() {
           products.map((product) => {
             return (
               <Box height="200px" align={"center"} justify={"center"}>
-                <Image src={`${product.image}`} boxSize="80px" />{" "}
+                <Image
+                  src={`${product.image}`}
+                  boxSize="80px"
+                  objectFit="scale-down"
+                />{" "}
                 <Center>
                   <Box
                     mt="10"

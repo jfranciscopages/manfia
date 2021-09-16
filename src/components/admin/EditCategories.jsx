@@ -44,8 +44,10 @@ export default function EditCategories() {
     });
   };
 
-  const onEdit = (selected) => {
-    window.localStorage.setItem("cat", selected);
+  const onEdit = (selectedCat) => {
+    window.localStorage.setItem("catName", selectedCat.name);
+    window.localStorage.setItem("catSex", selectedCat.sex);
+    window.localStorage.setItem("catId", selectedCat.id);
   };
 
   return (
@@ -113,9 +115,11 @@ export default function EditCategories() {
                   </Tr>
                   <br />
                   <div justify="center" align={"center"}>
-                    <Button size="md" colorScheme="teal">
-                      Nueva categoría
-                    </Button>
+                    <Link to="/admin/edit/newcategory">
+                      <Button size="md" colorScheme="teal">
+                        Nueva categoría
+                      </Button>
+                    </Link>
                   </div>
                 </Tfoot>
               </Table>
@@ -136,12 +140,20 @@ export default function EditCategories() {
                       <Tr>
                         <Td value={`${cat.name}`}>{cat.name}</Td>
                         <Td>
-                          <Button colorScheme="teal">
-                            <BiEditAlt />
-                          </Button>
+                          <Link to={`/admin/edit/categories/${cat.name}`}>
+                            <Button
+                              colorScheme="teal"
+                              onClick={() => onEdit(cat)}
+                            >
+                              <BiEditAlt />
+                            </Button>
+                          </Link>
                         </Td>
                         <Td>
-                          <Button colorScheme="red">
+                          <Button
+                            colorScheme="red"
+                            onClick={() => onDelete(cat.id)}
+                          >
                             <AiOutlineDelete />
                           </Button>
                         </Td>
@@ -157,9 +169,11 @@ export default function EditCategories() {
                   </Tr>
                   <br />
                   <div justify="center" align={"center"}>
-                    <Button size="md" colorScheme="teal">
-                      Nueva categoría
-                    </Button>
+                    <Link to="/admin/edit/newcategory">
+                      <Button size="md" colorScheme="teal">
+                        Nueva categoría
+                      </Button>
+                    </Link>
                   </div>
                 </Tfoot>
               </Table>

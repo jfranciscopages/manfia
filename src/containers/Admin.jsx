@@ -3,9 +3,10 @@ import { BrowserRouter } from "react-router-dom";
 import { Route } from "react-router-dom";
 
 import NavbarAdmin from "../components/admin/NavbarAdmin";
-import Productos from "../components/admin/Productos";
+import NewProduct from "../components/admin/NewProduct";
 import EditProducts from "../components/admin/EditProducts.jsx";
 import EditCategories from "../components/admin/EditCategories.jsx";
+import NewCategoryForm from "../components/admin/NewCategoryForm.jsx";
 import EditCategoriesForm from "../components/admin/EditCategoriesForm.jsx";
 import Registro from "../components/admin/Registro";
 
@@ -36,7 +37,7 @@ function Admin() {
             path="/admin/edit/products/:title"
             render={() => <EditForm />}
           />
-          <Route path="/admin/products" render={() => <Productos />} />
+          <Route path="/admin/products" render={() => <NewProduct />} />
           <Route
             exact
             path="/admin/edit/categories"
@@ -45,6 +46,11 @@ function Admin() {
           <Route
             path="/admin/edit/categories/:name"
             render={() => <EditCategoriesForm />}
+          />
+          <Route
+            exact
+            path="/admin/edit/newcategory"
+            render={() => <NewCategoryForm />}
           />
         </div>
       </BrowserRouter>

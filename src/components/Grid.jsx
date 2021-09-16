@@ -37,7 +37,11 @@ const List = () => {
               borderRadius="lg"
               overflow="hidden"
             >
-              <Image src={`${product.image}`} boxSize="350px" />{" "}
+              <Image
+                src={`${product.image}`}
+                boxSize="350px"
+                objectFit="scale-down"
+              />{" "}
               <Center>
                 <Box
                   mt="10"
