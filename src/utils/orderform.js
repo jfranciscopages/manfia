@@ -3,11 +3,11 @@ const orderform = {
   items: [],
   order: {
     userProfileId: "",
-    orderAdress: "",
+    orderAddress: "",
     orderDate: "",
     orderPaymentType: "",
     totalAmmount: "",
     orderStatus: "",
-  },
+  },  
 };
 export default orderform;

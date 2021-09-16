@@ -13,6 +13,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import { Product } from "../components/Product";
 import Cart from "../components/Cart";
+import History from "../components/History";
 import Checkout from "../components/Checkout";
 import { useDispatch } from "react-redux";
 import { userLogged } from "../store/userLogged";
@@ -70,6 +71,7 @@ function App() {
         <Route exact path="/register" render={() => <Register />} />
         <Route exact path="/products/:id" render={() => <Product />} />
         <Route path="/checkout" render={() => <Checkout />} />
+        <Route path="/history" render={() => <History />} />
         <Route path="/admin" render={() => <Admin />} />
       </BrowserRouter>
       {camino === "/admin" ? null : <NewFooter />}

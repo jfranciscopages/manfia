@@ -1,8 +1,148 @@
 import React from "react";
+import useCart from "../hooks/useCart";
+import {
+  Table,
+  Tr,
+  Td,
+  Th,
+  Box,
+  Thead,
+  Tbody,
+  Tfoot,
+  Button,
+  Image,
+  Stack,
+  Heading,
+  Flex,
+} from "@chakra-ui/react";
 
-const Checkout = () => {
-    return (
-        <h3>Gracias por tu compra</h3>
-    )}
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-export default Checkout
+function Checkout() {
+  const { orderform } = useCart();
+
+  let sendOrder = JSON.parse(
+    window.localStorage.getItem("orderform", orderform)
+  );
+
+  let submitToBack = async () => {
+    console.log("send", sendOrder);
+
+    await axios
+      .post("/api/cart/createOrder", sendOrder)
+      .then((data) => {
+        console.log("data", data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  return (
+    <>
+      <Flex
+        flexDirection="column"
+        width="100wh"
+        height="100vh"
+        backgroundColor="gray.200"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Heading
+          fontSize="2xl"
+          textAlign="center"
+          marginTop="20px"
+          color="teal.400"
+        >
+          Resumen de compra
+        </Heading>
+        <Stack
+          flexDir="column"
+          mb="2"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Box display="flex" alignItems="center">
+            <Table>
+              <Thead>
+                <Tr>
+                  <Th>Domicilio de envío</Th>
+                  <Th>Medio de pago</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Th>{sendOrder.order.orderAdress}</Th>
+                  <Th>{sendOrder.order.orderPaymentType}</Th>
+                </Tr>
+              </Tbody>
+            </Table>
+          </Box>
+          <Box display="flex" alignItems="center">
+            {orderform ? (
+              orderform.items.length > 0 ? (
+                <Table>
+                  <Thead>
+                    <Tr>
+                      <Th>Producto</Th>
+                      <Th></Th>
+
+                      <Th>Cantidad</Th>
+                      <Th>Precio</Th>
+                      <Th></Th>
+                    </Tr>
+                  </Thead>
+
+                  <Tbody>
+                    {orderform
+                      ? orderform.items.map((product) => (
+                          <Tr key={product.id}>
+                            <Td>
+                              <Image src={product.image} boxSize="50px" />
+                            </Td>
+                            <Td alignSelf="center" fontSize="md">
+                              {product.title}
+                            </Td>
+                            <Td>
+                              <Stack spacing={4} direction="row" align="center">
+                                <Box> {product.quantity} </Box>
+                              </Stack>
+                            </Td>
+                            <Td>${Number(product.price * product.quantity)}</Td>
+                          </Tr>
+                        ))
+                      : ""}
+                  </Tbody>
+
+                  <Tfoot>
+                    <Tr>
+                      <Th mr="4" fontSize="2xl">
+                        TOTAL
+                      </Th>
+
+                      <Th mr="4" fontSize="2xl">
+                        ${sendOrder.order.totalAmmount}
+                      </Th>
+                    </Tr>
+                  </Tfoot>
+                </Table>
+              ) : (
+                ""
+              )
+            ) : (
+              ""
+            )}
+          </Box>
+          <Box>
+            <Link to="/history">
+              <Button onClick={() => submitToBack()}>FINALIZAR COMPRA</Button>
+            </Link>
+          </Box>
+        </Stack>
+      </Flex>
+    </>
+  );
+}
+
+export default Checkout;
