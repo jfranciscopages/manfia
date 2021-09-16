@@ -11,7 +11,7 @@ import { sexReducer } from "./sexReducer";
 import { searchReducer } from "./searchReducer";
 
 const store = configureStore({
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  //middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   reducer: {
     user: userLoggedReducer,
     cart: cartReducer,
