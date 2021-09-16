@@ -18,10 +18,8 @@ import {
   Divider,
   Text,
   useColorModeValue,
-  Link,
   Heading,
   FormControl,
-  FormHelperText,
 } from "@chakra-ui/react";
 import {
   FaUserAlt,
@@ -32,7 +30,6 @@ import {
   FaGlobeAmericas,
   FaGoogle,
   FaPhone,
-  FaGithub,
 } from "react-icons/fa";
 
 const CFaUserAlt = chakra(FaUserAlt);

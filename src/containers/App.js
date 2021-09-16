@@ -1,14 +1,12 @@
 import React from "react";
 import { useLocation } from "react-router";
 import { BrowserRouter } from "react-router-dom";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import orderform from "../utils/orderform";
-import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Admin from "../containers/Admin";
 import Grid from "../components/Grid";
 import NewFooter from "../components/newFooter";
-/* import Category from "../components/Category"; */
 import Login from "../components/Login";
 import Register from "../components/Register";
 import { Product } from "../components/Product";
@@ -21,7 +19,6 @@ import axios from "axios";
 import Categories from "../components/Categories";
 import BySex from "../components/BySex";
 import SearchOptions from "../components/SearchOptions";
-/*import Contact from "../components/Contact";  */
 
 function App() {
   const dispatch = useDispatch();

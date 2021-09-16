@@ -43,7 +43,7 @@ const Navbar = () => {
   };
 
   return (
-    <Box>
+    <Box >
       <Flex
         bg={useColorModeValue("gray.50", "gray.900")}
         color={useColorModeValue("gray.600", "white")}
@@ -240,6 +240,7 @@ const MobileNavItem = ({ label, children, href } = NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
+
     <Stack spacing={2} onClick={children && onToggle}>
       <Flex
         py={2}
