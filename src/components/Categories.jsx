@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategory } from "../store/categoryReducer";
 import { getProducts } from "../store/productsReducer";
+import { StarIcon } from "@chakra-ui/icons";
 
 import { Box, Flex, Center, Image, Button, SimpleGrid } from "@chakra-ui/react";
 
@@ -18,7 +18,6 @@ const Categories = ({ sex, cat }) => {
   }, [sex, cat]);
 
   const product = useSelector((state) => {
-    console.log("STATE PRODUCT", state.product);
     return state.product;
   });
 
@@ -64,11 +63,17 @@ const Categories = ({ sex, cat }) => {
                 <Box>{`$ ${category.price}`}</Box>
               </Center>
               <Center>
-                <Box d="flex" mt="2" alignItems="center">
-                  <Box as="span" mb="5" color="gray.600" fontSize="sm">
-                    {category.rating
-                      ? `${category.rating.count} ${category.rating.rate} star reviews`
-                      : ""}
+                <Box d="flex" mt="2" mb="4" alignItems="center">
+                  {Array(5)
+                    .fill("")
+                    .map((_, i) => (
+                      <StarIcon
+                        key={i}
+                        color={i < category.rating.rate ? "teal.500" : "gray.300"}
+                      />
+                    ))}
+                  <Box as="span" ml="2" color="gray.600" fontSize="sm">
+                    {category.rating.count} reviews
                   </Box>
                 </Box>
               </Center>
