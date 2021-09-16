@@ -5,12 +5,12 @@ import useCart from "../hooks/useCart";
 
 function useCheckoutForm() {
   const loggedUser = useSelector((state) => state.user);
-
+  const orderform = JSON.parse(window.localStorage.getItem("orderform"));
   const [nameValue, setNameValue] = React.useState("");
   const [adressValue, setAdressValue] = React.useState("");
   const [paymentValue, setPaymentValue] = React.useState("");
 
-  const { orderform, totalAmountToPay } = useCart();
+  const { totalAmountToPay } = useCart();
   const history = useHistory();
 
   let handleSubmit = () => {

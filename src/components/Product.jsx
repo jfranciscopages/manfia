@@ -61,7 +61,6 @@ export function Product() {
           ml=""
           mr="5"
           fontWeight="semibold"
-          as="h4"
           lineHeight="tight"
           isTruncated
         >

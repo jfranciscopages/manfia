@@ -21,12 +21,11 @@ import { AddIcon, MinusIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useSelector } from "react-redux";
 
 function Cart() {
-  const loggedUser = useSelector((state) => state.user);
+  const orderform = JSON.parse(window.localStorage.getItem("orderform"));
   const {
     substractQuantity,
-    addProductToCart,
+    addOneMoreProduct,
     deleteProductCart,
-    orderform,
     totalAmountToPay,
   } = useCart();
 
@@ -83,9 +82,7 @@ function Cart() {
                                 <Button
                                   colorScheme="teal"
                                   size="xs"
-                                  onClick={() =>
-                                    substractQuantity(product, product.quantity)
-                                  }
+                                  onClick={() => substractQuantity(product)}
                                 >
                                   <MinusIcon />
                                 </Button>
@@ -94,9 +91,7 @@ function Cart() {
                                 <Button
                                   colorScheme="teal"
                                   size="xs"
-                                  onClick={() =>
-                                    addProductToCart(product, product.quantity)
-                                  }
+                                  onClick={() => addOneMoreProduct(product)}
                                 >
                                   <AddIcon />
                                 </Button>
@@ -107,9 +102,7 @@ function Cart() {
                               <Button
                                 colorScheme="teal"
                                 size="xs"
-                                onClick={() =>
-                                  deleteProductCart(product, product.quantity)
-                                }
+                                onClick={() => deleteProductCart(product)}
                               >
                                 <DeleteIcon />
                               </Button>
@@ -140,10 +133,10 @@ function Cart() {
           </Box>
           <Box>
             {orderform.items.length > 0 ? (
-              loggedUser.id ? (
-                <Button>{CheckoutButton()}</Button>
+              orderform.clientProfile != null ? (
+                <button>{CheckoutButton()}</button>
               ) : (
-                <Button>{GoLoginButton()}</Button>
+                <button>{GoLoginButton()}</button>
               )
             ) : (
               <Box>No hay productos en el carrito.</Box>

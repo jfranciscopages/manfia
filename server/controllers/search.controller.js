@@ -11,6 +11,9 @@ const search_controller = {
             title: {
               [Op.iLike]: `${title}%`,
             },
+            title: {
+              [Op.iLike]: `%${title}`,
+            },
             category: {
               [Op.iLike]: `${title}%`,
             },

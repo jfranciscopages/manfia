@@ -12,15 +12,11 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-
 function GoLoginButton() {
-  const loggedUser = useSelector((state) => state.user);
   const history = useHistory();
   const cancelRef = React.useRef();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <>
       <Button onClick={onOpen}>Finalizar Compra</Button>

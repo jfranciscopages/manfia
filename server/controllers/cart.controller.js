@@ -47,6 +47,7 @@ const cart_controller = {
             orderId: newOrder.id,
           });
         });
+        console.log(ordersDetails);
         const bulkOrders = await Order_Details.bulkCreate(ordersDetails);
         return res.status(200).json([newOrder, bulkOrders]);
       }

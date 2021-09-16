@@ -1,43 +1,12 @@
 import React from "react";
-
-import axios from "axios";
+import { useHistory } from "react-router";
 import { nostockAlert } from "../utils/alerts";
 
 function useCart() {
-  const nameProduct = localStorage.getItem("product");
-
-  const [product, setProduct] = React.useState({});
+  const history = useHistory();
   const [changes, setchanges] = React.useState(false);
 
   let orderform = JSON.parse(window.localStorage.getItem("orderform"));
-
-  React.useEffect(async () => {
-    axios
-      .get(`/api/products/${nameProduct}`)
-      .then((res) => {
-        setProduct(res.data);
-      })
-      .catch((e) => console.log(e));
-  }, [changes]);
-
-  const substractQuantity = (product, quantity) => {
-    let aux = {
-      id: product.id,
-      image: product.image,
-      title: product.title,
-      price: product.price,
-      quantity: quantity,
-      stock: Number(product.stock),
-    };
-    if (orderform.items.length > 0) {
-      let idx = orderform.items.findIndex((prod) => prod.id == aux.id);
-      if (orderform.items[idx].quantity > 1) orderform.items[idx].quantity--;
-      else orderform.items.splice(idx, 1);
-    }
-    window.localStorage.setItem("orderform", JSON.stringify(orderform));
-
-    setchanges(!changes);
-  };
 
   const addProductToCart = (product) => {
     let orderform = JSON.parse(window.localStorage.getItem("orderform"));
@@ -88,17 +57,19 @@ function useCart() {
     setchanges(!changes);
   };
 
-  const deleteProductCart = (product, quantity) => {
-    let aux = {
-      id: product.id,
-      image: product.image,
-      title: product.title,
-      price: product.price,
-      quantity: quantity,
-      stock: Number(product.stock),
-    };
+  const substractQuantity = (product) => {
     if (orderform.items.length > 0) {
-      let idx = orderform.items.findIndex((prod) => prod.id == aux.id);
+      let idx = orderform.items.findIndex((prod) => prod.id == product.id);
+      if (orderform.items[idx].quantity > 1) orderform.items[idx].quantity--;
+      else orderform.items.splice(idx, 1);
+    }
+    window.localStorage.setItem("orderform", JSON.stringify(orderform));
+    setchanges(!changes);
+  };
+
+  const deleteProductCart = (product) => {
+    if (orderform.items.length > 0) {
+      let idx = orderform.items.findIndex((prod) => prod.id == product.id);
       orderform.items.splice(idx, 1);
     }
     window.localStorage.setItem("orderform", JSON.stringify(orderform));

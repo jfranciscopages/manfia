@@ -23,7 +23,6 @@ function CheckoutButton() {
   const cancelRef = React.useRef();
   const { handleSubmit, setNameValue, setAdressValue, setPaymentValue } =
     useCheckoutForm();
-
   return (
     <>
       <Button onClick={onOpen}>Finalizar Compra</Button>
