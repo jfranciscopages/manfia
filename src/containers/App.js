@@ -20,6 +20,7 @@ import { userLogged } from "../store/userLogged";
 import axios from "axios";
 import Categories from "../components/Categories";
 import BySex from "../components/BySex";
+import SearchOptions from "../components/SearchOptions";
 /*import Contact from "../components/Contact";  */
 
 function App() {
@@ -54,10 +55,9 @@ function App() {
         {camino === "/admin" ? null : <Navbar />}
         <Route exact path="/" render={() => <Grid />} />
         <Route
-          exact path="/categories/:sex"
-          render={({ match }) => (
-            <BySex sex={match.params.sex}/>
-          )}
+          exact
+          path="/categories/:sex"
+          render={({ match }) => <BySex sex={match.params.sex} />}
         />
         <Route
           path="/categories/:sex/:category"
@@ -66,6 +66,7 @@ function App() {
           )}
         />
         <Route path="/cart" component={Cart} />
+        <Route exact path="/search" render={() => <SearchOptions />} />
         {/*   <Route exact path="/contacto" render={() => <Contact />} /> */}
         <Route exact path="/login" render={() => <Login />} />
         <Route exact path="/register" render={() => <Register />} />

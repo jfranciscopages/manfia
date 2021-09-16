@@ -6,11 +6,12 @@ import { productReducer } from "./productReducer";
 import { productsReducer } from "./productsReducer";
 import { userLoggedReducer } from "./userLogged";
 import { orderReducer } from "./orderReducer";
-import {categoryReducer} from "./categoryReducer"
+import { categoryReducer } from "./categoryReducer";
 import { sexReducer } from "./sexReducer";
+import { searchReducer } from "./searchReducer";
 
 const store = configureStore({
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  //middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   reducer: {
     user: userLoggedReducer,
     cart: cartReducer,
@@ -19,6 +20,7 @@ const store = configureStore({
     product: productReducer,
     category: categoryReducer,
     sex: sexReducer,
+    search: searchReducer,
   },
 });
 
