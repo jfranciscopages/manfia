@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import useLogin from "../hooks/useLogin";
 import { BiShoppingBag } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 import {
   Box,
@@ -32,6 +33,7 @@ import {
 import Search from "./Search";
 
 const Navbar = () => {
+  const history = useHistory();
   const { isOpen, onToggle } = useDisclosure();
   const loggedUser = useSelector((state) => state.user);
   const params = useLogin();
@@ -40,6 +42,11 @@ const Navbar = () => {
   const handleClick = (e) => {
     e.preventDefault();
     handleLogout();
+  };
+  const onAdmin = (e) => {
+    e.preventDefault();
+    history.push("/admin");
+    history.go(0);
   };
 
   return (
@@ -126,6 +133,9 @@ const Navbar = () => {
               </Button>
             </>
           )}
+          {loggedUser.access === "admin" ? (
+            <Button onClick={(e) => onAdmin(e)}>Administrar</Button>
+          ) : null}
         </Stack>
       </Flex>
 
@@ -158,7 +168,7 @@ const DesktopNav = () => {
                   color: linkHoverColor,
                 }}
               >
-               <strong>  {navItem.label} </strong> 
+                <strong> {navItem.label} </strong>
               </Link>
             </PopoverTrigger>
 
@@ -297,7 +307,6 @@ interface NavItem {
 }
 
 const NAV_ITEMS: Array<NavItem> = [
- 
   {
     label: "Hombre",
     children: [
@@ -325,34 +334,35 @@ const NAV_ITEMS: Array<NavItem> = [
         label: "Shorts",
         href: "/categories/men/shorts",
       },
-    ],},
+    ],
+  },
+  {
+    label: "Mujer",
+    children: [
       {
-        label: "Mujer",
-        children: [
-          {
-            label: "Todo",
-            href: "/categories/women",
-          },
-          {
-            label: "Pantalones",
-            href: "/categories/women/pantalones",
-          },
-          {
-            label: "Remeras",
-            href: "/categories/women/remeras",
-          },
-          {
-            label: "Buzos",
-            href: "/categories/women/buzos",
-          },
-          {
-            label: "Camperas",
-            href: "/categories/women/camperas",
-          },
-          {
-            label: "Shorts",
-            href: "/categories/women/shorts",
-          },
+        label: "Todo",
+        href: "/categories/women",
+      },
+      {
+        label: "Pantalones",
+        href: "/categories/women/pantalones",
+      },
+      {
+        label: "Remeras",
+        href: "/categories/women/remeras",
+      },
+      {
+        label: "Buzos",
+        href: "/categories/women/buzos",
+      },
+      {
+        label: "Camperas",
+        href: "/categories/women/camperas",
+      },
+      {
+        label: "Shorts",
+        href: "/categories/women/shorts",
+      },
     ],
   },
 ];
