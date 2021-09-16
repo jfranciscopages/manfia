@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import useEditCategory from "../../hooks/useEditCategory";
+import useCreateCategory from "../../hooks/useCreateCategory";
 
 import {
   Button,
@@ -15,19 +15,9 @@ import {
 } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/select";
 
-export default function EditForm() {
-  const selectedCatName = localStorage.getItem("catName");
-  const selectedCatSex = localStorage.getItem("catSex");
-  const selectedCatId = localStorage.getItem("catId");
-
-  const params = useEditCategory();
-  const { onSubmit, name, setName, id, setId, sex, setSex } = params;
-
-  useEffect(() => {
-    setId(selectedCatId);
-    setName(selectedCatName);
-    setSex(selectedCatSex);
-  }, []);
+export default function NewCategoryForm() {
+  const params = useCreateCategory();
+  const { onSubmit, name, setName, sex, setSex } = params;
 
   return (
     <>
@@ -50,7 +40,7 @@ export default function EditForm() {
             my={12}
           >
             <Heading lineHeight={1.1} fontSize={{ base: "2xl", md: "3xl" }}>
-              Editar categoría
+              Nueva categoría
             </Heading>
             <FormControl id="name">
               <FormLabel>Nombre de la categoría</FormLabel>

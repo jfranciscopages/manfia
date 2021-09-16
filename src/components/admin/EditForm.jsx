@@ -47,6 +47,7 @@ export default function EditForm() {
   } = params;
 
   React.useEffect(async () => {
+    console.log(product);
     await axios
       .get("/api/categories/getCategories")
       .then((res) => res.data)

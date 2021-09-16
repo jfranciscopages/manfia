@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { log, success, error } from "../utils/logs";
+import { editedProd } from "../utils/alerts";
 
 const useEditProduct = () => {
+  const history = useHistory();
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [title, setTitle] = useState("");
@@ -31,7 +34,9 @@ const useEditProduct = () => {
       .put(`/api/products/edit`, data)
       .then((data) => {
         console.log(data);
+        history.push("/admin");
         success("el producto se editó correctamente");
+        editedProd();
       })
       .catch((err) => {
         console.log(err);

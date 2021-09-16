@@ -2,12 +2,11 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { log, success, error } from "../utils/logs";
-import { editedCat } from "../utils/alerts";
+import { createdCat } from "../utils/alerts";
 
-const useEditCategory = () => {
+const useCreateCategory = () => {
   const history = useHistory();
   const [name, setName] = useState("");
-  const [id, setId] = useState("");
   const [sex, setSex] = useState("");
 
   const onSubmit = async (e) => {
@@ -15,16 +14,15 @@ const useEditCategory = () => {
     const data = {
       name: name,
       sex: sex,
-      id: id,
     };
     console.log(data);
-    log("editando categoría...");
+    log("creando categoría...");
     await axios
-      .put(`/api/categories/editCategory`, data)
+      .post(`/api/categories/addCategory`, data)
       .then((data) => {
         history.push("/admin");
-        success("la categoría se editó correctamente");
-        editedCat();
+        success("la categoría fue creada correctamente");
+        createdCat();
       })
       .catch((err) => {
         console.log(err);
@@ -34,8 +32,7 @@ const useEditCategory = () => {
 
   return {
     onSubmit,
-    id,
-    setId,
+
     name,
     setName,
     sex,
@@ -43,4 +40,4 @@ const useEditCategory = () => {
   };
 };
 
-export default useEditCategory;
+export default useCreateCategory;

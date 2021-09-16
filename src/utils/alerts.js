@@ -17,11 +17,39 @@ export const errorAlert = () => {
   });
 };
 
+export const productAdded = () => {
+  MySwal.fire({
+    title: "Producto añadido correctamente",
+    icon: "success",
+  });
+};
+
+export const editedProd = () => {
+  MySwal.fire({
+    title: "El producto se editó correctamente",
+    icon: "success",
+  });
+};
+
+export const createdCat = () => {
+  MySwal.fire({
+    title: "¡Tu nueva categoría está lista!",
+    icon: "success",
+  });
+};
+
+export const editedCat = () => {
+  MySwal.fire({
+    title: "Categoría editada",
+    icon: "success",
+  });
+};
+
 export const nostockAlert = () => {
   MySwal.fire({
-    title: 'Oops...',
-    text: "No hay suficiente stock!",
+    title: "Ups...",
+    text: "¡No hay suficiente stock!",
     icon: "error",
-    width: '20%',
+    width: "20%",
   });
 };

@@ -18,8 +18,8 @@ const Categories = ({ sex, cat }) => {
   }, [sex, cat]);
 
   const product = useSelector((state) => {
-console.log("STATE PRODUCT", state.product)
-return state.product
+    console.log("STATE PRODUCT", state.product);
+    return state.product;
   });
 
   React.useEffect(() => {
@@ -44,7 +44,11 @@ return state.product
               borderRadius="lg"
               overflow="hidden"
             >
-              <Image src={`${category.image}`} boxSize="350px" />{" "}
+              <Image
+                src={`${category.image}`}
+                boxSize="350px"
+                objectFit="scale-down"
+              />{" "}
               <Center>
                 <Box
                   mt="10"
@@ -62,19 +66,21 @@ return state.product
               <Center>
                 <Box d="flex" mt="2" alignItems="center">
                   <Box as="span" mb="5" color="gray.600" fontSize="sm">
-                    {category.rating.count} {category.rating.rate} star reviews
+                    {category.rating
+                      ? `${category.rating.count} ${category.rating.rate} star reviews`
+                      : ""}
                   </Box>
                 </Box>
               </Center>
               <Box mb={5}>
                 <Center>
                   {/* <Link to={`/products/${product.title}`}> */}
-                    <Button
-                      colorScheme="teal"
+                  <Button
+                    colorScheme="teal"
                     //   onClick={() => setOneProduct(product.title)}
-                    >
-                      Ver más
-                    </Button>
+                  >
+                    Ver más
+                  </Button>
                   {/* </Link> */}
                 </Center>
               </Box>

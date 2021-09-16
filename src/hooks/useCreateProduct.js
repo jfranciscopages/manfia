@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { log, success, error } from "../utils/logs";
+import { productAdded } from "../utils/alerts";
+import { useHistory } from "react-router";
 
 const useCreateProduct = () => {
   const [name, setName] = useState("");
@@ -11,6 +13,7 @@ const useCreateProduct = () => {
   const [category, setCategory] = useState("");
   const [stock, setStock] = useState("");
   const [imageLink, setImageLink] = useState("");
+  const history = useHistory();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +32,9 @@ const useCreateProduct = () => {
       .post(`/api/products/addProduct`, data)
       .then((data) => {
         console.log(data);
+        history.push("/admin");
         success("el producto se añadió correctamente");
+        productAdded();
       })
       .catch((err) => {
         console.log(err);
