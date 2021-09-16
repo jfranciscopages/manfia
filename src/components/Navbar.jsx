@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import useLogin from "../hooks/useLogin";
 import { BiShoppingBag } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 import {
   Box,
@@ -32,6 +33,7 @@ import {
 import SearchForm from "./SearchForm";
 
 const Navbar = () => {
+  const history = useHistory();
   const { isOpen, onToggle } = useDisclosure();
   const loggedUser = useSelector((state) => state.user);
   const params = useLogin();
@@ -40,6 +42,11 @@ const Navbar = () => {
   const handleClick = (e) => {
     e.preventDefault();
     handleLogout();
+  };
+  const onAdmin = (e) => {
+    e.preventDefault();
+    history.push("/admin");
+    history.go(0);
   };
 
   return (
@@ -126,6 +133,9 @@ const Navbar = () => {
               </Button>
             </>
           )}
+          {loggedUser.access === "admin" ? (
+            <Button onClick={(e) => onAdmin(e)}>Administrar</Button>
+          ) : null}
         </Stack>
       </Flex>
 

@@ -34,13 +34,12 @@ interface LinkItemProps {
   icon: IconType;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: "Inicio", icon: FiHome, link: "#" },
+  { name: "Inicio", icon: FiHome, link: "" },
   { name: "Añadir productos", icon: FiPlusCircle, link: "products" },
   { name: "Editar productos", icon: FiEdit, link: "edit/products" },
   { name: "Registro", icon: FiTrendingUp, link: "table" },
   { name: "Categorías", icon: FiSettings, link: "edit/categories" },
-  { name: "Favoritos", icon: FiStar, link: "#" },
-  { name: "Usuarios", icon: FiUser, link: "users" },
+  { name: "Usuarios", icon: FiUser, link: "edit/users" },
 ];
 
 export default function SimpleSidebar({ children }: { children: ReactNode }) {

@@ -10,6 +10,19 @@ export const registeredAlert = () => {
   });
 };
 
+export const userUpdated = () => {
+  MySwal.fire({
+    title: "¡Listo!",
+    icon: "success",
+  });
+};
+export const permissionDenied = () => {
+  MySwal.fire({
+    title: "No tienes permisos de administrador para realizar esta acción",
+    icon: "error",
+  });
+};
+
 export const errorAlert = () => {
   MySwal.fire({
     title: "No fue posible crear su cuenta",

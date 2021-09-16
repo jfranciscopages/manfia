@@ -15,9 +15,12 @@ import {
 
 const NavbarAdmin = () => {
   const history = useHistory();
-  const redireccionamientoAshe = () => {
+  const redireccionamientoAshe = (e) => {
+    e.preventDefault();
     history.push("/");
+    history.go(0);
   };
+
   return (
     <Box>
       <Flex
@@ -62,7 +65,7 @@ const NavbarAdmin = () => {
           </Button> */}
 
           <Button
-            onClick={() => redireccionamientoAshe()}
+            onClick={(e) => redireccionamientoAshe(e)}
             display={{ base: "none", md: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
