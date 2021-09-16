@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import useCart from "../hooks/useCart";
-
+import CheckoutButton from "./CheckoutButton";
+import GoLoginButton from "./GoLoginButton";
 import {
   Table,
   Tr,
@@ -18,10 +18,17 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon, DeleteIcon } from "@chakra-ui/icons";
+import { useSelector } from "react-redux";
 
 function Cart() {
-  const { substractQuantity, addOneMoreProduct, deleteProductCart, orderform } =
-    useCart();
+  const loggedUser = useSelector((state) => state.user);
+  const {
+    substractQuantity,
+    addProductToCart,
+    deleteProductCart,
+    orderform,
+    totalAmountToPay,
+  } = useCart();
 
   return (
     <>
@@ -55,7 +62,7 @@ function Cart() {
                     <Tr>
                       <Th>Producto</Th>
                       <Th></Th>
-                      <Th></Th>
+
                       <Th>Cantidad</Th>
                       <Th>Precio</Th>
                       <Th></Th>
@@ -65,12 +72,12 @@ function Cart() {
                   <Tbody>
                     {orderform
                       ? orderform.items.map((product) => (
-                          <Tr>
+                          <Tr key={product.id}>
                             <Td>
                               <Image src={product.image} boxSize="50px" />
                             </Td>
                             <Td fontSize="md">{product.title}</Td>
-                            <Td fontSize="xs">{product.description}</Td>
+
                             <Td>
                               <Stack spacing={4} direction="row" align="center">
                                 <Button
@@ -87,7 +94,9 @@ function Cart() {
                                 <Button
                                   colorScheme="teal"
                                   size="xs"
-                                  onClick={() => addOneMoreProduct(product)}
+                                  onClick={() =>
+                                    addProductToCart(product, product.quantity)
+                                  }
                                 >
                                   <AddIcon />
                                 </Button>
@@ -117,12 +126,7 @@ function Cart() {
                       </Th>
 
                       <Th mr="4" fontSize="2xl">
-                        $
-                        {orderform.items.reduce(function (eAnterior, eActual) {
-                          return (
-                            eAnterior + Number(eActual.price * eActual.quantity)
-                          );
-                        }, 0)}
+                        ${totalAmountToPay}
                       </Th>
                     </Tr>
                   </Tfoot>
@@ -136,7 +140,11 @@ function Cart() {
           </Box>
           <Box>
             {orderform.items.length > 0 ? (
-              <Link to="/checkout">Checkout</Link>
+              loggedUser.id ? (
+                <Button>{CheckoutButton()}</Button>
+              ) : (
+                <Button>{GoLoginButton()}</Button>
+              )
             ) : (
               <Box>No hay productos en el carrito.</Box>
             )}
