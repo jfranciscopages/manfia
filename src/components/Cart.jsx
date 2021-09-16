@@ -20,11 +20,13 @@ import {
 import { AddIcon, MinusIcon, DeleteIcon } from "@chakra-ui/icons";
 
 function Cart() {
+
   let orderform = JSON.parse(window.localStorage.getItem("orderform"));
   const {
     substractQuantity,
-    addOneMoreProduct,
+    addProductToCart,
     deleteProductCart,
+    orderform,
     totalAmountToPay,
     changes,
   } = useCart();
@@ -86,7 +88,9 @@ function Cart() {
                                 <Button
                                   colorScheme="teal"
                                   size="xs"
-                                  onClick={() => substractQuantity(product)}
+                                  onClick={() =>
+                                    substractQuantity(product, product.quantity)
+                                  }
                                 >
                                   <MinusIcon />
                                 </Button>
@@ -95,7 +99,9 @@ function Cart() {
                                 <Button
                                   colorScheme="teal"
                                   size="xs"
-                                  onClick={() => addOneMoreProduct(product)}
+                                  onClick={() =>
+                                    addProductToCart(product, product.quantity)
+                                  }
                                 >
                                   <AddIcon />
                                 </Button>
@@ -106,7 +112,9 @@ function Cart() {
                               <Button
                                 colorScheme="teal"
                                 size="xs"
-                                onClick={() => deleteProductCart(product)}
+                                onClick={() =>
+                                  deleteProductCart(product, product.quantity)
+                                }
                               >
                                 <DeleteIcon />
                               </Button>
@@ -137,6 +145,7 @@ function Cart() {
           </Box>
           <Box>
             {orderform.items.length > 0 ? (
+
               orderform.clientProfile != null ? (
                 <CheckoutButton />
               ) : (
