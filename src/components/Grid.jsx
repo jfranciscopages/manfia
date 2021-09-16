@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Box, Button, SimpleGrid, Image, Center } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../store/productsReducer";
+import { StarIcon } from "@chakra-ui/icons";
 
 const List = () => {
   const products = useSelector((state) => {
@@ -36,6 +37,7 @@ const List = () => {
               borderWidth="1px"
               borderRadius="lg"
               overflow="hidden"
+              boxShadow="md"
             >
               <Image
                 src={`${product.image}`}
@@ -57,11 +59,17 @@ const List = () => {
                 <Box>{`$ ${product.price}`}</Box>
               </Center>
               <Center>
-                <Box d="flex" mt="2" alignItems="center">
-                  <Box as="span" mb="5" color="gray.600" fontSize="sm">
-                    {product.rating
-                      ? `${product.rating.count} ${product.rating.rate} star reviews`
-                      : ""}
+                <Box d="flex" mt="2" mb="4" alignItems="center">
+                  {Array(5)
+                    .fill("")
+                    .map((_, i) => (
+                      <StarIcon
+                        key={i}
+                        color={i < product.rating.rate ? "teal.500" : "gray.300"}
+                      />
+                    ))}
+                  <Box as="span" ml="2" color="gray.600" fontSize="sm">
+                    {product.rating.count} reviews
                   </Box>
                 </Box>
               </Center>

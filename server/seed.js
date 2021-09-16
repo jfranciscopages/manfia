@@ -352,7 +352,7 @@ const productosParaSeedear = [
     category: "Camperas",
     stock: "13",
     rating: {
-      rate: 3,
+      rate: 4,
       count: 70,
     },
   },
