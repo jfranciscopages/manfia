@@ -5,18 +5,27 @@ import {
   Tr,
   Td,
   Th,
-  Box,
+
   Thead,
   Tbody,
-  Tfoot,
   Button,
   Image,
   Stack,
   Heading,
   Flex,
+
+  FormControl,
+
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 function ShoppingHistory() {
   const [shoppingHistory, setShoppingHistory] = React.useState([]);
@@ -27,15 +36,21 @@ function ShoppingHistory() {
       .get(`/api/cart/history/${loggedUser.id}`)
       .then((res) => res.data)
       .then((history) => {
-        console.log("viene del back", history);
-       return setShoppingHistory(history);
-       
+        return setShoppingHistory(history);
       });
   }, []);
 
   return (
     <>
-    {console.log(shoppingHistory)}
+      {console.log(shoppingHistory)}
+             <Heading
+            fontSize="2xl"
+            textAlign="center"
+            marginTop="20px"
+            color="teal.400"
+          >
+          Compra realizada con Exito!
+          </Heading>
       <Flex
         flexDirection="column"
         width="100wh"
@@ -44,21 +59,71 @@ function ShoppingHistory() {
         justifyContent="center"
         alignItems="center"
       >
-        <Stack
-          flexDir="column"
-          mb="2"
-          justifyContent="center"
-          alignItems="center"
-        >
+      
           <Heading
-            fontSize="2xl"
+            fontSize="3xl"
             textAlign="center"
-            marginTop="20px"
+            marginTop="-20px"
             color="teal.400"
           >
             Volver a Comprar
           </Heading>
-        </Stack>
+
+          <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>Fecha de compra</Th>
+                <Th>Productos</Th>
+                <Th>Forma de Pago</Th>
+                <Th isNumeric>Total</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {shoppingHistory.map((shop) => (
+                <Tr key={shop.id}>
+                  <Td> {shop.orderDate} </Td>
+
+                  {console.log(shop.order_details)}
+
+                    <FormControl id="producto">
+                  <Td isNumeric>
+                      <Menu>
+                        <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                          Ver Productos
+                        </MenuButton>
+                        <MenuList>
+                          {shop.order_details.map((products) => (
+
+                            <Link  to={`/products/${products.title}`} >
+                            <MenuItem minH="48px">
+                              <Image
+                                boxSize="2rem"
+                                borderRadius="full"
+                                src={products.image}
+                                alt="Fluffybuns the destroyer"
+                                mr="12px"
+                              />
+                              <span>{products.title}</span>
+                            </MenuItem>
+                            </Link>
+
+                          ))}
+                        </MenuList>
+                      </Menu>
+                  </Td>
+
+                    </FormControl>
+
+                  <Td> {shop.orderPaymentType} </Td>
+
+                  <Td> {shop.totalAmmount} </Td>
+                </Tr>
+              ))}
+
+              <Tr></Tr>
+            </Tbody>
+          </Table>
+      
       </Flex>
     </>
   );
