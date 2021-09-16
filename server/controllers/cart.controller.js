@@ -20,14 +20,36 @@ const cart_controller = {
 
   createOrder: async (req, res, next) => {
     const { order, items, clientProfile } = req.body;
+    let ordersDetails = [];
     try {
       const user = await User_Profile.findByPk(clientProfile.id);
       order.userProfileId = user.id;
       const newOrder = await Orders.create(order);
-      items.map((item) => (item.orderId = newOrder.id));
-      console.log(items);
-      const orderDetails = await Order_Details.bulkCreate(items);
-      return res.status(200).json([newOrder, orderDetails]);
+      if (items.length <= 1) {
+        let oneItem = items.pop();
+        const obj = {
+          image: oneItem.image,
+          title: oneItem.title,
+          price: oneItem.price,
+          quantity: oneItem.quantity,
+          orderId: newOrder.id,
+        };
+        console.log(obj);
+        const oneOrder = await Order_Details.create(obj);
+        return res.status(200).json([newOrder, oneOrder]);
+      } else {
+        items.map((item) => {
+          ordersDetails.push({
+            image: item.image,
+            title: item.title,
+            price: item.price,
+            quantity: item.quantity,
+            orderId: newOrder.id,
+          });
+        });
+        const bulkOrders = await Order_Details.bulkCreate(ordersDetails);
+        return res.status(200).json([newOrder, bulkOrders]);
+      }
     } catch (err) {
       next(err);
     }
