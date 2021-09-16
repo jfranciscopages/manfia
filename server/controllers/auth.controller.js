@@ -11,7 +11,15 @@ const auth_controller = {
   },
 
   login: (req, res, next) => {
-    const user = req.user;
+    const user = {
+      access: req.user.access,
+      address: req.user.address,
+      country: req.user.country,
+      email: req.user.email,
+      fullName: req.user.fullName,
+      id: req.user.id,
+      phone: req.user.phone,
+    };
     try {
       return res.status(200).json(user);
     } catch (err) {

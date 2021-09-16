@@ -23,19 +23,22 @@ import {
 
 } from "@chakra-ui/react";
 import axios from "axios";
+
 import { useSelector } from "react-redux";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 
+
 function ShoppingHistory() {
   const [shoppingHistory, setShoppingHistory] = React.useState([]);
-  const loggedUser = useSelector((state) => state.user);
+  let orderform = JSON.parse(window.localStorage.getItem("orderform"));
 
   useEffect(() => {
     axios
-      .get(`/api/cart/history/${loggedUser.id}`)
+      .get(`/api/cart/history/${orderform.clientProfile.id}`)
       .then((res) => res.data)
       .then((history) => {
+
         return setShoppingHistory(history);
       });
   }, []);
@@ -43,6 +46,7 @@ function ShoppingHistory() {
   return (
     <>
       {console.log(shoppingHistory)}
+
              <Heading
             fontSize="2xl"
             textAlign="center"
@@ -51,6 +55,7 @@ function ShoppingHistory() {
           >
           Compra realizada con Exito!
           </Heading>
+
       <Flex
         flexDirection="column"
         width="100wh"

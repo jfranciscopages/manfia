@@ -1,8 +1,7 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 
-import { Box, Flex, Center, Image, Button, SimpleGrid } from "@chakra-ui/react";
+import { Box, Center, Image, Button, SimpleGrid } from "@chakra-ui/react";
 
 const SearchOptions = () => {
   console.log("TITLE COMPONENTE");

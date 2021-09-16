@@ -3,11 +3,9 @@ import { useHistory } from "react-router";
 import { nostockAlert } from "../utils/alerts";
 
 function useCart() {
+  const [changes, setChanges] = React.useState("");
   const history = useHistory();
-  const [changes, setchanges] = React.useState(false);
-
   let orderform = JSON.parse(window.localStorage.getItem("orderform"));
-
   const addProductToCart = (product) => {
     let orderform = JSON.parse(window.localStorage.getItem("orderform"));
     let item;
@@ -54,34 +52,42 @@ function useCart() {
     }
     //luego lo volvemos a setear en localstorage
     window.localStorage.setItem("orderform", JSON.stringify(orderform));
-    setchanges(!changes);
+    setChanges(`Add item with quantity: ${product.quantity}!`);
   };
 
   const substractQuantity = (product) => {
+    orderform = JSON.parse(window.localStorage.getItem("orderform"));
     if (orderform.items.length > 0) {
       let idx = orderform.items.findIndex((prod) => prod.id == product.id);
+      console.log(idx);
       if (orderform.items[idx].quantity > 1) orderform.items[idx].quantity--;
       else orderform.items.splice(idx, 1);
     }
     window.localStorage.setItem("orderform", JSON.stringify(orderform));
-    setchanges(!changes);
+    setChanges(`Substract item with quantity: ${product.quantity}!`);
   };
 
   const deleteProductCart = (product) => {
+    orderform = JSON.parse(window.localStorage.getItem("orderform"));
     if (orderform.items.length > 0) {
       let idx = orderform.items.findIndex((prod) => prod.id == product.id);
       orderform.items.splice(idx, 1);
     }
     window.localStorage.setItem("orderform", JSON.stringify(orderform));
-    setchanges(!changes);
+    setChanges(`Delete item with id: ${product.id}!`);
   };
+
+  let totalAmountToPay = orderform.items.reduce(function (eAnterior, eActual) {
+    return eAnterior + Number(eActual.price * eActual.quantity);
+  }, 0);
 
   return {
     substractQuantity,
     addProductToCart,
     addOneMoreProduct,
     deleteProductCart,
-    orderform,
+    totalAmountToPay,
+    changes,
   };
 }
 

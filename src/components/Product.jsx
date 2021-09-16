@@ -1,10 +1,9 @@
 import * as React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { singleProduct } from "../store/productReducer";
 import useCart from "../hooks/useCart";
 import axios from "axios";
 
-import { Box, Flex, Center, Image, Button } from "@chakra-ui/react";
+
+import { Box, Flex, Center, Image, Button, WrapItem } from "@chakra-ui/react";
 
 export function Product() {
   //trae los objetos del local storage
@@ -31,13 +30,14 @@ export function Product() {
         borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
-        ml="150px"
+        ml="100px"
         mt="75px"
+        boxShadow="md"
       >
         <Image
           src={`${product.image}`}
-          // layout={"fill"}
           boxSize="350px"
+          objectFit="scale-down"
         />{" "}
         <Center>
           <Box d="flex" mt="2" alignItems="center">
@@ -55,7 +55,9 @@ export function Product() {
         lineHeight="tight"
         isTruncated
       >
-        {product.title}{" "}
+        <Box fontSize="xl" textColor="teal" fontWeight="bold">
+          {product.title}{" "}
+        </Box>
         <Box
           mt="20px"
           ml=""
@@ -66,8 +68,9 @@ export function Product() {
         >
           {product.description}{" "}
         </Box>
+
         <br />
-        <Box>Price: $ {product.price}</Box>
+        <Box>Precio: $ {product.price}</Box>
         <br />
         <Box>Talle : S-M-L-XL</Box>
         <br />
@@ -77,7 +80,7 @@ export function Product() {
               onClick={() => addProductToCart(product)}
               colorScheme="teal"
             >
-              Comprar
+              Agregar al Carrito
             </Button>
           </Center>
         </Box>

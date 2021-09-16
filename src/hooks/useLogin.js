@@ -9,7 +9,7 @@ const useLogin = () => {
   const [loginEmail, setLoginEmail] = useState(``);
   const [loginPassword, setLoginPassword] = useState(``);
   const [isLoading, setIsLoading] = useState(false);
-
+  let lStorage = JSON.parse(window.localStorage.getItem("orderform"));
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -24,6 +24,9 @@ const useLogin = () => {
       })
       .then((data) => {
         dispatch(userLogged(data.data));
+        lStorage = JSON.parse(window.localStorage.getItem("orderform"));
+        lStorage.clientProfile = data.data;
+        window.localStorage.setItem("orderform", JSON.stringify(lStorage));
         success(`logged user ${data.data}`);
         setIsLoading(false);
         history.push("/");
