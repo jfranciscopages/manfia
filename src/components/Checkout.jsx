@@ -17,26 +17,21 @@ import {
 } from "@chakra-ui/react";
 
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 function Checkout() {
-  const { orderform } = useCart();
+  const history = useHistory();
+  let sendOrder = JSON.parse(window.localStorage.getItem("orderform"));
 
-  let sendOrder = JSON.parse(
-    window.localStorage.getItem("orderform", orderform)
-  );
-
-  let submitToBack = async () => {
+  let submitToBack = () => {
     console.log("send", sendOrder);
-
-    await axios
+    axios
       .post("/api/cart/createOrder", sendOrder)
       .then((data) => {
-        console.log("data", data);
+        console.log(`dasodsaodsadosad`, data);
+        history.push(`/history`);
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -80,8 +75,8 @@ function Checkout() {
             </Table>
           </Box>
           <Box display="flex" alignItems="center">
-            {orderform ? (
-              orderform.items.length > 0 ? (
+            {sendOrder ? (
+              sendOrder.items.length > 0 ? (
                 <Table>
                   <Thead>
                     <Tr>
@@ -95,8 +90,8 @@ function Checkout() {
                   </Thead>
 
                   <Tbody>
-                    {orderform
-                      ? orderform.items.map((product) => (
+                    {sendOrder
+                      ? sendOrder.items.map((product) => (
                           <Tr key={product.id}>
                             <Td>
                               <Image src={product.image} boxSize="50px" />
@@ -135,9 +130,7 @@ function Checkout() {
             )}
           </Box>
           <Box>
-            <Link to="/history">
-              <Button onClick={() => submitToBack()}>FINALIZAR COMPRA</Button>
-            </Link>
+            <Button onClick={() => submitToBack()}>FINALIZAR COMPRA</Button>
           </Box>
         </Stack>
       </Flex>

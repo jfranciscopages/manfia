@@ -18,16 +18,20 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon, DeleteIcon } from "@chakra-ui/icons";
-import { useSelector } from "react-redux";
 
 function Cart() {
-  const orderform = JSON.parse(window.localStorage.getItem("orderform"));
+  let orderform = JSON.parse(window.localStorage.getItem("orderform"));
   const {
     substractQuantity,
     addOneMoreProduct,
     deleteProductCart,
     totalAmountToPay,
+    changes,
   } = useCart();
+
+  React.useEffect(() => {
+    orderform = JSON.parse(window.localStorage.getItem("orderform"));
+  }, [changes]);
 
   return (
     <>
@@ -69,7 +73,7 @@ function Cart() {
                   </Thead>
 
                   <Tbody>
-                    {orderform
+                    {orderform.items.length > 0
                       ? orderform.items.map((product) => (
                           <Tr key={product.id}>
                             <Td>
@@ -134,9 +138,9 @@ function Cart() {
           <Box>
             {orderform.items.length > 0 ? (
               orderform.clientProfile != null ? (
-                <button>{CheckoutButton()}</button>
+                <CheckoutButton />
               ) : (
-                <button>{GoLoginButton()}</button>
+                <GoLoginButton />
               )
             ) : (
               <Box>No hay productos en el carrito.</Box>

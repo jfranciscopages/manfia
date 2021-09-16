@@ -34,7 +34,6 @@ const cart_controller = {
           quantity: oneItem.quantity,
           orderId: newOrder.id,
         };
-        console.log(obj);
         const oneOrder = await Order_Details.create(obj);
         return res.status(200).json([newOrder, oneOrder]);
       } else {
@@ -47,12 +46,11 @@ const cart_controller = {
             orderId: newOrder.id,
           });
         });
-        console.log(ordersDetails);
         const bulkOrders = await Order_Details.bulkCreate(ordersDetails);
         return res.status(200).json([newOrder, bulkOrders]);
       }
     } catch (err) {
-      next(err);
+      console.log(err);
     }
   },
 

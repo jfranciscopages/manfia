@@ -16,26 +16,24 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 function ShoppingHistory() {
   const [shoppingHistory, setShoppingHistory] = React.useState([]);
-  const loggedUser = useSelector((state) => state.user);
+  let orderform = JSON.parse(window.localStorage.getItem("orderform"));
 
   useEffect(() => {
     axios
-      .get(`/api/cart/history/${loggedUser.id}`)
+      .get(`/api/cart/history/${orderform.clientProfile.id}`)
       .then((res) => res.data)
       .then((history) => {
         console.log("viene del back", history);
-       return setShoppingHistory(history);
-       
+        return setShoppingHistory(history);
       });
   }, []);
 
   return (
     <>
-    {console.log(shoppingHistory)}
+      {console.log(shoppingHistory)}
       <Flex
         flexDirection="column"
         width="100wh"
