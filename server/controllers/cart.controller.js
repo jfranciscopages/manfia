@@ -47,6 +47,15 @@ const cart_controller = {
       next(err);
     }
   },
+
+  getOrders: async (req, res, next) => {
+    try {
+      const orderHistory = await Orders.findAll();
+      return res.status(200).json(orderHistory);
+    } catch (err) {
+      next(err);
+    }
+  },
 };
 
 module.exports = cart_controller;

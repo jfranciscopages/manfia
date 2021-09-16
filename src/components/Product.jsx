@@ -1,20 +1,20 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { singleProduct } from "../store/productReducer";
+import useCart from "../hooks/useCart";
 import axios from "axios";
 
 import { Box, Flex, Center, Image, Button } from "@chakra-ui/react";
 
 export function Product() {
+  //trae los objetos del local storage
   const nameProduct = localStorage.getItem("product");
-  console.log("Name Product",nameProduct);
-  const dispatch = useDispatch();
+  const params = useCart();
+  const { addProductToCart } = params;
   const [product, setProduct] = React.useState({});
-  const [quantity, setQuantity] = React.useState(1);
-  const [pushProduct, setPushProduct] = React.useState(true);
 
   React.useEffect(async () => {
-    console.log("Name Product 2",nameProduct);
+    console.log("Name Product 2", nameProduct);
     axios
       .get(`/api/products/${nameProduct}`)
       .then((res) => {
@@ -23,48 +23,6 @@ export function Product() {
       })
       .catch((e) => console.log(e));
   }, []);
-
-  const addQuantity = () => {
-    let suma = 1;
-    //combierte el stock a numero y compara con la cantidad
-    if (Number(product.stock) > quantity) {
-      suma = quantity + 1;
-      setQuantity(suma);
-    } else console.log(`sin stock pa!`);
-  };
-
-  const addProductToCart = (product, quantity) => {
-    let aux = {
-      id: product.id,
-      image: product.image,
-      title: product.title,
-      price: product.price,
-      quantity: quantity,
-      stock: Number(product.stock),
-      orderId: "",
-    };
-    //trae el objeto del local storage
-    const orderform = JSON.parse(window.localStorage.getItem("orderform"));
-    //buscamos si hay un producto igual, si hay le sumamos lo que hayamos cargado
-    //(queda configurar que solo se pueda cargar lo que queda de stock)
-    if (orderform.items[0]) {
-      orderform.items.map((prod) => {
-        if (prod.id === aux.id) {
-          if (Number(prod.quantity) + aux.quantity <= aux.stock) {
-            setPushProduct(false);
-            prod.quantity++;
-          } else console.log(`sin stock padre!`);
-          //sino lo cargamos a orderform
-        }
-      });
-      if (pushProduct) orderform.items.push(aux);
-    } else orderform.items.push(aux);
-    //luego lo volvemos a setear en localstorage
-    console.log(`suma de productos iguales`, orderform);
-    window.localStorage.setItem("orderform", JSON.stringify(orderform));
-    setPushProduct(true);
-    setQuantity(1);
-  };
 
   return product ? (
     <Flex>
@@ -116,12 +74,8 @@ export function Product() {
         <br />
         <Box mb={5}>
           <Center>
-            {/* aca hay que configurar que se vea la cantidad que estamos agregando y que no te deje agregar mas de lo que hay en stock */}
-            <Button onClick={() => addQuantity()} colorScheme="teal">
-              +1
-            </Button>
             <Button
-              onClick={() => addProductToCart(product, quantity)}
+              onClick={() => addProductToCart(product)}
               colorScheme="teal"
             >
               Comprar

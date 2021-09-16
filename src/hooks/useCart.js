@@ -9,7 +9,7 @@ function useCart() {
   const [product, setProduct] = React.useState({});
   const [changes, setchanges] = React.useState(false);
 
-  const orderform = JSON.parse(window.localStorage.getItem("orderform"));
+  let orderform = JSON.parse(window.localStorage.getItem("orderform"));
 
   React.useEffect(async () => {
     axios
@@ -39,21 +39,42 @@ function useCart() {
     setchanges(!changes);
   };
 
-  const addProductToCart = (product, quantity) => {
-    //trae el objeto del local storage
+  const addProductToCart = (product) => {
+    let orderform = JSON.parse(window.localStorage.getItem("orderform"));
     let aux = {
       id: product.id,
       image: product.image,
       title: product.title,
       price: product.price,
-      quantity: quantity,
+      quantity: 1,
       stock: Number(product.stock),
+      orderId: "",
     };
+    //buscamos si hay un producto igual, si hay le sumamos lo que hayamos cargado
+    //(queda configurar que solo se pueda cargar lo que queda de stock)
+    if (orderform.items.length > 0) {
+      let itemIndex = orderform.items.findIndex((prod) => prod.id == aux.id);
+      let item = orderform.items.splice(itemIndex, 1).pop();
+      if (item.quantity + 1 <= item.stock) {
+        item.quantity++;
+        orderform.items.push(item);
+      } else {
+        console.log(`sin stock padre!`);
+        orderform.items.push(item);
+      }
+    } else {
+      orderform.items.push(aux);
+    }
+    window.localStorage.setItem("orderform", JSON.stringify(orderform));
+  };
+
+  const addOneMoreProduct = (product) => {
+    orderform = JSON.parse(window.localStorage.getItem("orderform"));
     if (orderform.items.length > 0) {
       orderform.items.map((prod) => {
-        if (prod.id == aux.id) {
-          if (prod.quantity + aux.quantity <= aux.stock) prod.quantity++;
-          else nostockAlert() 
+        if (prod.id == product.id) {
+          if (prod.quantity + 1 <= prod.stock) prod.quantity++;
+          else nostockAlert();
         }
       });
     }
@@ -77,11 +98,12 @@ function useCart() {
     }
     window.localStorage.setItem("orderform", JSON.stringify(orderform));
     setchanges(!changes);
-  };  
+  };
 
   return {
     substractQuantity,
     addProductToCart,
+    addOneMoreProduct,
     deleteProductCart,
     orderform,
   };
