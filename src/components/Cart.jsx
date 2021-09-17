@@ -20,13 +20,11 @@ import {
 import { AddIcon, MinusIcon, DeleteIcon } from "@chakra-ui/icons";
 
 function Cart() {
-
   let orderform = JSON.parse(window.localStorage.getItem("orderform"));
   const {
     substractQuantity,
     addProductToCart,
     deleteProductCart,
-    orderform,
     totalAmountToPay,
     changes,
   } = useCart();
@@ -145,7 +143,6 @@ function Cart() {
           </Box>
           <Box>
             {orderform.items.length > 0 ? (
-
               orderform.clientProfile != null ? (
                 <CheckoutButton />
               ) : (
