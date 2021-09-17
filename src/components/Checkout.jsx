@@ -22,6 +22,7 @@ import { useHistory } from "react-router";
 function Checkout() {
   const history = useHistory();
   let sendOrder = JSON.parse(window.localStorage.getItem("orderform"));
+  console.log(sendOrder)
 
   let submitToBack = () => {
     console.log("send", sendOrder);
@@ -68,7 +69,7 @@ function Checkout() {
               </Thead>
               <Tbody>
                 <Tr>
-                  <Th>{sendOrder.order.orderAdress}</Th>
+                  <Th>{sendOrder.order.orderAddress}</Th>
                   <Th>{sendOrder.order.orderPaymentType}</Th>
                 </Tr>
               </Tbody>

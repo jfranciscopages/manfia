@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+  import React, { useEffect } from "react";
 
 import {
   Table,
@@ -10,7 +10,6 @@ import {
   Tbody,
   Button,
   Image,
-  Stack,
   Heading,
   Flex,
 
@@ -80,15 +79,16 @@ function ShoppingHistory() {
                 <Th>Fecha de compra</Th>
                 <Th>Productos</Th>
                 <Th>Forma de Pago</Th>
-                <Th isNumeric>Total</Th>
+                <Th>Total</Th>
               </Tr>
             </Thead>
             <Tbody>
               {shoppingHistory.map((shop) => (
                 <Tr key={shop.id}>
-                  <Td> {shop.orderDate} </Td>
+        
+                  <Td> {shop.orderDate.slice(0,10)} </Td>
 
-                  {console.log(shop.order_details)}
+
 
                     <FormControl id="producto">
                   <Td isNumeric>
@@ -99,7 +99,8 @@ function ShoppingHistory() {
                         <MenuList>
                           {shop.order_details.map((products) => (
 
-                            <Link  to={`/products/${products.title}`} >
+                            <Link key={products.id} to={`/products/${products.title}`} >
+                              {console.log(`/products/${products.title}`)}
                             <MenuItem minH="48px">
                               <Image
                                 boxSize="2rem"
@@ -116,12 +117,10 @@ function ShoppingHistory() {
                         </MenuList>
                       </Menu>
                   </Td>
-
                     </FormControl>
 
                   <Td> {shop.orderPaymentType} </Td>
-
-                  <Td> {shop.totalAmmount} </Td>
+                  <Td> ${shop.totalAmmount} </Td>
                 </Tr>
               ))}
 
