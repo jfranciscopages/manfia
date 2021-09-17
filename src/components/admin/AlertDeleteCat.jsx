@@ -35,7 +35,7 @@ function AlertDeleteCat({ catId }) {
       </PopoverTrigger>
       <PopoverContent bg="gray.100" borderColor="teal.500">
         <PopoverHeader pt={4} fontWeight="bold" border="0" color="black">
-          Confirmar eliminacion
+          Confirmar eliminación
         </PopoverHeader>
         <PopoverArrow />
         <PopoverCloseButton />
