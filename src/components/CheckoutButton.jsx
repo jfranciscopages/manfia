@@ -95,7 +95,7 @@ function CheckoutButton() {
                   bg: "black",
                 }}
               >
-                Submit
+                Aceptar
               </Button>
               </Stack>
 
