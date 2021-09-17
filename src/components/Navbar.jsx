@@ -50,7 +50,7 @@ const Navbar = () => {
   };
 
   return (
-    <Box >
+    <Box>
       <Flex
         bg={useColorModeValue("gray.50", "gray.900")}
         color={useColorModeValue("gray.600", "white")}
@@ -97,7 +97,7 @@ const Navbar = () => {
           flex={{ base: 1, md: 0 }}
           justify={"flex-end"}
           direction={"row"}
-          spacing={6}
+          spacing={2}
         >
           <Box>
             <Link to="/cart">
@@ -115,6 +115,10 @@ const Navbar = () => {
                 as={"a"}
                 fontSize={"lg"}
                 fontWeight={400}
+                bg="teal.500"
+                color="white"
+                pl="5"
+                pr="5"
                 variant={"link"}
                 href={"/login"}
               >
@@ -122,7 +126,7 @@ const Navbar = () => {
               </Button>
               <Button
                 as={"a"}
-                display={{ base: "none", md: "inline-flex" }}
+                display={{ base: "grid", md: "inline-flex" }}
                 fontSize={"lg"}
                 fontWeight={600}
                 color={"white"}
@@ -250,7 +254,6 @@ const MobileNavItem = ({ label, children, href } = NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-
     <Stack spacing={2} onClick={children && onToggle}>
       <Flex
         py={2}

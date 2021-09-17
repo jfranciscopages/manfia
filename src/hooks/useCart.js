@@ -1,7 +1,9 @@
 import React from "react";
 import { nostockAlert } from "../utils/alerts";
+import { useToast } from "@chakra-ui/toast";
 
 function useCart() {
+  const toast = useToast();
   const [changes, setChanges] = React.useState("");
   let orderform = JSON.parse(window.localStorage.getItem("orderform"));
 
@@ -36,6 +38,13 @@ function useCart() {
     } else {
       orderform.items.push(aux);
     }
+    toast({
+      title: "Producto agregado al Carrito!",
+      status: "success",
+      duration: 2000,
+      position: "bottom",
+      isClosable: true,
+    });
     window.localStorage.setItem("orderform", JSON.stringify(orderform));
   };
 

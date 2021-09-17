@@ -65,7 +65,9 @@ const List = () => {
                     .map((_, i) => (
                       <StarIcon
                         key={i}
-                        color={i < product.rating.rate ? "teal.500" : "gray.300"}
+                        color={
+                          i < product.rating.rate ? "teal.500" : "gray.300"
+                        }
                       />
                     ))}
                   <Box as="span" ml="2" color="gray.600" fontSize="sm">

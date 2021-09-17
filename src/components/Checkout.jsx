@@ -1,5 +1,6 @@
 import React from "react";
-import useCart from "../hooks/useCart";
+import { useToast } from "@chakra-ui/toast";
+
 import {
   Table,
   Tr,
@@ -21,6 +22,7 @@ import { useHistory } from "react-router";
 
 function Checkout() {
   const history = useHistory();
+  const toast = useToast();
   let sendOrder = JSON.parse(window.localStorage.getItem("orderform"));
   console.log(sendOrder)
 
@@ -30,6 +32,13 @@ function Checkout() {
       .post("/api/cart/createOrder", sendOrder)
       .then((data) => {
         console.log(`dasodsaodsadosad`, data);
+        toast({
+          title: "Producto compra realizada con Exito!",
+          status: "success",
+          duration: 2000,
+          position: "bottom",
+          isClosable: true,
+        });
         history.push(`/history`);
       })
       .catch((err) => console.error(err));
@@ -37,13 +46,19 @@ function Checkout() {
 
   return (
     <>
-<Box  backgroundColor="gray.200">
 
-      <Heading
-          fontSize="3xl"
-          marginTop="0px"
-          paddingLeft="30px"
-          paddingTop="50px"
+      <Flex
+        flexDirection="column"
+        backgroundColor="gray.200"
+        px={{ base: "5", md: "20", xl: "30" }}
+        py={{ base: "5", md: "20", xl: "30" }}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Heading
+          fontSize="2xl"
+          textAlign="center"
+          marginTop="20px"
           color="teal.400"
           backgroundColor="gray.200"
         >
