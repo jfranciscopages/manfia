@@ -235,7 +235,7 @@ const productosParaSeedear = [
     category: "Remeras",
     stock: "10",
     rating: {
-      rate: 3,
+      rate: 4,
       count: 114,
     },
   },
@@ -250,7 +250,7 @@ const productosParaSeedear = [
     category: "Pantalones",
     stock: "3",
     rating: {
-      rate: 4,
+      rate: 5,
       count: 259,
     },
   },
@@ -265,7 +265,7 @@ const productosParaSeedear = [
     category: "Camperas",
     stock: "24",
     rating: {
-      rate: 2,
+      rate: 4,
       count: 500,
     },
   },
@@ -308,7 +308,7 @@ const productosParaSeedear = [
     category: "Shorts",
     stock: "13",
     rating: {
-      rate: 3,
+      rate: 5,
       count: 70,
     },
   },
@@ -328,7 +328,7 @@ const productosParaSeedear = [
     },
   },
   {
-    title: "Fase Lunar Aesthetic Buzo Black/withe",
+    title: "Fase Lunar Aesthetic Buzo Black & white",
     price: "4000",
     description: "Fase Lunar Aesthetic Buzo Black/withe - Japan Goth Moon.",
     sex: "Women",
@@ -382,7 +382,7 @@ const productosParaSeedear = [
     category: "Remeras",
     stock: "13",
     rating: {
-      rate: 2,
+      rate: 4,
       count: 70,
     },
   },

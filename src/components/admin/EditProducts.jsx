@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../store/productsReducer";
-import { singleProduct } from "../../store/productReducer";
 
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiEditAlt } from "react-icons/bi";

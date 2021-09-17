@@ -64,7 +64,7 @@ export function Product() {
           >
             <Heading
               as="h1"
-              size="xl"
+              size="lg"
               fontWeight="bold"
               color="primary.800"
               textAlign={["center", "center", "left", "left"]}
@@ -72,8 +72,8 @@ export function Product() {
               {product.title}
             </Heading>
             <Heading
-              as="h2"
-              size="md"
+              as="h3"
+              size="sm"
               color="primary.800"
               opacity="0.8"
               fontWeight="normal"
@@ -81,6 +81,17 @@ export function Product() {
               textAlign={["center", "center", "left", "left"]}
             >
               {product.description}
+            </Heading>
+            <Heading
+              as="h4"
+              size="md"
+              color="primary.800"
+              opacity="0.8"
+              fontWeight="normal"
+              lineHeight={1.5}
+              textAlign={["center", "center", "left", "left"]}
+            >
+             $ {product.price}
             </Heading>
             <Button
               colorScheme="primary"
@@ -112,7 +123,7 @@ export function Product() {
                 : ""}
 
               <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                {product.rating ? product.rating.count : ""} reviews
+                {product.rating ? product.rating.count + " reviews" : ""} 
               </Box>
             </Box>
           </Stack>

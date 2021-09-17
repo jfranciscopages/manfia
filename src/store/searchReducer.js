@@ -7,7 +7,7 @@ import {
 
 export const searchProducts = createAsyncThunk("SEARCH_PRODUCTS", (title) => {
   const value = title.target.value;
-  axios
+  return axios
     .get(`api/search/${value}`)
     .then((res) => res.data)
     .catch((e) => console.log(e));
