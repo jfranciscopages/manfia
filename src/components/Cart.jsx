@@ -18,6 +18,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon, DeleteIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 function Cart() {
   let orderform = JSON.parse(window.localStorage.getItem("orderform"));
@@ -52,6 +53,24 @@ function Cart() {
         >
           MI CARRITO
         </Heading>
+        {orderform.clientProfile ? (
+          <Link to="/history">
+            <Button
+              mt={1}
+              position={{ md: "absolute" }}
+              top="170"
+              right="500"
+              bg="teal.500"
+              color="gray.50"
+              _hover={{ bg: "teal.600" }}
+            >
+              Historial de compras
+            </Button>
+          </Link>
+        ) : (
+          ""
+        )}
+
         <Stack
           flexDir="column"
           mb="2"

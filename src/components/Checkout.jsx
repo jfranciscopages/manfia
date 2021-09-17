@@ -31,7 +31,7 @@ function Checkout() {
     await axios.post("/api/cart/createOrder", sendOrder).then((data) => {
       console.log(`dasodsaodsadosad`, data);
       toast({
-        title: "Producto compra realizada con Exito!",
+        title: "Compra realizada con Exito!",
         status: "success",
         duration: 5000,
         position: "bottom",
