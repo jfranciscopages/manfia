@@ -12,14 +12,14 @@ export const registeredAlert = () => {
 
 export const loginError = () => {
   MySwal.fire({
-    title: "Usuario o Contraseña incorrecta. Por Favor intente nuevamente!",
+    title: "Usuario o contraseña incorrecta. Por favor intente nuevamente.",
     icon: "error",
   });
 };
 
 export const incorrectsChars = () => {
   MySwal.fire({
-    title: "Carracteres incorrectos en el nombre!!",
+    title: "Usuario o contraseña incorrecta. Por favor intente nuevamente.",
     icon: "error",
   });
 };
