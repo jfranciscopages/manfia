@@ -35,17 +35,17 @@ function AlertDeleteCat({ catId }) {
       </PopoverTrigger>
       <PopoverContent bg="gray.100" borderColor="teal.500">
         <PopoverHeader pt={4} fontWeight="bold" border="0" color="black">
-          Confirmar eliminacion
+          Confirmar eliminación
         </PopoverHeader>
         <PopoverArrow />
         <PopoverCloseButton />
         <PopoverBody color="black">
-          Estas seguro que queres eliminar la categoria?
+          ¿Estás seguro que querés eliminar la categoría?
           <br></br>
-          Si no eliminaste todos los productos asociados a ella quedaran sin
-          categoria asociada.
-          <br></br> Asegurate de eliminar todos los productos de esta categoria
-          antes de eliminar la categoria.
+          Si no eliminaste todos los productos asociados a ella, quedarán sin
+          categoría asociada.
+          <br></br> Asegurate de eliminar todos los productos de esta categoría
+          antes de eliminarla.
         </PopoverBody>
         <PopoverFooter
           border="0"
