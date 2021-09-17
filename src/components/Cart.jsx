@@ -44,7 +44,7 @@ function Cart() {
         alignItems="center"
       >
         <Heading
-          fontSize="2xl"
+          fontSize="3xl"
           textAlign="center"
           marginTop="20px"
           color="teal.400"
@@ -63,11 +63,11 @@ function Cart() {
                 <Table>
                   <Thead>
                     <Tr>
-                      <Th>Producto</Th>
+                      <Th fontSize="2xl">Producto</Th>
                       <Th></Th>
 
-                      <Th>Cantidad</Th>
-                      <Th>Precio</Th>
+                      <Th fontSize="2xl">Cantidad</Th>
+                      <Th fontSize="2xl">Precio</Th>
                       <Th></Th>
                     </Tr>
                   </Thead>
@@ -77,9 +77,9 @@ function Cart() {
                       ? orderform.items.map((product) => (
                           <Tr key={product.id}>
                             <Td>
-                              <Image src={product.image} boxSize="50px" />
+                              <Image src={product.image} boxSize="90px" />
                             </Td>
-                            <Td fontSize="md">{product.title}</Td>
+                            <Td fontSize="xl">{product.title}</Td>
 
                             <Td>
                               <Stack spacing={4} direction="row" align="center">
@@ -90,7 +90,7 @@ function Cart() {
                                 >
                                   <MinusIcon />
                                 </Button>
-                                <Box> {product.quantity} </Box>
+                                <Box fontSize="xl"> {product.quantity} </Box>
 
                                 <Button
                                   colorScheme="teal"
@@ -101,9 +101,10 @@ function Cart() {
                                 </Button>
                               </Stack>
                             </Td>
-                            <Td>${Number(product.price * product.quantity)}</Td>
+                            <Td fontSize="xl">${Number(product.price * product.quantity)}</Td>
                             <Td>
                               <Button
+                              
                                 colorScheme="teal"
                                 size="xs"
                                 onClick={() => deleteProductCart(product)}
@@ -116,17 +117,21 @@ function Cart() {
                       : ""}
                   </Tbody>
 
-                  <Tfoot>
+                  <Tfoot >
                     <Tr>
-                      <Th mr="4" fontSize="2xl">
+                      <Th></Th>
+                      <Th></Th>
+            
+                      <Th mr="4" color="black" fontSize="2xl">
                         TOTAL
                       </Th>
 
-                      <Th mr="4" fontSize="2xl">
+                      <Th mr="4" color="black" fontSize="2xl">
                         ${totalAmountToPay}
                       </Th>
                     </Tr>
                   </Tfoot>
+                        
                 </Table>
               ) : (
                 ""
@@ -135,6 +140,8 @@ function Cart() {
               ""
             )}
           </Box>
+          <Box></Box>
+          <Box></Box>
           <Box>
             {orderform.items.length > 0 ? (
               orderform.clientProfile != null ? (
