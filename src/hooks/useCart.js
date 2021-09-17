@@ -1,13 +1,12 @@
 import React from "react";
-import { useHistory } from "react-router";
 import { nostockAlert } from "../utils/alerts";
 
 function useCart() {
   const [changes, setChanges] = React.useState("");
-  const history = useHistory();
   let orderform = JSON.parse(window.localStorage.getItem("orderform"));
+
   const addProductToCart = (product) => {
-    let orderform = JSON.parse(window.localStorage.getItem("orderform"));
+    orderform = JSON.parse(window.localStorage.getItem("orderform"));
     let item;
     let aux = {
       id: product.id,
@@ -45,26 +44,25 @@ function useCart() {
     if (orderform.items.length > 0) {
       orderform.items.map((prod) => {
         if (prod.id == product.id) {
-          if (prod.quantity + 1 <= prod.stock) prod.quantity++;
+          if (prod.quantity + 1 <= product.stock) prod.quantity++;
           else nostockAlert();
         }
       });
     }
     //luego lo volvemos a setear en localstorage
     window.localStorage.setItem("orderform", JSON.stringify(orderform));
-    setChanges(`Add item with quantity: ${product.quantity}!`);
+    setChanges(!changes);
   };
 
   const substractQuantity = (product) => {
     orderform = JSON.parse(window.localStorage.getItem("orderform"));
     if (orderform.items.length > 0) {
-      let idx = orderform.items.findIndex((prod) => prod.id == product.id);
-      console.log(idx);
+      let idx = orderform.items.findIndex((prod) => prod.id === product.id);
       if (orderform.items[idx].quantity > 1) orderform.items[idx].quantity--;
       else orderform.items.splice(idx, 1);
     }
     window.localStorage.setItem("orderform", JSON.stringify(orderform));
-    setChanges(`Substract item with quantity: ${product.quantity}!`);
+    setChanges(!changes);
   };
 
   const deleteProductCart = (product) => {
@@ -74,7 +72,7 @@ function useCart() {
       orderform.items.splice(idx, 1);
     }
     window.localStorage.setItem("orderform", JSON.stringify(orderform));
-    setChanges(`Delete item with id: ${product.id}!`);
+    setChanges(!changes);
   };
 
   let totalAmountToPay = orderform.items.reduce(function (eAnterior, eActual) {

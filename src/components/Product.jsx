@@ -2,7 +2,6 @@ import * as React from "react";
 import useCart from "../hooks/useCart";
 import axios from "axios";
 
-
 import { Box, Flex, Center, Image, Button, WrapItem } from "@chakra-ui/react";
 
 export function Product() {
