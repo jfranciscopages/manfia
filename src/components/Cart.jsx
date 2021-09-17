@@ -23,7 +23,7 @@ function Cart() {
   let orderform = JSON.parse(window.localStorage.getItem("orderform"));
   const {
     substractQuantity,
-    addProductToCart,
+    addOneMoreProduct,
     deleteProductCart,
     totalAmountToPay,
     changes,
@@ -86,9 +86,7 @@ function Cart() {
                                 <Button
                                   colorScheme="teal"
                                   size="xs"
-                                  onClick={() =>
-                                    substractQuantity(product, product.quantity)
-                                  }
+                                  onClick={() => substractQuantity(product)}
                                 >
                                   <MinusIcon />
                                 </Button>
@@ -97,9 +95,7 @@ function Cart() {
                                 <Button
                                   colorScheme="teal"
                                   size="xs"
-                                  onClick={() =>
-                                    addProductToCart(product, product.quantity)
-                                  }
+                                  onClick={() => addOneMoreProduct(product)}
                                 >
                                   <AddIcon />
                                 </Button>
@@ -110,9 +106,7 @@ function Cart() {
                               <Button
                                 colorScheme="teal"
                                 size="xs"
-                                onClick={() =>
-                                  deleteProductCart(product, product.quantity)
-                                }
+                                onClick={() => deleteProductCart(product)}
                               >
                                 <DeleteIcon />
                               </Button>
