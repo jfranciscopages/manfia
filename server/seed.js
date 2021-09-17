@@ -8,7 +8,7 @@ const userAdmin = {
   access: "admin",
   email: "admin@gmail.com",
   password: "admin",
-  fullName: "adminName",
+  fullName: "Administrador",
   address: "Cespedes 1567",
   country: "Argentina",
   phone: "1130922002",
