@@ -35,7 +35,7 @@ Products.init(
     },
     rating: {
       type: Sequelize.JSON,
-      allowNull: true,
+      // allowNull: true,
     },
   },
   { sequelize: db, modelName: "products" }

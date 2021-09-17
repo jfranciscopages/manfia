@@ -61,7 +61,8 @@ const List = () => {
               </Center>
               <Center>
                 <Box d="flex" mt="2" mb="4" alignItems="center">
-                  {Array(5)
+                  { product.rating ?
+                  Array(5)
                     .fill("")
                     .map((_, i) => (
                       <StarIcon
@@ -70,9 +71,9 @@ const List = () => {
                           i < product.rating.rate ? "teal.500" : "gray.300"
                         }
                       />
-                    ))}
+                    )): "Sin reviews"}
                   <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                    {product.rating.count} reviews
+                    {product.rating ? product.rating.count + " reviews" : ""} 
                   </Box>
                 </Box>
               </Center>
