@@ -56,7 +56,7 @@ export default function Registro() {
             <Td>{item.orderDate.slice(0,10)}</Td>
             <Td>{item.orderPaymentType}</Td>
             <Td isNumeric> $ {item.totalAmmount}</Td>
-            <Td paddingRight="75px" isNumeric>{item.orderStatus}</Td>
+            <Td paddingRight="75px" isNumeric>{item.orderStatus == "closed" ? "Cerrada": "Activa"} </Td>
           </Tr>
         })}
         </Tbody>
