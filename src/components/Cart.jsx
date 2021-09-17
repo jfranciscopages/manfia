@@ -26,7 +26,6 @@ function Cart() {
     substractQuantity,
     addProductToCart,
     deleteProductCart,
-    orderform,
     totalAmountToPay,
     changes,
   } = useCart();
