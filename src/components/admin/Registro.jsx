@@ -21,8 +21,20 @@ import {
   Tr,
 } from "@chakra-ui/table";
 import React from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 export default function Registro() {
+  const [registro, setRegistro] = React.useState([]);
+  useEffect(() => {
+    axios
+    .get(`/api/cart/orderList`)
+    .then((res) => res.data)
+    .then((registro) => {
+    /* console.log(registro[0]) */
+    return setRegistro(registro);
+    });
+    }, []);
   return (
     <>
       <br />
@@ -30,32 +42,31 @@ export default function Registro() {
         <TableCaption>Registro de ventas</TableCaption>
         <Thead>
           <Tr>
-            <Th>Producto</Th>
-            <Th isNumeric> Número de orden</Th>
-            <Th isNumeric>Precio</Th>
+            <Th>Número de orden</Th>
             <Th>Fecha de compra</Th>
-            <Th isNumeric>Cantidad</Th>
+            <Th>Forma de pago</Th>
             <Th isNumeric>Total</Th>
+            <Th isNumeric>Estado de orden</Th>
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
-            <Td>nombre del producto</Td>
-            <Td>número de orden u orden id</Td>
-            <Td isNumeric>precio individual</Td>
-            <Td isNumeric>fecha de la compra</Td>
-            <Td isNumeric>cant</Td>
-            <Td isNumeric>precio*cantidad</Td>
+        {registro.map((item) => { 
+        return <Tr>
+            <Td paddingLeft="75px">{item.id}</Td>
+            <Td>{item.orderDate.slice(0,10)}</Td>
+            <Td>{item.orderPaymentType}</Td>
+            <Td isNumeric> $ {item.totalAmmount}</Td>
+            <Td paddingRight="75px" isNumeric>{item.orderStatus}</Td>
           </Tr>
+        })}
         </Tbody>
         <Tfoot>
           <Tr>
-            <Th>Producto</Th>
-            <Th isNumeric> Número de orden</Th>
-            <Th isNumeric>Precio</Th>
+            <Th>Número de orden</Th>
             <Th>Fecha de compra</Th>
-            <Th isNumeric>Cantidad</Th>
+            <Th>Forma de pago</Th>
             <Th isNumeric>Total</Th>
+            <Th isNumeric>Estado de orden</Th>
           </Tr>
         </Tfoot>
       </Table>
@@ -63,30 +74,3 @@ export default function Registro() {
   );
 }
 
-/* nombre del producto / nombre del usuario / precio / fecha de compra */
-/* 
-PRODUCTO
-NUMERO DE ORDEN
-PRECIO
-FECHA
-CANTIDAD
-TOTAL = PRECIO * CANTIDAD
-
-  <Tr>
-            <Td>feet</Td>
-            <Td>centimetres (cm)</Td>
-            <Td isNumeric>30.48</Td>
-            <Td isNumeric>30.48</Td>
-            <Td isNumeric>30.48</Td>
-            <Td isNumeric>30.48</Td>
-          </Tr>
-          <Tr>
-            <Td>yards</Td>
-            <Td>metres (m)</Td>
-            <Td isNumeric>0.91444</Td>
-            <Td isNumeric>0.91444</Td>
-            <Td isNumeric>0.91444</Td>
-            <Td isNumeric>0.91444</Td>
-          </Tr>
-
-*/
