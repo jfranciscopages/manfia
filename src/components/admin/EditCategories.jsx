@@ -24,6 +24,7 @@ import { Link } from "react-router-dom";
 //íconos de React
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiEditAlt } from "react-icons/bi";
+import AlertDeleteCat from "./AlertDeleteCat";
 
 export default function EditCategories() {
   const history = useHistory();
@@ -95,12 +96,7 @@ export default function EditCategories() {
                           </Link>
                         </Td>
                         <Td>
-                          <Button
-                            colorScheme="red"
-                            onClick={() => onDelete(cat.id)}
-                          >
-                            <AiOutlineDelete />
-                          </Button>
+                          <AlertDeleteCat catId={cat.id} />
                         </Td>
                       </Tr>
                     ) : null
@@ -150,12 +146,7 @@ export default function EditCategories() {
                           </Link>
                         </Td>
                         <Td>
-                          <Button
-                            colorScheme="red"
-                            onClick={() => onDelete(cat.id)}
-                          >
-                            <AiOutlineDelete />
-                          </Button>
+                          <AlertDeleteCat catId={cat.id} />
                         </Td>
                       </Tr>
                     ) : null
