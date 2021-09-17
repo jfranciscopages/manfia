@@ -1,6 +1,5 @@
 import {
   Button,
-  Flex,
   FormControl,
   FormLabel,
   Heading,
@@ -9,10 +8,8 @@ import {
   Select,
   AlertDialog,
   AlertDialogBody,
-  AlertDialogFooter,
   AlertDialogContent,
   AlertDialogOverlay,
-  useColorModeValue,
   AlertDialogCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -26,7 +23,7 @@ function CheckoutButton() {
 
   return (
     <>
-      <Button onClick={onOpen}>Finalizar Compra</Button>
+      <Button colorScheme="teal" fontSize="xl" onClick={onOpen}>Finalizar Compra</Button>
       <AlertDialog
         motionPreset="slideInBottom"
         leastDestructiveRef={cancelRef}
@@ -35,20 +32,16 @@ function CheckoutButton() {
         isCentered
       >
         <AlertDialogOverlay />
-        <Flex
-          maxH={"92vh"}
-          align={"center"}
-          justify={"center"}
-          bg={useColorModeValue("gray.50", "gray.800")}
-        >
           <AlertDialogContent>
             <AlertDialogCloseButton />
             <AlertDialogBody>
+
               <Stack
                 spacing={4}
                 w={"full"}
                 maxW={"md"}
-                bg={useColorModeValue("white", "gray.700")}
+                // bg={useColorModeValue("white", "gray.700")}
+                backgroundColor="gray.50"
                 rounded={"xl"}
                 boxShadow={"lg"}
                 p={6}
@@ -93,10 +86,7 @@ function CheckoutButton() {
                   </Select>
                 </FormControl>
 
-                <Stack spacing={6}></Stack>
-              </Stack>
-            </AlertDialogBody>
-            <AlertDialogFooter>
+                {/* <Stack spacing={6}></Stack> */}
               <Button
                 onClick={handleSubmit}
                 bg={"teal"}
@@ -107,9 +97,12 @@ function CheckoutButton() {
               >
                 Submit
               </Button>
-            </AlertDialogFooter>
+              </Stack>
+
+
+            </AlertDialogBody>
+          
           </AlertDialogContent>
-        </Flex>
       </AlertDialog>
     </>
   );

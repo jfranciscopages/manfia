@@ -37,55 +37,58 @@ function Checkout() {
 
   return (
     <>
-      <Flex
-        flexDirection="column"
-        width="100wh"
-        height="100vh"
-        backgroundColor="gray.200"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Heading
-          fontSize="2xl"
-          textAlign="center"
-          marginTop="20px"
+<Box  backgroundColor="gray.200">
+
+      <Heading
+          fontSize="3xl"
+          marginTop="0px"
+          paddingLeft="30px"
+          paddingTop="50px"
           color="teal.400"
+          backgroundColor="gray.200"
         >
-          Resumen de compra
+          Envío
         </Heading>
-        <Stack
-          flexDir="column"
-          mb="2"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Box display="flex" alignItems="center">
-            <Table>
+          <Box display="flex" alignItems="center"   paddingTop="10px"   backgroundColor="gray.200" >
+            <Table   >
               <Thead>
                 <Tr>
-                  <Th>Domicilio de envío</Th>
-                  <Th>Medio de pago</Th>
+                  <Th fontSize="lg" color="black">Domicilio de envío</Th>
+                  <Td textTransform="uppercase" fontSize="lg" color ="black">{sendOrder.order.orderAddress}</Td>
+                 
                 </Tr>
               </Thead>
               <Tbody>
                 <Tr>
-                  <Th>{sendOrder.order.orderAddress}</Th>
-                  <Th>{sendOrder.order.orderPaymentType}</Th>
+                  <Th fontSize="lg" color="black">Medio de pago</Th>
+                  <Td textTransform="uppercase" fontSize="lg" color ="black">{sendOrder.order.orderPaymentType}</Td>
                 </Tr>
               </Tbody>
             </Table>
           </Box>
+    
+   
+        <Heading
+          fontSize="3xl"
+          paddingLeft="30px"
+          paddingTop="50px"
+          color="teal.400"
+          backgroundColor="gray.200"
+          paddingBottom="50px"
+        >
+          Resumen de compra
+        </Heading>
           <Box display="flex" alignItems="center">
             {sendOrder ? (
               sendOrder.items.length > 0 ? (
                 <Table>
                   <Thead>
                     <Tr>
-                      <Th>Producto</Th>
+                      <Th fontSize="xl" color="black">Producto</Th>
                       <Th></Th>
 
-                      <Th>Cantidad</Th>
-                      <Th>Precio</Th>
+                      <Th fontSize="xl" color="black">Cantidad</Th>
+                      <Th fontSize="xl" color="black">Precio</Th>
                       <Th></Th>
                     </Tr>
                   </Thead>
@@ -97,31 +100,39 @@ function Checkout() {
                             <Td>
                               <Image src={product.image} boxSize="50px" />
                             </Td>
-                            <Td alignSelf="center" fontSize="md">
+                            <Td  alignSelf="center" fontSize="xl">
                               {product.title}
                             </Td>
                             <Td>
                               <Stack spacing={4} direction="row" align="center">
-                                <Box> {product.quantity} </Box>
+                                <Box></Box>
+                                <Box></Box>
+                                <Box></Box>
+                                <Box fontSize="xl" align="center" > {product.quantity} </Box>
                               </Stack>
                             </Td>
-                            <Td>${Number(product.price * product.quantity)}</Td>
+                            <Td fontSize="xl">${Number(product.price * product.quantity)}</Td>
                           </Tr>
                         ))
                       : ""}
                   </Tbody>
 
-                  <Tfoot>
+  
+                  <Tfoot >
                     <Tr>
-                      <Th mr="4" fontSize="2xl">
+                      <Th></Th>
+                      <Th></Th>
+            
+                      <Th mr="4" color="black" fontSize="2xl">
                         TOTAL
                       </Th>
 
-                      <Th mr="4" fontSize="2xl">
-                        ${sendOrder.order.totalAmmount}
+                      <Th mr="4" color="black" fontSize="2xl">
+                      ${sendOrder.order.totalAmmount}
                       </Th>
                     </Tr>
                   </Tfoot>
+
                 </Table>
               ) : (
                 ""
@@ -130,11 +141,15 @@ function Checkout() {
               ""
             )}
           </Box>
-          <Box>
-            <Button onClick={() => submitToBack()}>FINALIZAR COMPRA</Button>
+          
+          <Box paddingBottom="70px" paddingTop="50px"  align="center">
+            <Button colorScheme="teal" fontSize="xl" onClick={() => submitToBack()}>FINALIZAR COMPRA</Button>
           </Box>
-        </Stack>
-      </Flex>
+        {/* </Stack> */}
+        
+      
+      {/* </Flex> */}
+    </Box>
     </>
   );
 }
