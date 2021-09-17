@@ -10,11 +10,11 @@ const mails_controller = {
         pass: "@Manfia123",
       },
     });
-    const { mail } = req.body;
+    const { email } = req.body;
 
     const mailOptions = {
       from: "Remitente <projectomanfia@gmail.com>",
-      to: `${mail}`,
+      to: `${email}`,
       subject: `Manfia - Factura de Compra`,
       html: `<h2>Gracias por elegirnos!</h2>
         <p style="font-size: 1.5em; background-color: #317399; padding: 0 5px; color: #fff;">Su compra a sido realizada con exito!</p>

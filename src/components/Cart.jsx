@@ -48,6 +48,7 @@ function Cart() {
           textAlign="center"
           marginTop="20px"
           color="teal.400"
+          pb="10"
         >
           MI CARRITO
         </Heading>
@@ -76,7 +77,7 @@ function Cart() {
                     {orderform.items.length > 0
                       ? orderform.items.map((product) => (
                           <Tr key={product.id}>
-                            <Td>
+                            <Td key={product.id}>
                               <Image src={product.image} boxSize="90px" />
                             </Td>
                             <Td fontSize="xl">{product.title}</Td>
@@ -101,10 +102,11 @@ function Cart() {
                                 </Button>
                               </Stack>
                             </Td>
-                            <Td fontSize="xl">${Number(product.price * product.quantity)}</Td>
+                            <Td fontSize="xl">
+                              ${Number(product.price * product.quantity)}
+                            </Td>
                             <Td>
                               <Button
-                              
                                 colorScheme="teal"
                                 size="xs"
                                 onClick={() => deleteProductCart(product)}
@@ -117,21 +119,20 @@ function Cart() {
                       : ""}
                   </Tbody>
 
-                  <Tfoot >
+                  <Tfoot>
                     <Tr>
                       <Th></Th>
                       <Th></Th>
-            
-                      <Th mr="4" color="black" fontSize="2xl">
+
+                      <Th mr="4" color="black" fontSize="2xl" pt="10">
                         TOTAL
                       </Th>
 
-                      <Th mr="4" color="black" fontSize="2xl">
+                      <Th mr="4" color="black" fontSize="2xl" pt="10">
                         ${totalAmountToPay}
                       </Th>
                     </Tr>
                   </Tfoot>
-                        
                 </Table>
               ) : (
                 ""
@@ -142,7 +143,7 @@ function Cart() {
           </Box>
           <Box></Box>
           <Box></Box>
-          <Box>
+          <Box pb="10">
             {orderform.items.length > 0 ? (
               orderform.clientProfile != null ? (
                 <CheckoutButton />

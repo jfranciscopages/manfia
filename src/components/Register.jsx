@@ -57,6 +57,7 @@ const Register = () => {
     email,
     setPassword,
     password,
+    nameValidation,
   } = params;
 
   return (

@@ -10,6 +10,20 @@ export const registeredAlert = () => {
   });
 };
 
+export const loginError = () => {
+  MySwal.fire({
+    title: "Usuario o Contraseña incorrecta. Por Favor intente nuevamente!",
+    icon: "error",
+  });
+};
+
+export const incorrectsChars = () => {
+  MySwal.fire({
+    title: "Carracteres incorrectos en el nombre!!",
+    icon: "error",
+  });
+};
+
 export const userUpdated = () => {
   MySwal.fire({
     title: "¡Listo!",

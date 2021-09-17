@@ -4,6 +4,7 @@ import axios from "axios";
 import { success, log } from "../utils/logs";
 import { userLogged } from "../store/userLogged";
 import { useHistory } from "react-router-dom";
+import { loginError } from "../utils/alerts";
 
 const useLogin = () => {
   const [loginEmail, setLoginEmail] = useState(``);
@@ -33,6 +34,7 @@ const useLogin = () => {
       })
       .catch((err) => {
         setIsLoading(false);
+        loginError();
         console.error(err);
       });
   };

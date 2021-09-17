@@ -1,13 +1,14 @@
 import * as React from "react";
-import { useSelector} from "react-redux";
-
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Box, Center, Image, Button, SimpleGrid } from "@chakra-ui/react";
 
 const SearchOptions = () => {
-  console.log("TITLE COMPONENTE");
   const search = useSelector((state) => state.search);
-
-  console.log("SEARCH", search);
+  const [loading, setLoading] = React.useState(false);
+  const setOneProduct = (e) => {
+    localStorage.setItem("product", e);
+  };
 
   return (
     <SimpleGrid
@@ -51,14 +52,14 @@ const SearchOptions = () => {
               </Center>
               <Box mb={5}>
                 <Center>
-                  {/* <Link to={`/products/${product.title}`}> */}
-                  <Button
-                    colorScheme="teal"
-                    //   onClick={() => setOneProduct(product.title)}
-                  >
-                    Ver más
-                  </Button>
-                  {/* </Link> */}
+                  <Link to={`/products/${search.title}`}>
+                    <Button
+                      colorScheme="teal"
+                      onClick={() => setOneProduct(search.title)}
+                    >
+                      Ver más
+                    </Button>
+                  </Link>
                 </Center>
               </Box>
             </Box>

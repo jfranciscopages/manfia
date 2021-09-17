@@ -1,25 +1,22 @@
-  import React, { useEffect } from "react";
+import React, { useEffect } from "react";
 
 import {
   Table,
   Tr,
   Td,
   Th,
-
   Thead,
   Tbody,
   Button,
   Image,
   Heading,
   Flex,
-
+  Box,
   FormControl,
-
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-
 } from "@chakra-ui/react";
 import axios from "axios";
 
@@ -27,58 +24,42 @@ import { useSelector } from "react-redux";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 
-
 function ShoppingHistory() {
   const [shoppingHistory, setShoppingHistory] = React.useState([]);
   let orderform = JSON.parse(window.localStorage.getItem("orderform"));
 
-  const reserLocalS = (product)=>{
-    const nameProduct = localStorage.getItem("product");
-    return  window.localStorage.setItem("product", JSON.stringify(product)) 
-
-    }
+  const setOneProduct = (e) => {
+    localStorage.setItem("product", e);
+  };
 
   useEffect(() => {
     axios
       .get(`/api/cart/history/${orderform.clientProfile.id}`)
       .then((res) => res.data)
       .then((history) => {
-
         return setShoppingHistory(history);
       });
   }, []);
 
   return (
     <>
-      {console.log(shoppingHistory)}
-
-             <Heading
-            fontSize="2xl"
-            textAlign="center"
-            marginTop="20px"
-            color="teal.400"
-          >
-          Compra realizada con Exito!
-          </Heading>
-
-      <Flex
-        flexDirection="column"
-        width="100wh"
-        height="100vh"
-        backgroundColor="gray.200"
-        justifyContent="center"
-        alignItems="center"
-      >
-      
-          <Heading
-            fontSize="3xl"
-            textAlign="center"
-            marginTop="-20px"
-            color="teal.400"
-          >
-            Volver a Comprar
-          </Heading>
-
+      <Box mt="10">
+        <Heading
+          fontSize="3xl"
+          textAlign="center"
+          marginTop="-20px"
+          color="teal.400"
+          pb="5"
+        >
+          Historial de Compras
+        </Heading>
+        {console.log(shoppingHistory)}
+        <Flex
+          flexDirection="column"
+          backgroundColor="gray.200"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Table variant="simple">
             <Thead>
               <Tr>
@@ -91,40 +72,37 @@ function ShoppingHistory() {
             <Tbody>
               {shoppingHistory.map((shop) => (
                 <Tr key={shop.id}>
-        
-                  <Td> {shop.orderDate.slice(0,10)} </Td>
+                  <Td> {shop.orderDate.slice(0, 10)} </Td>
 
-
-
-                    <FormControl id="producto">
-                  <Td isNumeric>
+                  <FormControl id="producto">
+                    <Td isNumeric>
                       <Menu>
                         <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
                           Ver Productos
                         </MenuButton>
                         <MenuList>
                           {shop.order_details.map((products) => (
-
-                            <Link key={products.id} 
-                            onClick={()=>reserLocalS(products.title)} 
-                            to={`/products/${products.title}`} >
-                            <MenuItem minH="48px">
-                              <Image
-                                boxSize="2rem"
-                                borderRadius="full"
-                                src={products.image}
-                                alt="Fluffybuns the destroyer"
-                                mr="12px"
-                              />
-                              <span>{products.title}</span>
-                            </MenuItem>
+                            <Link
+                              key={products.id}
+                              onClick={() => setOneProduct(products.title)}
+                              to={`/products/${products.title}`}
+                            >
+                              <MenuItem minH="48px">
+                                <Image
+                                  boxSize="2rem"
+                                  borderRadius="full"
+                                  src={products.image}
+                                  alt="Fluffybuns the destroyer"
+                                  mr="12px"
+                                />
+                                <span>{products.title}</span>
+                              </MenuItem>
                             </Link>
-
                           ))}
                         </MenuList>
                       </Menu>
-                  </Td>
-                    </FormControl>
+                    </Td>
+                  </FormControl>
 
                   <Td> {shop.orderPaymentType} </Td>
                   <Td> ${shop.totalAmmount} </Td>
@@ -134,8 +112,8 @@ function ShoppingHistory() {
               <Tr></Tr>
             </Tbody>
           </Table>
-      
-      </Flex>
+        </Flex>
+      </Box>
     </>
   );
 }

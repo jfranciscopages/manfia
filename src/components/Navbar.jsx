@@ -5,6 +5,7 @@ import useLogin from "../hooks/useLogin";
 import { BiShoppingBag } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
+import { IoCartOutline } from "react-icons/io5";
 
 import {
   Box,
@@ -101,7 +102,13 @@ const Navbar = () => {
         >
           <Box>
             <Link to="/cart">
-              <IconButton icon={<BiShoppingBag size="sm" />} />
+              <IconButton
+                color="black"
+                bg="#B2F5EA"
+                py="2"
+                _hover={{ bg: "#81E6D9" }}
+                icon={<IoCartOutline size="sm" />}
+              />
             </Link>
           </Box>
 
@@ -115,14 +122,13 @@ const Navbar = () => {
                 as={"a"}
                 fontSize={"lg"}
                 fontWeight={400}
-                bg="teal.500"
-                color="white"
+                color={"white"}
+                colorScheme="teal"
                 pl="5"
                 pr="5"
-                variant={"link"}
                 href={"/login"}
               >
-                Login
+                <strong> Login </strong>
               </Button>
               <Button
                 as={"a"}
@@ -161,9 +167,8 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <Link
-                p={2}
-                to={navItem.href ?? "#"}
+              <Button
+                px={5}
                 fontSize={"mg"}
                 fontWeight={500}
                 color={linkColor}
@@ -173,7 +178,7 @@ const DesktopNav = () => {
                 }}
               >
                 <strong> {navItem.label} </strong>
-              </Link>
+              </Button>
             </PopoverTrigger>
 
             {navItem.children && (

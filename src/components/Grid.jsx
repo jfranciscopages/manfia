@@ -33,6 +33,7 @@ const List = () => {
         products.map((product) => {
           return (
             <Box
+              key={product.id}
               maxW="sm"
               borderWidth="1px"
               borderRadius="lg"

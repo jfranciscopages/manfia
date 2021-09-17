@@ -12,6 +12,7 @@ import {
   Button,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { StarIcon } from "@chakra-ui/icons";
 
 export function Product() {
   //trae los objetos del local storage
@@ -48,7 +49,7 @@ export function Product() {
           align="center"
           justify={{ base: "center", md: "space-around", xl: "space-between" }}
           direction={{ base: "column-reverse", md: "row" }}
-          pl={{ base: "0", md: "20", xl: "50" }}
+          pl={{ base: "0", md: "20", xl: "100" }}
           mb={16}
           borderWidth="1px"
           borderRadius="lg"
@@ -59,6 +60,7 @@ export function Product() {
             spacing={4}
             w={{ base: "80%", md: "40%" }}
             align={["center", "center", "flex-start", "flex-start"]}
+            pt={{ base: "0", md: "0", xl: "0" }}
           >
             <Heading
               as="h1"
@@ -95,15 +97,24 @@ export function Product() {
             >
               Agregar al Carrito
             </Button>
-            <Text
-              fontSize="xs"
-              mt={2}
-              textAlign="center"
-              color="primary.800"
-              opacity="0.6"
-            >
-              No credit card required.
-            </Text>
+            <Box d="flex" mt="2" mb="4" alignItems="center" pb="10">
+              {product.rating
+                ? Array(5)
+                    .fill("")
+                    .map((_, i) => (
+                      <StarIcon
+                        key={i}
+                        color={
+                          i < product.rating.rate ? "teal.500" : "gray.300"
+                        }
+                      />
+                    ))
+                : ""}
+
+              <Box as="span" ml="2" color="gray.600" fontSize="sm">
+                {product.rating ? product.rating.count : ""} reviews
+              </Box>
+            </Box>
           </Stack>
           <Box
             w={{ base: "80%", sm: "60%", md: "50%" }}

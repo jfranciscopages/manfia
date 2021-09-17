@@ -9,16 +9,13 @@ const search_controller = {
         where: {
           [Op.or]: {
             title: {
-              [Op.iLike]: `${title}%`,
-            },
-            title: {
-              [Op.iLike]: `%${title}`,
+              [Op.iLike]: `%${title}%`,
             },
             category: {
-              [Op.iLike]: `${title}%`,
+              [Op.iLike]: `%${title}%`,
             },
             description: {
-              [Op.iLike]: `${title}%`,
+              [Op.iLike]: `%${title}%`,
             },
           },
         },

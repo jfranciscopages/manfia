@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { log, success, error } from "../utils/logs";
-import { registeredAlert, errorAlert } from "../utils/alerts";
+import { registeredAlert, errorAlert, incorrectsChars } from "../utils/alerts";
 
 const useRegister = () => {
   const [name, setName] = useState("");
@@ -13,6 +13,15 @@ const useRegister = () => {
   const [phone, setPhone] = useState("");
   const [disabled, setDisabled] = useState(true);
   const history = useHistory();
+  var format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+  const nameValidation = (e) => {
+    console.log(e);
+    if (format.test(e)) incorrectsChars();
+    else {
+      return true;
+    }
+  };
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -25,19 +34,20 @@ const useRegister = () => {
       password: password,
     };
     log("register attempt...");
-    console.log(data);
-    await axios
-      .post(`/api/auth/register`, data)
-      .then((data) => {
-        history.push("/login");
-        success("new user registered successfully");
-        registeredAlert();
-      })
-      .catch((err) => {
-        console.log(err);
-        error(err);
-        errorAlert();
-      });
+    if (nameValidation(name)) {
+      await axios
+        .post(`/api/auth/register`, data)
+        .then((data) => {
+          history.push("/login");
+          success("new user registered successfully");
+          registeredAlert();
+        })
+        .catch((err) => {
+          console.log(err);
+          error(err);
+          errorAlert();
+        });
+    }
   };
 
   return {
@@ -56,6 +66,7 @@ const useRegister = () => {
     onSignUp,
     error,
     disabled,
+    nameValidation,
   };
 };
 

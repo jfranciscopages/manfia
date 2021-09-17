@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCategory } from "../store/categoryReducer";
 import { getProducts } from "../store/productsReducer";
 import { StarIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 import { Box, Flex, Center, Image, Button, SimpleGrid } from "@chakra-ui/react";
 
@@ -16,6 +17,10 @@ const Categories = ({ sex, cat }) => {
     const obj = { sex: sex, cat: cat };
     dispatch(getCategory(obj));
   }, [sex, cat]);
+
+  const setOneProduct = (e) => {
+    localStorage.setItem("product", e);
+  };
 
   const product = useSelector((state) => {
     return state.product;
@@ -38,6 +43,7 @@ const Categories = ({ sex, cat }) => {
         categories.map((category) => {
           return (
             <Box
+              key={category.id}
               maxW="sm"
               borderWidth="1px"
               borderRadius="lg"
@@ -69,7 +75,9 @@ const Categories = ({ sex, cat }) => {
                     .map((_, i) => (
                       <StarIcon
                         key={i}
-                        color={i < category.rating.rate ? "teal.500" : "gray.300"}
+                        color={
+                          i < category.rating.rate ? "teal.500" : "gray.300"
+                        }
                       />
                     ))}
                   <Box as="span" ml="2" color="gray.600" fontSize="sm">
@@ -79,14 +87,14 @@ const Categories = ({ sex, cat }) => {
               </Center>
               <Box mb={5}>
                 <Center>
-                  {/* <Link to={`/products/${product.title}`}> */}
-                  <Button
-                    colorScheme="teal"
-                    //   onClick={() => setOneProduct(product.title)}
-                  >
-                    Ver más
-                  </Button>
-                  {/* </Link> */}
+                  <Link to={`/products/${category.title}`}>
+                    <Button
+                      colorScheme="teal"
+                      onClick={() => setOneProduct(category.title)}
+                    >
+                      Ver más
+                    </Button>
+                  </Link>
                 </Center>
               </Box>
             </Box>

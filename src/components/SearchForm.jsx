@@ -21,7 +21,7 @@ const SearchForm = () => {
         onKeyPress={(e) => {
           if (e.charCode === 13) {
             console.log(`eeeeeeeeeeeeeeeee`, e.target.value);
-            dispatch(searchProducts(e.target.value));
+            dispatch(searchProducts(e));
             history.push(`/search`);
           }
         }}

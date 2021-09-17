@@ -4,23 +4,29 @@ var path = require("path");
 var logger = require("morgan");
 const db = require("./db/db");
 
-const routes = require("./routes/index");
 //Requires de passport
 const sessions = require(`express-session`);
-const cookieParser = require("cookie-parser");
 const passport = require(`passport`);
+const cookieParser = require("cookie-parser");
 const LocalStrategy = require(`passport-local`).Strategy;
 
 // Express Route File Requires
+const routes = require("./routes/index");
 const { User_Profile } = require("./models");
 
 const app = express();
+
+//Seteo de vista de errores
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
+
+// middlewares
 app.use(logger("dev"));
-// parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//APP.USE DE PASSPORT
 app.use(cookieParser());
+var path = require("path");
+app.use(express.static(path.join(__dirname, "public")));
 
 //Session Secret
 app.use(
@@ -80,7 +86,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  /* res.render("error"); */
+  res.render("error");
 });
 
 db.sync({ force: false })

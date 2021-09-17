@@ -32,7 +32,7 @@ const auth_controller = {
       req.logout();
       return res.redirect("/");
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
 
@@ -53,7 +53,7 @@ const auth_controller = {
         return res.send(userLogged);
       }
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
 };

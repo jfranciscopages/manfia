@@ -5,12 +5,13 @@ import {
   createAction,
 } from "@reduxjs/toolkit";
 
-export const searchProducts = createAsyncThunk("SEARCH_PRODUCTS", (title) =>
+export const searchProducts = createAsyncThunk("SEARCH_PRODUCTS", (title) => {
+  const value = title.target.value;
   axios
-    .get(`api/search/${title}`)
+    .get(`api/search/${value}`)
     .then((res) => res.data)
-    .catch((e) => console.log(e))
-);
+    .catch((e) => console.log(e));
+});
 
 const initialValue = [];
 
