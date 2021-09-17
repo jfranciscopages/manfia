@@ -32,6 +32,12 @@ function ShoppingHistory() {
   const [shoppingHistory, setShoppingHistory] = React.useState([]);
   let orderform = JSON.parse(window.localStorage.getItem("orderform"));
 
+  const reserLocalS = (product)=>{
+    const nameProduct = localStorage.getItem("product");
+    return  window.localStorage.setItem("product", JSON.stringify(product)) 
+
+    }
+
   useEffect(() => {
     axios
       .get(`/api/cart/history/${orderform.clientProfile.id}`)
@@ -99,8 +105,9 @@ function ShoppingHistory() {
                         <MenuList>
                           {shop.order_details.map((products) => (
 
-                            <Link key={products.id} to={`/products/${products.title}`} >
-                              {console.log(`/products/${products.title}`)}
+                            <Link key={products.id} 
+                            onClick={()=>reserLocalS(products.title)} 
+                            to={`/products/${products.title}`} >
                             <MenuItem minH="48px">
                               <Image
                                 boxSize="2rem"
