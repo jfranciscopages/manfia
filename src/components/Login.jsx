@@ -136,11 +136,11 @@ const Login = () => {
                 //acá termina el divisor
                 <SimpleGrid mt="6" columns={2} spacing="4">
                   <Button color="currentColor" variant="outline">
-                    <VisuallyHidden>Login with Facebook</VisuallyHidden>
+                    <VisuallyHidden>Loguearse con Facebook</VisuallyHidden>
                     <FaFacebook />
                   </Button>
                   <Button color="currentColor" variant="outline">
-                    <VisuallyHidden>Login with Google</VisuallyHidden>
+                    <VisuallyHidden>Loguearse con Google</VisuallyHidden>
                     <FaGoogle />
                   </Button>
                 </SimpleGrid>
