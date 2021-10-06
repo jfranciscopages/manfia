@@ -1,4 +1,4 @@
-# ↓↓↓ VIDEO DEMO AVAILABLE ↓↓↓
+# ↓ Video demo available ↓
 https://www.youtube.com/watch?v=Z86kvYR_g4I
 
 # Getting Started with Create React App
